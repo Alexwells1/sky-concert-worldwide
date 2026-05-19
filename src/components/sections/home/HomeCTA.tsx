@@ -8,7 +8,7 @@ export default function HomeCTA() {
   const { ref, inView } = useInView();
   return (
     <section style={{
-      background: '#060A14',
+      background: 'transparent',
       padding: '7rem 1.5rem',
       position: 'relative',
       overflow: 'hidden',

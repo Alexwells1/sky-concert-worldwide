@@ -6,7 +6,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function ProjectsHighlight() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '5rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '5rem 1.5rem' }}>
       <div ref={ref} style={{
         maxWidth: '80rem', margin: '0 auto',
         opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(1.75rem)',
@@ -21,7 +21,7 @@ export default function ProjectsHighlight() {
               display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
               flex: '1 1 280px',
               padding: '1.25rem',
-              background: '#0D1426',
+              background: 'rgba(8,15,35,0.55)',
               border: '1px solid rgba(0,229,255,0.06)',
               borderRadius: '2px',
             }}>

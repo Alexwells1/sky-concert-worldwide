@@ -5,7 +5,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function GlobalPresence() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <div ref={ref} style={{
           opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(1.75rem)',

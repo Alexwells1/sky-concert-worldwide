@@ -8,7 +8,7 @@ function AdvantageBlock({ item, index }: { item: typeof ADVANTAGE_POINTS[number]
   return (
     <div ref={ref} style={{
       padding: '4rem 1.5rem',
-      background: isEven ? '#060A14' : '#0A0F1E',
+      background: 'transparent',
       borderTop: '1px solid rgba(0,229,255,0.06)',
       opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(1.75rem)',
       transition: 'opacity 0.7s ease, transform 0.7s ease',
@@ -51,7 +51,7 @@ function AdvantageBlock({ item, index }: { item: typeof ADVANTAGE_POINTS[number]
         )}
         {item.hasMap && (
           <div style={{
-            marginTop: '2rem', background: '#0D1426',
+            marginTop: '2rem', background: 'rgba(8,15,35,0.55)',
             border: '1px solid rgba(0,229,255,0.1)', borderRadius: '2px',
             padding: '2rem', textAlign: 'center', maxWidth: '500px',
           }}>

@@ -6,7 +6,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function ComparisonTable() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#060A14', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <SectionLabel text={COMPARISON_META.sectionLabel} />
@@ -26,7 +26,7 @@ export default function ComparisonTable() {
         }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
             <thead>
-              <tr style={{ background: '#0A1A2E' }}>
+              <tr style={{ background: 'rgba(0,30,70,0.45)' }}>
                 <th style={{
                   padding: '1.25rem 1.5rem', textAlign: 'left',
                   fontFamily: '"Space Mono", monospace', fontSize: '0.6rem',
@@ -55,7 +55,7 @@ export default function ComparisonTable() {
             </thead>
             <tbody>
               {COMPARISON_ROWS.map((row, i) => (
-                <tr key={row.category} style={{ background: i % 2 === 0 ? '#0D1426' : '#0A0F1E' }}>
+                <tr key={row.category} style={{ background: i % 2 === 0 ? 'rgba(8,15,35,0.5)' : 'rgba(4,10,25,0.4)' }}>
                   <td style={{
                     padding: '1.1rem 1.5rem',
                     fontFamily: '"Space Mono", monospace', fontSize: '0.65rem',

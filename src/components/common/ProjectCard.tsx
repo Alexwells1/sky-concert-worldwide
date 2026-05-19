@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { Play, X } from 'lucide-react';
 import type { ProjectItem } from '../../types';
 
 interface ProjectCardProps {
@@ -12,107 +14,197 @@ const CATEGORY_GRADIENTS: Record<string, string> = {
 };
 
 export default function ProjectCard({ item }: ProjectCardProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const hasVideo = Boolean(item.videoUrl);
+
+  useEffect(() => {
+    if (!modalOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setModalOpen(false);
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [modalOpen]);
+
+  useEffect(() => {
+    document.body.style.overflow = modalOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [modalOpen]);
+
   return (
-    <div
-      className="card-base"
-      style={{ borderRadius: '2px', overflow: 'hidden', position: 'relative' }}
-    >
-      {/* IMAGE PLACEHOLDER: Project thumbnail — drone show footage */}
-      <div style={{
-        height: '220px',
-        background: CATEGORY_GRADIENTS[item.category] || CATEGORY_GRADIENTS.government,
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse at 50% 60%, rgba(0,229,255,0.08) 0%, transparent 70%)',
-        }} />
-        <div style={{
-          fontFamily: '"Bebas Neue", cursive',
-          fontSize: '1rem',
-          color: 'rgba(0,229,255,0.3)',
-          letterSpacing: '0.3em',
-          textAlign: 'center',
-          padding: '0 1rem',
-        }}>
-          SKY CONCERT WORLDWIDE
-        </div>
-        {item.isConceptOnly && (
+    <>
+      <div className="card-base" style={{ borderRadius: '2px', overflow: 'hidden', position: 'relative' }}>
+        <div
+          onClick={() => hasVideo && setModalOpen(true)}
+          style={{
+            height: '220px',
+            background: CATEGORY_GRADIENTS[item.category] || CATEGORY_GRADIENTS.government,
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+            cursor: hasVideo ? 'pointer' : 'default',
+          }}
+        >
           <div style={{
-            position: 'absolute',
-            top: '1rem',
-            left: '1rem',
-            background: 'rgba(201, 168, 76, 0.15)',
-            border: '1px solid rgba(201, 168, 76, 0.4)',
-            color: '#C9A84C',
-            fontFamily: '"Space Mono", monospace',
-            fontSize: '0.55rem',
-            letterSpacing: '0.2em',
-            padding: '0.3rem 0.6rem',
-            textTransform: 'uppercase',
+            position: 'absolute', inset: 0,
+            background: 'radial-gradient(ellipse at 50% 60%, rgba(0,229,255,0.08) 0%, transparent 70%)',
+          }} />
+
+          {hasVideo ? (
+            <div className="play-btn-group" style={{
+              position: 'relative', zIndex: 2,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem',
+            }}>
+              <div style={{
+                width: '64px', height: '64px', borderRadius: '50%',
+                background: 'rgba(0,229,255,0.15)',
+                border: '2px solid rgba(0,229,255,0.6)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                boxShadow: '0 0 32px rgba(0,229,255,0.3)',
+                transition: 'background 0.2s, box-shadow 0.2s',
+              }}>
+                <Play size={22} fill="#00E5FF" color="#00E5FF" style={{ marginLeft: '3px' }} />
+              </div>
+              <span style={{
+                fontFamily: '"Bebas Neue", cursive', fontSize: '0.75rem',
+                letterSpacing: '0.2em', color: '#00E5FF',
+              }}>
+                WATCH VIDEO
+              </span>
+            </div>
+          ) : (
+            <div style={{
+              fontFamily: '"Bebas Neue", cursive', fontSize: '1rem',
+              color: 'rgba(0,229,255,0.3)', letterSpacing: '0.3em',
+              textAlign: 'center', padding: '0 1rem',
+            }}>
+              SKY CONCERT WORLDWIDE
+            </div>
+          )}
+
+          {item.isConceptOnly && (
+            <div style={{
+              position: 'absolute', top: '1rem', left: '1rem',
+              background: 'rgba(201, 168, 76, 0.15)', border: '1px solid rgba(201, 168, 76, 0.4)',
+              color: '#C9A84C', fontFamily: '"Space Mono", monospace', fontSize: '0.55rem',
+              letterSpacing: '0.2em', padding: '0.3rem 0.6rem', textTransform: 'uppercase',
+            }}>
+              Concept
+            </div>
+          )}
+
+          <div style={{
+            position: 'absolute', top: '1rem', right: '1rem',
+            background: 'rgba(0,229,255,0.1)', border: '1px solid rgba(0,229,255,0.25)',
+            color: '#00E5FF', fontFamily: '"Space Mono", monospace', fontSize: '0.55rem',
+            letterSpacing: '0.15em', padding: '0.3rem 0.6rem', textTransform: 'uppercase',
           }}>
-            Concept
+            {item.tag}
           </div>
-        )}
-        <div style={{
-          position: 'absolute',
-          top: '1rem',
-          right: '1rem',
-          background: 'rgba(0,229,255,0.1)',
-          border: '1px solid rgba(0,229,255,0.25)',
-          color: '#00E5FF',
-          fontFamily: '"Space Mono", monospace',
-          fontSize: '0.55rem',
-          letterSpacing: '0.15em',
-          padding: '0.3rem 0.6rem',
-          textTransform: 'uppercase',
-        }}>
-          {item.tag}
+        </div>
+
+        <div style={{ padding: '1.5rem' }}>
+          <h3 style={{
+            fontFamily: '"Playfair Display", serif', fontSize: '1.125rem',
+            color: 'white', marginBottom: '0.4rem', lineHeight: 1.3,
+          }}>
+            {item.title}
+          </h3>
+          {item.subtitle && (
+            <p style={{
+              fontFamily: '"Space Mono", monospace', fontSize: '0.6rem', color: '#C9A84C',
+              letterSpacing: '0.15em', marginBottom: '0.75rem', textTransform: 'uppercase',
+            }}>
+              {item.subtitle}
+            </p>
+          )}
+          {item.stats && (
+            <p style={{
+              fontFamily: '"Space Mono", monospace', fontSize: '0.6rem', color: '#00E5FF',
+              letterSpacing: '0.1em', marginBottom: '0.75rem',
+            }}>
+              {item.stats}
+            </p>
+          )}
+          <p style={{ color: '#AAAAAA', fontSize: '0.85rem', lineHeight: 1.65 }}>
+            {item.description}
+          </p>
         </div>
       </div>
 
-      <div style={{ padding: '1.5rem' }}>
-        <h3 style={{
-          fontFamily: '"Playfair Display", serif',
-          fontSize: '1.125rem',
-          color: 'white',
-          marginBottom: '0.4rem',
-          lineHeight: 1.3,
-        }}>
-          {item.title}
-        </h3>
-        {item.subtitle && (
-          <p style={{
-            fontFamily: '"Space Mono", monospace',
-            fontSize: '0.6rem',
-            color: '#C9A84C',
-            letterSpacing: '0.15em',
-            marginBottom: '0.75rem',
-            textTransform: 'uppercase',
+      {modalOpen && item.videoUrl && (
+        <div
+          onClick={(e) => { if (e.target === e.currentTarget) setModalOpen(false); }}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(2,5,8,0.92)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '1.5rem', backdropFilter: 'blur(6px)',
+          }}
+        >
+          <div style={{
+            position: 'relative', width: '100%', maxWidth: '900px',
+            background: '#0A0F1E', border: '1px solid rgba(0,229,255,0.2)',
+            boxShadow: '0 0 80px rgba(0,229,255,0.12)', borderRadius: '2px',
           }}>
-            {item.subtitle}
-          </p>
-        )}
-        {item.stats && (
-          <p style={{
-            fontFamily: '"Space Mono", monospace',
-            fontSize: '0.6rem',
-            color: '#00E5FF',
-            letterSpacing: '0.1em',
-            marginBottom: '0.75rem',
-          }}>
-            {item.stats}
-          </p>
-        )}
-        <p style={{ color: '#AAAAAA', fontSize: '0.85rem', lineHeight: 1.65 }}>
-          {item.description}
-        </p>
-      </div>
-    </div>
+            <button
+              onClick={() => setModalOpen(false)}
+              style={{
+                position: 'absolute', top: '-3rem', right: 0,
+                background: 'transparent', border: '1px solid rgba(255,255,255,0.2)',
+                color: 'white', cursor: 'pointer', padding: '0.4rem',
+                display: 'flex', alignItems: 'center', gap: '0.4rem',
+                fontFamily: '"Space Mono", monospace', fontSize: '0.6rem',
+                letterSpacing: '0.15em',
+              }}
+            >
+              <X size={14} /> CLOSE
+            </button>
+
+            <div style={{
+              padding: '1rem 1.25rem 0.75rem',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+            }}>
+              <p style={{
+                fontFamily: '"Bebas Neue", cursive', fontSize: '1.1rem',
+                letterSpacing: '0.08em', color: 'white', margin: 0,
+              }}>
+                {item.title}
+              </p>
+              {item.subtitle && (
+                <p style={{
+                  fontFamily: '"Space Mono", monospace', fontSize: '0.55rem',
+                  color: '#C9A84C', letterSpacing: '0.15em',
+                  textTransform: 'uppercase', margin: '0.25rem 0 0',
+                }}>
+                  {item.subtitle}
+                </p>
+              )}
+            </div>
+
+            <div style={{ position: 'relative', paddingTop: '56.25%' }}>
+              <video
+                src={item.videoUrl}
+                controls
+                autoPlay
+                style={{
+                  position: 'absolute', inset: 0, width: '100%', height: '100%',
+                  display: 'block', background: '#000',
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        .play-btn-group:hover > div:first-child {
+          background: rgba(0,229,255,0.25) !important;
+          box-shadow: 0 0 48px rgba(0,229,255,0.5) !important;
+        }
+      `}</style>
+    </>
   );
 }

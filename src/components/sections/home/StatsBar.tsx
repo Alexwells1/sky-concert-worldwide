@@ -5,7 +5,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function StatsBar() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#060A14', padding: '4rem 1.5rem', borderTop: '1px solid rgba(0,229,255,0.06)', borderBottom: '1px solid rgba(0,229,255,0.06)' }}>
+    <section style={{ background: 'transparent', padding: '4rem 1.5rem', borderTop: '1px solid rgba(0,229,255,0.06)', borderBottom: '1px solid rgba(0,229,255,0.06)' }}>
       <div
         ref={ref}
         style={{

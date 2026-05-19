@@ -11,7 +11,7 @@ const icons = [
 export default function TrustBadges() {
   return (
     <section style={{
-      background: '#040810',
+      background: 'transparent',
       padding: '2.5rem 1.5rem',
       borderTop: '1px solid rgba(0,229,255,0.06)',
       borderBottom: '1px solid rgba(0,229,255,0.06)',

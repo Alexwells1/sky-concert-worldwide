@@ -8,7 +8,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function ProjectsPreview() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#060A14', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <div ref={ref} style={{
           textAlign: 'center',
@@ -43,18 +43,7 @@ export default function ProjectsPreview() {
           ))}
         </div>
 
-        <p style={{
-          fontFamily: '"Space Mono", monospace',
-          fontSize: '0.6rem',
-          color: '#555',
-          letterSpacing: '0.1em',
-          textAlign: 'center',
-          marginBottom: '2rem',
-        }}>
-          {HOME_PROJECTS_META.conceptNote}
-        </p>
-
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
           <Link to="/projects" className="btn-primary">
             {HOME_PROJECTS_META.cta} <ArrowRight size={14} />
           </Link>

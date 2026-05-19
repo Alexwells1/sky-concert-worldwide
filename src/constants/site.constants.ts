@@ -12,10 +12,11 @@ export const LOGO_TEXT = {
 };
 
 export const NAV_LINKS: NavLink[] = [
-  { label: 'About',    href: '/about'    },
-  { label: 'Services', href: '/services' },
-  { label: 'Why Us',   href: '/why-us'   },
-  { label: 'Contact',  href: '/contact'  },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Why Us", href: "/why-us" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const NAV_CTA: NavLink = {
@@ -34,10 +35,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export const CONTACT_INFO: ContactInfo = {
-  email:          'info@skyconcertworldwide.com',
-  phone:          '+XXX XXX XXXX',
-  emergencyEmail: 'operations@skyconcertworldwide.com',
-  responseTime:   'Within 24 business hours',
+  email: "skyconcertworldwide@gmail.com",
+  phone: "+XXX XXX XXXX",
+  emergencyEmail: "skyconcertworldwide@gmail.com",
+  responseTime: "Within 24 business hours",
 };
 
 export const LEGAL_TEXT = '© 2025 Sky Concert Worldwide. All rights reserved.';

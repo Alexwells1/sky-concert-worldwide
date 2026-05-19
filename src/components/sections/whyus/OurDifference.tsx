@@ -5,7 +5,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function OurDifference() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div ref={ref} style={{
         maxWidth: '760px', margin: '0 auto',
         opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(1.75rem)',

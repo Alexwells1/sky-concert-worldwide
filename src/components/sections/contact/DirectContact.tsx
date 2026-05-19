@@ -4,7 +4,7 @@ import { DIRECT_CONTACT_META, CONTACT_INFO } from '../../../constants';
 
 export default function DirectContact() {
   return (
-    <section style={{ background: '#060A14', padding: '5rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '5rem 1.5rem' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <SectionLabel text={DIRECT_CONTACT_META.headline} />
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', maxWidth: '440px' }}>
@@ -17,7 +17,7 @@ export default function DirectContact() {
             <div key={item.label} style={{
               display: 'flex', alignItems: 'flex-start', gap: '1rem',
               padding: '1.25rem',
-              background: '#0D1426', border: '1px solid rgba(0,229,255,0.06)',
+              background: 'rgba(8,15,35,0.55)', border: '1px solid rgba(0,229,255,0.06)',
               borderRadius: '2px',
             }}>
               <div style={{ marginTop: '2px', flexShrink: 0 }}>{item.icon}</div>

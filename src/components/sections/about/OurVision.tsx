@@ -6,7 +6,7 @@ export default function OurVision() {
   const { ref, inView } = useInView();
   return (
     <section style={{
-      background: '#0A0F1E',
+      background: 'transparent',
       padding: '6rem 1.5rem',
       position: 'relative',
       overflow: 'hidden',

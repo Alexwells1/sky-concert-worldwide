@@ -6,12 +6,12 @@ import { useInView } from '../../../hooks/useInView';
 export default function TechAdvantage() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <div
           ref={ref}
           style={{
-            background: '#0D1426',
+            background: 'rgba(8,15,35,0.55)',
             border: '1px solid rgba(0,229,255,0.1)',
             borderRadius: '2px',
             padding: 'clamp(1.5rem, 4vw, 3rem)',

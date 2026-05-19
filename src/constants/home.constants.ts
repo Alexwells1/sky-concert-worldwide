@@ -1,4 +1,8 @@
-import type { StatItem, ServiceItem, UseCaseItem, ProcessStepItem, ProjectItem, PillarItem } from '../types';
+import type { StatItem, ServiceItem, UseCaseItem, ProcessStepItem, PillarItem } from '../types';
+import { FEATURED_PROJECTS } from './projects.constants';
+
+// HOME_PROJECTS now reuses the same 3 real video projects defined in projects.constants.ts
+export { FEATURED_PROJECTS as HOME_PROJECTS };
 
 export const HOME_HERO = {
   headline1:   "We Don't Just Light Up the Sky.",
@@ -70,19 +74,12 @@ export const HOME_PROCESS_META = {
   subheadline:  "Every Sky Concert experience is a precision-engineered production. Here's how we bring your vision to life, from first conversation to live execution.",
 } as const;
 
-export const HOME_PROJECTS: ProjectItem[] = [
-  { id: 'nye-celebration',   title: "New Year's Eve National Celebration",  subtitle: 'National Events / Government',      stats: '', description: 'Thousands of synchronized drones painting the sky in a record-scale countdown spectacle — watched live by millions and shared around the world.',                                                                  tag: 'National Events',      category: 'government', isConceptOnly: true },
-  { id: 'luxury-launch',     title: 'Luxury Brand Product Reveal',          subtitle: 'Brand Activations / Product Launch', stats: '', description: 'A cinematic 3D aerial reveal performance launching a flagship product above a crowd of global media and VIP guests — generating massive press and social buzz.',                              tag: 'Brand Activation',     category: 'corporate',  isConceptOnly: true },
-  { id: 'halftime-spectacle',title: 'Championship Halftime Sky Spectacle',  subtitle: 'Sports Events / Entertainment',      stats: '', description: 'A high-energy drone show fused with live stadium music and lighting, delivering an unforgettable multi-sensory experience to tens of thousands of fans.',                                  tag: 'Sports & Entertainment', category: 'sports',    isConceptOnly: true },
-  { id: 'tourism-campaign',  title: 'National Tourism Heritage Campaign',   subtitle: 'Tourism & Culture / Government',     stats: '', description: 'Breathtaking cultural storytelling formations celebrating the history, identity, and beauty of a nation — broadcast globally to millions of viewers.',                                         tag: 'Tourism & Culture',    category: 'tourism',    isConceptOnly: true },
-];
 
 export const HOME_PROJECTS_META = {
-  sectionLabel: "Sky Moments We're Built to Create",
+  sectionLabel: 'Our Work',
   headline:     'The Sky Has No Limits. Neither Do We.',
-  subheadline:  'These are the kinds of moments we exist to create — bold, breathtaking, and built to be remembered long after the last drone lands.',
-  cta:          'Explore What We Can Create for You',
-  conceptNote:  'Projects shown are concept scenarios representing our capability and vision.',
+  subheadline:  'Three sky-defining moments we created — bold, breathtaking, and built to be remembered.',
+  cta:          'Watch All Projects',
 } as const;
 
 export const HOME_WHY_US_PILLARS: PillarItem[] = [

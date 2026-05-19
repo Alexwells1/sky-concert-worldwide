@@ -7,7 +7,7 @@ import { useInView } from "../../../hooks/useInView";
 export default function WhyUsPreview() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: "#060A14", padding: "4rem 1.5rem" }}>
+    <section style={{ background: "transparent", padding: "4rem 1.5rem" }}>
       <div style={{ maxWidth: "56rem", margin: "0 auto", textAlign: "center" }}>
         <div
           ref={ref}

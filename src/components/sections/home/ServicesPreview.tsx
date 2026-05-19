@@ -8,7 +8,7 @@ import { useInView } from "../../../hooks/useInView";
 export default function ServicesPreview() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: "#0A0F1E", padding: "4rem 1.5rem" }}>
+    <section style={{ background: "transparent", padding: "4rem 1.5rem" }}>
       <style>{`
         @media (max-width: 640px) {
           .service-card-description {

@@ -5,7 +5,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function OurStory() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div
         ref={ref}
         style={{

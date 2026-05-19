@@ -19,7 +19,8 @@ const SOCIAL_ITEMS = [
 export default function Footer() {
   return (
     <footer style={{
-      background: '#040810',
+      background: 'rgba(1,2,10,0.75)',
+      backdropFilter: 'blur(12px)',
       borderTop: '1px solid rgba(0,229,255,0.08)',
       padding: '4rem 2rem 2rem',
     }}>

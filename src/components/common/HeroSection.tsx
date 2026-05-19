@@ -1,12 +1,6 @@
 import type { HeroSectionProps } from '../../types';
 
-const overlayMap = {
-  light:  'rgba(6,10,20,0.4)',
-  medium: 'rgba(6,10,20,0.55)',
-  heavy:  'rgba(6,10,20,0.65)',
-};
-
-export default function HeroSection({ headline, subheadline, supporting, overlayIntensity = 'medium' }: HeroSectionProps) {
+export default function HeroSection({ headline, subheadline, supporting }: HeroSectionProps) {
   return (
     <section style={{
       position: 'relative',
@@ -16,38 +10,14 @@ export default function HeroSection({ headline, subheadline, supporting, overlay
       justifyContent: 'center',
       overflow: 'hidden',
     }}>
-      {/* IMAGE PLACEHOLDER: Hero background — cinematic drone show footage */}
+      {/* Subtle radial glow — no opaque background */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: `linear-gradient(to bottom, ${overlayMap[overlayIntensity]}, rgba(6,10,20,0.8))`,
-        zIndex: 1,
-      }} />
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(135deg, #060A14 0%, #0A0F1E 40%, #040810 100%)',
+        background: 'radial-gradient(ellipse at 50% 40%, rgba(0,229,255,0.05) 0%, transparent 65%)',
         zIndex: 0,
-      }}>
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse at 50% 40%, rgba(0,229,255,0.06) 0%, transparent 65%)',
-        }} />
-        {/* Decorative dots */}
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div key={i} style={{
-            position: 'absolute',
-            width: '2px',
-            height: '2px',
-            borderRadius: '50%',
-            background: '#00E5FF',
-            opacity: Math.random() * 0.4 + 0.1,
-            top: `${Math.random() * 100}%`,
-            left: `${Math.random() * 100}%`,
-          }} />
-        ))}
-      </div>
+        pointerEvents: 'none',
+      }} />
 
       <div style={{
         position: 'relative',
@@ -115,3 +85,4 @@ export default function HeroSection({ headline, subheadline, supporting, overlay
     </section>
   );
 }
+

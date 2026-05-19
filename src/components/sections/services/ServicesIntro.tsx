@@ -4,7 +4,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function ServicesIntro() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '5rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '5rem 1.5rem' }}>
       <div
         ref={ref}
         style={{

@@ -21,7 +21,7 @@ const INITIAL: FormState = {
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
-  background: '#0D1426',
+  background: 'rgba(8,15,35,0.7)',
   border: '1px solid rgba(0,229,255,0.15)',
   color: 'white',
   padding: '0.875rem 1rem',
@@ -66,11 +66,11 @@ export default function ContactForm() {
 
   if (submitted) {
     return (
-      <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+      <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
         <div style={{
           maxWidth: '560px', margin: '0 auto', textAlign: 'center',
           padding: '4rem 2rem',
-          background: '#0D1426', border: '1px solid rgba(0,229,255,0.2)', borderRadius: '2px',
+          background: 'rgba(8,15,35,0.6)', border: '1px solid rgba(0,229,255,0.2)', borderRadius: '2px',
         }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✦</div>
           <h3 style={{
@@ -91,7 +91,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <SectionLabel text={CONTACT_FORM_META.headline} />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1rem', maxWidth: '680px' }}>

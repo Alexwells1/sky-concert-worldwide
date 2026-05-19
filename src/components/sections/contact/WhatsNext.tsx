@@ -5,7 +5,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function WhatsNext() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <SectionLabel text={WHATS_NEXT_META.sectionLabel} />
@@ -59,7 +59,7 @@ export default function WhatsNext() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0,
-                background: '#060A14',
+                background: 'rgba(6,10,20,0.45)',
                 zIndex: 1,
               }}>
                 <span style={{

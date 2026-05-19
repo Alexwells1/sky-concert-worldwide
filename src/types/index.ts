@@ -38,6 +38,8 @@ export interface ProjectItem {
   tag: string;
   category: string;
   isConceptOnly: boolean;
+  videoUrl?: string;
+  thumbnailUrl?: string;
 }
 
 export interface ProcessStepItem {

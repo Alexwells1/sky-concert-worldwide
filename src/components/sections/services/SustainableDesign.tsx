@@ -6,7 +6,7 @@ import { useInView } from '../../../hooks/useInView';
 export default function SustainableDesign() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: '#0A0F1E', padding: '6rem 1.5rem' }}>
+    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
       <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
         <div ref={ref} style={{
           display: 'grid', gridTemplateColumns: '1fr',
