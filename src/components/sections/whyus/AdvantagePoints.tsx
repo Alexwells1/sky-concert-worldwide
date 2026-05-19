@@ -2,9 +2,8 @@ import { Check, Globe } from 'lucide-react';
 import { ADVANTAGE_POINTS } from '../../../constants';
 import { useInView } from '../../../hooks/useInView';
 
-function AdvantageBlock({ item, index }: { item: typeof ADVANTAGE_POINTS[number]; index: number }) {
+function AdvantageBlock({ item}: { item: typeof ADVANTAGE_POINTS[number]; index: number }) {
   const { ref, inView } = useInView();
-  const isEven = index % 2 === 0;
   return (
     <div ref={ref} style={{
       padding: '4rem 1.5rem',
