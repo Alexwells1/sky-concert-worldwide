@@ -15,7 +15,7 @@ export default function ProjectsGrid() {
             lineHeight: 1.2,
             marginBottom: '1rem',
           }}>
-            Three Sky-Defining Moments
+            Sky-Defining Moments
           </h2>
           <p style={{
             color: '#AAAAAA',

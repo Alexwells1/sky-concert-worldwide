@@ -12,6 +12,7 @@ export const LOGO_TEXT = {
 };
 
 export const NAV_LINKS: NavLink[] = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Why Us", href: "/why-us" },
@@ -36,7 +37,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
 
 export const CONTACT_INFO: ContactInfo = {
   email: "skyconcertworldwide@gmail.com",
-  phone: "+XXX XXX XXXX",
+  phone: "+2348151994696",
   emergencyEmail: "skyconcertworldwide@gmail.com",
   responseTime: "Within 24 business hours",
 };

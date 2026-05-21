@@ -20,7 +20,7 @@ const VIDEO_3 =
 export const FEATURED_PROJECTS: ProjectItem[] = [
   {
     id: "project-1",
-    title: "Sky Concert — Project 1",
+    title: "Sky Concert",
     subtitle: "Aerial Drone Experience",
     stats: "",
     description:
@@ -32,7 +32,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
   },
   {
     id: "project-2",
-    title: "Sky Concert — Project 2",
+    title: "Sky Concert",
     subtitle: "Brand Aerial Activation",
     stats: "",
     description:
@@ -44,7 +44,7 @@ export const FEATURED_PROJECTS: ProjectItem[] = [
   },
   {
     id: "project-3",
-    title: "Sky Concert — Project 3",
+    title: "Sky Concert",
     subtitle: "Live Entertainment Experience",
     stats: "",
     description:
@@ -70,11 +70,11 @@ export const PROJECT_FILTER_CATEGORIES = [
 export const PROJECTS_HIGHLIGHT = {
   sectionLabel: "Why Our Projects Stand Out",
   bullets: [
-    "Fully customized to client goals — no two shows are the same",
+    "Fully customized to client goals no two shows are the same",
     "Seamless blend of technology and storytelling",
     "Exceptional visual quality and precision execution",
     "Strong emphasis on sustainability and safety",
-    "High shareability and media impact — built for press and social amplification",
+    "High shareability and media impact built for press and social amplification",
   ],
 } as const;
 
