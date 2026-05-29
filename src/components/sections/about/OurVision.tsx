@@ -1,6 +1,6 @@
 import SectionLabel from '../../common/SectionLabel';
-import { ABOUT_VISION } from '../../../constants';
 import { useInView } from '../../../hooks/useInView';
+import { ABOUT_VISION } from '../../../constants/about.constants';
 
 export default function OurVision() {
   const { ref, inView } = useInView();

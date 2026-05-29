@@ -28,7 +28,6 @@ export default function FeaturedProjects() {
     };
   }, [modalVideo]);
 
-  // Play when in view
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
@@ -39,7 +38,6 @@ export default function FeaturedProjects() {
     }
   }, [inView]);
 
-  // Sync muted state
   useEffect(() => {
     const vid = videoRef.current;
     if (vid) vid.muted = muted;
@@ -49,36 +47,71 @@ export default function FeaturedProjects() {
 
   return (
     <>
-      <section style={{ background: "transparent", padding: "6rem 1.5rem" }}>
-        <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
+      <section
+        style={{
+          background: "transparent",
+          padding: "8rem 0",
+          overflow: "hidden",
+        }}
+      >
+        {/* Section label + heading — padded */}
+        <div
+          style={{
+            maxWidth: "80rem",
+            margin: "0 auto",
+            padding: "0 1.5rem",
+            marginBottom: "4rem",
+          }}
+        >
           <SectionLabel text="Featured Work" />
           <h2
             style={{
               fontFamily: '"Playfair Display", serif',
-              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              color: "white",
-              lineHeight: 1.2,
-              marginBottom: "3rem",
+              fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
+              color: "rgba(255,255,255,0.45)",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              fontWeight: 400,
+              marginBottom: "1rem",
             }}
           >
-            Sky Moments in Detail
+            Centerpiece Production
           </h2>
+          <p
+            style={{
+              fontFamily: '"Playfair Display", serif',
+              fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+              color: "white",
+              lineHeight: 1.1,
+              maxWidth: "700px",
+              fontStyle: "italic",
+              margin: 0,
+            }}
+          >
+            One Event. Thousands of Witnesses. No One Forgets.
+          </p>
+        </div>
 
-          {/* Featured video card */}
+        {/* Cinematic split: large video left, narrative right */}
+        <div
+          ref={ref}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            minHeight: "580px",
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateX(0)" : "translateX(-3rem)",
+            transition: "opacity 0.9s ease, transform 0.9s ease",
+          }}
+        >
+          {/* Left: video panel — goes edge to edge */}
           <div
-            ref={ref}
             style={{
               position: "relative",
-              height: "clamp(280px, 45vw, 520px)",
-              borderRadius: "2px",
               overflow: "hidden",
-              border: "1px solid rgba(0,229,255,0.12)",
-              opacity: inView ? 1 : 0,
-              transform: inView ? "translateY(0)" : "translateY(2rem)",
-              transition: "opacity 0.7s ease, transform 0.7s ease",
+              minHeight: "520px",
             }}
           >
-            {/* Background video — autoplays muted, loops */}
             {featured.videoUrl && (
               <video
                 ref={videoRef}
@@ -95,198 +128,266 @@ export default function FeaturedProjects() {
                   height: "100%",
                   objectFit: "cover",
                   opacity: videoReady ? 1 : 0,
-                  transition: "opacity 0.6s ease",
+                  transition: "opacity 0.8s ease",
+                  transform: "scale(1.03)",
                 }}
               />
             )}
 
-            {/* Gradient fallback before video loads */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "rgba(5,12,30,0.55)",
-                backdropFilter: "blur(8px)",
-                opacity: videoReady ? 0 : 1,
-                transition: "opacity 0.6s ease",
-                pointerEvents: "none",
-              }}
-            />
-
-            {/* Subtle dark overlay over video for text readability */}
+            {/* Loading placeholder */}
             <div
               style={{
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.7) 100%)",
+                  "linear-gradient(135deg, rgba(5,12,30,0.9) 0%, rgba(0,20,40,0.85) 100%)",
+                opacity: videoReady ? 0 : 1,
+                transition: "opacity 0.8s ease",
                 pointerEvents: "none",
               }}
             />
 
-            {/* Tag */}
+            {/* Right-side fade for seamless blend into narrative column */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to right, transparent 60%, rgba(6,10,20,0.95) 100%)",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+
+            {/* Bottom fade */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to bottom, transparent 50%, rgba(6,10,20,0.6) 100%)",
+                pointerEvents: "none",
+                zIndex: 1,
+              }}
+            />
+
+            {/* Controls overlay */}
+            <div
+              style={{
+                position: "absolute",
+                top: "1.5rem",
+                left: "1.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                zIndex: 3,
+              }}
+            >
+              <button
+                onClick={() => setMuted((m) => !m)}
+                style={{
+                  background: "rgba(0,0,0,0.5)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  color: "white",
+                  cursor: "pointer",
+                  padding: "0.45rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "50%",
+                  transition: "background 0.2s",
+                }}
+              >
+                {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              </button>
+
+              {/* LIVE dot */}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span
+                  style={{
+                    width: "6px",
+                    height: "6px",
+                    borderRadius: "50%",
+                    background: "#ff4444",
+                    boxShadow: "0 0 6px #ff4444",
+                    display: "inline-block",
+                    animation: "pulse-dot 1.8s ease-in-out infinite",
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: '"Space Mono", monospace',
+                    fontSize: "0.5rem",
+                    letterSpacing: "0.2em",
+                    color: "rgba(255,255,255,0.6)",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Preview
+                </span>
+              </div>
+            </div>
+
+            {/* Tag badge */}
             <div
               style={{
                 position: "absolute",
                 top: "1.5rem",
                 right: "1.5rem",
-                background: "rgba(0,229,255,0.1)",
-                border: "1px solid rgba(0,229,255,0.3)",
+                background: "rgba(0,229,255,0.08)",
+                border: "1px solid rgba(0,229,255,0.25)",
                 color: "#00E5FF",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "0.55rem",
                 letterSpacing: "0.18em",
                 padding: "0.4rem 0.8rem",
                 textTransform: "uppercase",
-                zIndex: 2,
+                zIndex: 3,
               }}
             >
               {featured.tag}
             </div>
+          </div>
 
-            {/* Mute toggle */}
-            <button
-              onClick={() => setMuted((m) => !m)}
+          {/* Right: narrative panel */}
+          <div
+            style={{
+              background: "rgba(6,10,20,0.97)",
+              padding: "4rem 3.5rem 4rem 4rem",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              borderLeft: "1px solid rgba(0,229,255,0.06)",
+            }}
+          >
+            {/* Event type label */}
+            <p
               style={{
-                position: "absolute",
-                top: "1.5rem",
-                left: "1.5rem",
-                background: "rgba(0,0,0,0.45)",
-                border: "1px solid rgba(255,255,255,0.15)",
+                fontFamily: '"Space Mono", monospace',
+                fontSize: "0.6rem",
+                letterSpacing: "0.25em",
+                color: "#C9A84C",
+                textTransform: "uppercase",
+                marginBottom: "1.25rem",
+              }}
+            >
+              {featured.subtitle}
+            </p>
+
+            {/* Project name */}
+            <h3
+              style={{
+                fontFamily: '"Playfair Display", serif',
+                fontSize: "clamp(2rem, 3vw, 3rem)",
                 color: "white",
-                cursor: "pointer",
-                padding: "0.45rem",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: "50%",
-                zIndex: 2,
-                transition: "background 0.2s",
+                lineHeight: 1.1,
+                marginBottom: "2rem",
               }}
             >
-              {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            </button>
+              {featured.title}
+            </h3>
 
-            {/* LIVE indicator */}
+            {/* Story */}
+            <p
+              style={{
+                color: "rgba(255,255,255,0.6)",
+                fontSize: "1rem",
+                lineHeight: 1.85,
+                marginBottom: "2.5rem",
+                maxWidth: "420px",
+              }}
+            >
+              {featured.description}
+            </p>
+
+            {/* Stats strip */}
             <div
               style={{
-                position: "absolute",
-                top: "1.55rem",
-                left: "4rem",
                 display: "flex",
-                alignItems: "center",
-                gap: "0.4rem",
-                zIndex: 2,
+                gap: "2rem",
+                marginBottom: "3rem",
+                paddingBottom: "2rem",
+                borderBottom: "1px solid rgba(255,255,255,0.07)",
               }}
             >
-              <span
-                style={{
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "50%",
-                  background: "#ff4444",
-                  boxShadow: "0 0 6px #ff4444",
-                  display: "inline-block",
-                  animation: "pulse-dot 1.8s ease-in-out infinite",
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.55rem",
-                  letterSpacing: "0.2em",
-                  color: "rgba(255,255,255,0.7)",
-                  textTransform: "uppercase",
-                }}
-              >
-                Preview
-              </span>
-            </div>
-
-            {/* Bottom bar */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: "1.5rem 1.75rem",
-                display: "flex",
-                alignItems: "flex-end",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                gap: "1rem",
-                zIndex: 2,
-              }}
-            >
-              {/* Left: title + description */}
-              <div style={{ flex: "1 1 260px" }}>
-                <p
-                  style={{
-                    fontFamily: '"Playfair Display", serif',
-                    fontSize: "1.25rem",
-                    color: "white",
-                    margin: "0 0 0.35rem",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {featured.title}
-                </p>
-                {featured.subtitle && (
+              {[
+                { value: "500+", label: "Drones" },
+                { value: "Millions", label: "Impressions" },
+                { value: "Live", label: "Broadcast" },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <p
+                    style={{
+                      fontFamily: '"Bebas Neue", cursive',
+                      fontSize: "1.75rem",
+                      color: "#00E5FF",
+                      letterSpacing: "0.04em",
+                      margin: 0,
+                      lineHeight: 1,
+                    }}
+                  >
+                    {stat.value}
+                  </p>
                   <p
                     style={{
                       fontFamily: '"Space Mono", monospace',
                       fontSize: "0.55rem",
-                      color: "#C9A84C",
-                      letterSpacing: "0.15em",
+                      letterSpacing: "0.18em",
+                      color: "rgba(255,255,255,0.35)",
                       textTransform: "uppercase",
-                      margin: "0 0 0.5rem",
+                      margin: "0.35rem 0 0",
                     }}
                   >
-                    {featured.subtitle}
+                    {stat.label}
                   </p>
-                )}
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.6)",
-                    fontSize: "0.82rem",
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  {featured.description}
-                </p>
-              </div>
-
-              {/* Right: CTA button */}
-              {featured.videoUrl && (
-                <button
-                  onClick={() => setModalVideo(featured.videoUrl!)}
-                  className="featured-watch-btn"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.6rem",
-                    background: "rgba(0,229,255,0.12)",
-                    border: "1px solid rgba(0,229,255,0.55)",
-                    color: "#00E5FF",
-                    cursor: "pointer",
-                    padding: "0.75rem 1.4rem",
-                    fontFamily: '"Bebas Neue", cursive',
-                    fontSize: "0.85rem",
-                    letterSpacing: "0.25em",
-                    transition: "background 0.2s, box-shadow 0.2s",
-                    whiteSpace: "nowrap",
-                    flexShrink: 0,
-                  }}
-                >
-                  <Play size={14} fill="#00E5FF" color="#00E5FF" />
-                  WATCH SHOWREEL
-                </button>
-              )}
+                </div>
+              ))}
             </div>
+
+            {/* CTA */}
+            {featured.videoUrl && (
+              <button
+                onClick={() => setModalVideo(featured.videoUrl!)}
+                className="featured-watch-btn"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                  background: "transparent",
+                  border: "1px solid rgba(0,229,255,0.5)",
+                  color: "#00E5FF",
+                  cursor: "pointer",
+                  padding: "1rem 2rem",
+                  fontFamily: '"Bebas Neue", cursive',
+                  fontSize: "1rem",
+                  letterSpacing: "0.3em",
+                  transition: "background 0.25s, box-shadow 0.25s",
+                  alignSelf: "flex-start",
+                }}
+              >
+                <Play size={14} fill="#00E5FF" color="#00E5FF" />
+                WATCH SHOWREEL
+              </button>
+            )}
           </div>
         </div>
+
+        {/* Mobile fallback styles */}
+        <style>{`
+          .featured-watch-btn:hover {
+            background: rgba(0,229,255,0.1) !important;
+            box-shadow: 0 0 40px rgba(0,229,255,0.2);
+          }
+          @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.75); }
+          }
+          @media (max-width: 768px) {
+            .featured-split-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </section>
 
       {/* Modal */}
@@ -299,50 +400,49 @@ export default function FeaturedProjects() {
             position: "fixed",
             inset: 0,
             zIndex: 9999,
-            background: "rgba(2,5,8,0.92)",
+            background: "rgba(2,5,8,0.94)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             padding: "1.5rem",
-            backdropFilter: "blur(6px)",
+            backdropFilter: "blur(8px)",
           }}
         >
           <div
             style={{
               position: "relative",
               width: "100%",
-              maxWidth: "900px",
-              background: "rgba(8,15,35,0.92)",
-              border: "1px solid rgba(0,229,255,0.2)",
-              boxShadow: "0 0 80px rgba(0,229,255,0.12)",
-              borderRadius: "2px",
+              maxWidth: "960px",
+              background: "rgba(8,15,35,0.95)",
+              border: "1px solid rgba(0,229,255,0.15)",
+              boxShadow: "0 0 100px rgba(0,229,255,0.08)",
             }}
           >
             <button
               onClick={() => setModalVideo(null)}
               style={{
                 position: "absolute",
-                top: "-3rem",
+                top: "-3.25rem",
                 right: 0,
                 background: "transparent",
-                border: "1px solid rgba(255,255,255,0.2)",
+                border: "1px solid rgba(255,255,255,0.15)",
                 color: "white",
                 cursor: "pointer",
-                padding: "0.4rem",
+                padding: "0.4rem 0.75rem",
                 display: "flex",
                 alignItems: "center",
                 gap: "0.4rem",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
-                letterSpacing: "0.15em",
+                fontSize: "0.55rem",
+                letterSpacing: "0.18em",
               }}
             >
-              <X size={14} /> CLOSE
+              <X size={12} /> CLOSE
             </button>
             <div
               style={{
-                padding: "1rem 1.25rem 0.75rem",
-                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                padding: "1.25rem 1.5rem 0.75rem",
+                borderBottom: "1px solid rgba(255,255,255,0.05)",
               }}
             >
               <p
@@ -389,17 +489,6 @@ export default function FeaturedProjects() {
           </div>
         </div>
       )}
-
-      <style>{`
-        .featured-watch-btn:hover {
-          background: rgba(0,229,255,0.22) !important;
-          box-shadow: 0 0 32px rgba(0,229,255,0.3);
-        }
-        @keyframes pulse-dot {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(0.75); }
-        }
-      `}</style>
     </>
   );
 }

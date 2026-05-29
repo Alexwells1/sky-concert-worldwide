@@ -1,54 +1,449 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import SectionLabel from '../../common/SectionLabel';
-import ProjectCard from '../../common/ProjectCard';
-import { HOME_PROJECTS, HOME_PROJECTS_META } from '../../../constants';
-import { useInView } from '../../../hooks/useInView';
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { Play, X, ArrowRight } from "lucide-react";
+import { HOME_PROJECTS, HOME_PROJECTS_META } from "../../../constants";
+import { useInView } from "../../../hooks/useInView";
+
+function VideoThumbnail({ src }: { src: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onLoaded = () => {
+      v.currentTime = 1;
+    };
+    v.addEventListener("loadedmetadata", onLoaded);
+    return () => v.removeEventListener("loadedmetadata", onLoaded);
+  }, [src]);
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      muted
+      playsInline
+      preload="metadata"
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        display: "block",
+      }}
+    />
+  );
+}
 
 export default function ProjectsPreview() {
   const { ref, inView } = useInView();
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!activeVideo) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveVideo(null);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [activeVideo]);
+
+  useEffect(() => {
+    document.body.style.overflow = activeVideo ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeVideo]);
+
+  const [hero, second, third] = HOME_PROJECTS;
+
   return (
-    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
-        <div ref={ref} style={{
-          textAlign: 'center',
-          marginBottom: '3.5rem',
-          opacity: inView ? 1 : 0,
-          transform: inView ? 'translateY(0)' : 'translateY(1.75rem)',
-          transition: 'opacity 0.7s ease, transform 0.7s ease',
-        }}>
-          <SectionLabel text={HOME_PROJECTS_META.sectionLabel} />
-          <h2 style={{
-            fontFamily: '"Playfair Display", serif',
-            fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
-            color: 'white',
-            lineHeight: 1.2,
-            marginBottom: '1rem',
-          }}>
-            {HOME_PROJECTS_META.headline}
-          </h2>
-          <p style={{ color: '#AAAAAA', maxWidth: '620px', margin: '0 auto', lineHeight: 1.75 }}>
-            {HOME_PROJECTS_META.subheadline}
-          </p>
+    <>
+      <style>{`
+        .showcase-section { padding: 8rem 1.5rem; }
+        .showcase-header {
+          max-width: 80rem;
+          margin: 0 auto 3rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+        }
+        .showcase-label {
+          font-family: 'Space Mono', monospace;
+          font-size: 0.58rem;
+          letter-spacing: 0.3em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.25);
+          display: block;
+          margin-bottom: 1.25rem;
+        }
+        .showcase-headline {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 200;
+          font-size: clamp(2rem, 4.5vw, 3.5rem);
+          line-height: 1.05;
+          letter-spacing: -0.03em;
+          color: rgba(255,255,255,0.92);
+          margin: 0;
+        }
+        .showcase-mosaic {
+          max-width: 80rem;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1.65fr 1fr;
+          grid-template-rows: 340px 260px;
+          gap: 2px;
+        }
+        .showcase-hero-cell { grid-row: 1 / 3; }
+        @media (max-width: 640px) {
+          .showcase-mosaic {
+            grid-template-columns: 1fr;
+            grid-template-rows: 260px 200px;
+          }
+          .showcase-hero-cell { grid-row: auto; }
+          .showcase-mosaic > *:nth-child(3) { display: none; }
+        }
+        .showcase-tile {
+          position: relative;
+          overflow: hidden;
+          cursor: pointer;
+          background: #070a12;
+          border: none;
+          padding: 0;
+          text-align: left;
+          display: block;
+          width: 100%;
+        }
+        .showcase-tile-bg {
+          position: absolute;
+          inset: 0;
+          transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+          overflow: hidden;
+        }
+        .showcase-tile:hover .showcase-tile-bg { transform: scale(1.05); }
+        .showcase-tile-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(4,6,14,0.9) 0%, rgba(4,6,14,0.2) 40%, transparent 100%);
+          z-index: 2;
+        }
+        .showcase-tile-play {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0.8);
+          z-index: 3;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
+          background: rgba(255,255,255,0.06);
+          backdrop-filter: blur(8px);
+        }
+        .showcase-tile:hover .showcase-tile-play {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        .showcase-tile-info {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 4;
+          padding: 1.5rem 1.75rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+        }
+        .showcase-tile-tag {
+          font-family: 'Space Mono', monospace;
+          font-size: 0.52rem;
+          color: rgba(255,255,255,0.38);
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+        }
+        .showcase-tile-title {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 300;
+          color: rgba(255,255,255,0.9);
+          line-height: 1.25;
+          font-size: clamp(0.9rem, 1.8vw, 1.35rem);
+        }
+        .showcase-banner {
+          max-width: 80rem;
+          margin: 2px auto 0;
+          position: relative;
+          height: 180px;
+          overflow: hidden;
+          cursor: pointer;
+          background: #07090f;
+          border: none;
+          width: 100%;
+          text-align: left;
+          display: block;
+        }
+        @media (max-width: 640px) {
+          .showcase-banner { height: 140px; }
+        }
+        .showcase-banner-bg {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .showcase-banner:hover .showcase-banner-bg { transform: scale(1.03); }
+        .showcase-banner-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to right, rgba(4,6,14,0.85) 0%, rgba(4,6,14,0.2) 60%, transparent 100%);
+          z-index: 2;
+        }
+        .showcase-banner-content {
+          position: absolute;
+          inset: 0;
+          z-index: 3;
+          display: flex;
+          align-items: center;
+          padding: 0 2rem;
+          gap: 1.5rem;
+        }
+        .showcase-banner-play {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.25);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          background: rgba(255,255,255,0.04);
+          transition: border-color 0.3s, background 0.3s;
+        }
+        .showcase-banner:hover .showcase-banner-play {
+          border-color: rgba(255,255,255,0.5);
+          background: rgba(255,255,255,0.08);
+        }
+        .showcase-banner-tag {
+          font-family: 'Space Mono', monospace;
+          font-size: 0.5rem;
+          color: rgba(255,255,255,0.35);
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          display: block;
+          margin-bottom: 0.35rem;
+        }
+        .showcase-banner-title {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 300;
+          font-size: clamp(0.95rem, 1.8vw, 1.25rem);
+          color: rgba(255,255,255,0.88);
+          margin: 0;
+          line-height: 1.25;
+        }
+        .showcase-footer {
+          max-width: 80rem;
+          margin: 2rem auto 0;
+        }
+      `}</style>
+
+      <section className="showcase-section">
+        <div
+          ref={ref}
+          className="showcase-header"
+          style={{
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(1.5rem)",
+            transition: "opacity 0.8s ease, transform 0.8s ease",
+          }}
+        >
+          <div>
+            <span className="showcase-label">
+              {HOME_PROJECTS_META.sectionLabel}
+            </span>
+            <h2 className="showcase-headline">{HOME_PROJECTS_META.headline}</h2>
+          </div>
+          <Link to="/projects" className="btn-ghost" style={{ flexShrink: 0 }}>
+            All Projects <ArrowRight size={14} />
+          </Link>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          gap: '1.25rem',
-          marginBottom: '2.5rem',
-        }}>
-          {HOME_PROJECTS.map((project) => (
-            <ProjectCard key={project.id} item={project} />
+        <div
+          className="showcase-mosaic"
+          style={{
+            opacity: inView ? 1 : 0,
+            transition: "opacity 0.8s ease 0.2s",
+          }}
+        >
+          {hero && (
+            <button
+              className="showcase-tile showcase-hero-cell"
+              onClick={() => hero.videoUrl && setActiveVideo(hero.videoUrl)}
+              aria-label={`Play ${hero.title}`}
+            >
+              <div className="showcase-tile-bg">
+                {hero.videoUrl && <VideoThumbnail src={hero.videoUrl} />}
+              </div>
+              <div className="showcase-tile-overlay" />
+              {hero.videoUrl && (
+                <div className="showcase-tile-play">
+                  <Play
+                    size={16}
+                    fill="white"
+                    color="white"
+                    style={{ marginLeft: "2px" }}
+                  />
+                </div>
+              )}
+              <div className="showcase-tile-info">
+                <span className="showcase-tile-tag">{hero.tag}</span>
+                <span className="showcase-tile-title">
+                  {hero.subtitle ?? hero.title}
+                </span>
+              </div>
+            </button>
+          )}
+
+          {[second, third].filter(Boolean).map((project) => (
+            <button
+              key={project!.id}
+              className="showcase-tile"
+              onClick={() =>
+                project!.videoUrl && setActiveVideo(project!.videoUrl)
+              }
+              aria-label={`Play ${project!.title}`}
+            >
+              <div className="showcase-tile-bg">
+                {project!.videoUrl && (
+                  <VideoThumbnail src={project!.videoUrl} />
+                )}
+              </div>
+              <div className="showcase-tile-overlay" />
+              {project!.videoUrl && (
+                <div
+                  className="showcase-tile-play"
+                  style={{ width: 48, height: 48 }}
+                >
+                  <Play
+                    size={13}
+                    fill="white"
+                    color="white"
+                    style={{ marginLeft: "2px" }}
+                  />
+                </div>
+              )}
+              <div className="showcase-tile-info">
+                <span className="showcase-tile-tag">{project!.tag}</span>
+                <span
+                  className="showcase-tile-title"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  {project!.subtitle ?? project!.title}
+                </span>
+              </div>
+            </button>
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
-          <Link to="/projects" className="btn-primary">
+        {HOME_PROJECTS[3] && (
+          <button
+            className="showcase-banner"
+            onClick={() =>
+              HOME_PROJECTS[3].videoUrl &&
+              setActiveVideo(HOME_PROJECTS[3].videoUrl)
+            }
+            aria-label={`Play ${HOME_PROJECTS[3].title}`}
+          >
+            <div className="showcase-banner-bg">
+              {HOME_PROJECTS[3].videoUrl && (
+                <VideoThumbnail src={HOME_PROJECTS[3].videoUrl} />
+              )}
+            </div>
+            <div className="showcase-banner-overlay" />
+            <div className="showcase-banner-content">
+              {HOME_PROJECTS[3].videoUrl && (
+                <div className="showcase-banner-play">
+                  <Play
+                    size={14}
+                    fill="white"
+                    color="white"
+                    style={{ marginLeft: "2px" }}
+                  />
+                </div>
+              )}
+              <div>
+                <span className="showcase-banner-tag">
+                  {HOME_PROJECTS[3].tag}
+                </span>
+                <p className="showcase-banner-title">
+                  {HOME_PROJECTS[3].subtitle ?? HOME_PROJECTS[3].title}
+                </p>
+              </div>
+            </div>
+          </button>
+        )}
+
+        <div className="showcase-footer">
+          <Link to="/projects" className="btn-ghost">
             {HOME_PROJECTS_META.cta} <ArrowRight size={14} />
           </Link>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {activeVideo && (
+        <div
+          onClick={() => setActiveVideo(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(0,0,0,0.92)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "1.5rem",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          <button
+            onClick={() => setActiveVideo(null)}
+            style={{
+              position: "absolute",
+              top: "1.5rem",
+              right: "1.5rem",
+              background: "rgba(255,255,255,0.07)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: "50%",
+              width: "42px",
+              height: "42px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              color: "white",
+            }}
+            aria-label="Close video"
+          >
+            <X size={17} />
+          </button>
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: "100%", maxWidth: "920px" }}
+          >
+            <video
+              src={activeVideo}
+              autoPlay
+              controls
+              style={{ width: "100%", display: "block", background: "#000" }}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -1,11 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { LOGO_TEXT, NAV_LINKS, NAV_CTA } from "../../constants";
+import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { LOGO_TEXT, NAV_CTA } from "../../constants";
+
+// Primary nav: 4 top-level items
+const PRIMARY_NAV = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Work", href: "/projects" },
+];
+
+// Grouped under "More" dropdown
+const MORE_NAV = [
+  { label: "Services", href: "/services" },
+  { label: "Why Us", href: "/why-us" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+];
+
+// All links for mobile (flat list)
+const ALL_NAV = [...PRIMARY_NAV, ...MORE_NAV];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -21,6 +41,19 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
+        setMoreOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const isMoreActive = MORE_NAV.some((l) => pathname === l.href);
+
   const navStyle: React.CSSProperties = {
     position: "fixed",
     top: 0,
@@ -31,7 +64,7 @@ export default function Header() {
     alignItems: "center",
     justifyContent: "space-between",
     padding: "0 2rem",
-    height: "72px",
+    height: "80px",
     transition:
       "background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease",
     background: scrolled ? "rgba(4,8,16,0.92)" : "transparent",
@@ -44,32 +77,28 @@ export default function Header() {
   return (
     <>
       <nav style={navStyle}>
-        {/* Logo */}
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <span
-            style={{
-              fontFamily: '"Bebas Neue", cursive',
-              fontSize: "1.3rem",
-              letterSpacing: "0.08em",
-              color: "white",
-            }}
-          >
-            {LOGO_TEXT.prefix}
-            <span style={{ color: "#00E5FF" }}>{LOGO_TEXT.highlight}</span>
-            {LOGO_TEXT.suffix}
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div
+        {/* ── Logo: image only ── */}
+        <Link
+          to="/"
           style={{
+            textDecoration: "none",
             display: "flex",
             alignItems: "center",
-            gap: "2.5rem",
           }}
+        >
+          <img
+            src="/drone_logo.avif"
+            alt={`${LOGO_TEXT.prefix}${LOGO_TEXT.highlight}${LOGO_TEXT.suffix}`}
+            style={{ height: "64px", width: "auto", objectFit: "contain" }}
+          />
+        </Link>
+
+        {/* ── Desktop Nav ── */}
+        <div
+          style={{ display: "flex", alignItems: "center", gap: "2rem" }}
           className="hidden-mobile"
         >
-          {NAV_LINKS.map((link) => (
+          {PRIMARY_NAV.map((link) => (
             <Link
               key={link.href}
               to={link.href}
@@ -92,6 +121,93 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+
+          {/* More dropdown */}
+          <div ref={moreRef} style={{ position: "relative" }}>
+            <button
+              onClick={() => setMoreOpen((v) => !v)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.3rem",
+                fontFamily: '"Space Mono", monospace',
+                fontSize: "0.65rem",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: isMoreActive ? "#00E5FF" : "rgba(255,255,255,0.75)",
+                borderBottom: isMoreActive
+                  ? "1px solid #00E5FF"
+                  : "1px solid transparent",
+                paddingBottom: "2px",
+                transition: "color 0.2s",
+              }}
+            >
+              More
+              <ChevronDown
+                size={11}
+                style={{
+                  transition: "transform 0.2s",
+                  transform: moreOpen ? "rotate(180deg)" : "rotate(0deg)",
+                }}
+              />
+            </button>
+
+            {moreOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "calc(100% + 1rem)",
+                  right: 0,
+                  background: "rgba(4,8,20,0.97)",
+                  backdropFilter: "blur(16px)",
+                  border: "1px solid rgba(0,229,255,0.12)",
+                  borderRadius: "4px",
+                  padding: "0.75rem 0",
+                  minWidth: "160px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                {MORE_NAV.map((link) => (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setMoreOpen(false)}
+                    style={{
+                      fontFamily: '"Space Mono", monospace',
+                      fontSize: "0.6rem",
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      color:
+                        pathname === link.href
+                          ? "#00E5FF"
+                          : "rgba(255,255,255,0.65)",
+                      textDecoration: "none",
+                      padding: "0.6rem 1.25rem",
+                      transition: "color 0.15s, background 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "white";
+                      e.currentTarget.style.background = "rgba(0,229,255,0.06)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color =
+                        pathname === link.href
+                          ? "#00E5FF"
+                          : "rgba(255,255,255,0.65)";
+                      e.currentTarget.style.background = "transparent";
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
           <Link
             to={NAV_CTA.href}
             className="btn-primary"
@@ -101,7 +217,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Hamburger */}
+        {/* ── Hamburger ── */}
         <button
           onClick={() => setMobileOpen(true)}
           style={{
@@ -119,7 +235,7 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile Overlay — tap the dark backdrop anywhere to close */}
+      {/* ── Mobile Overlay ── */}
       {mobileOpen && (
         <div
           onClick={() => setMobileOpen(false)}
@@ -132,10 +248,10 @@ export default function Header() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            overflowY: "auto",
           }}
           aria-label="Close menu"
         >
-          {/* Close button — still there for muscle memory */}
           <button
             onClick={() => setMobileOpen(false)}
             style={{
@@ -152,33 +268,36 @@ export default function Header() {
             <X size={28} />
           </button>
 
-          {/*
-            Inner card: stopPropagation so tapping a link or the CTA
-            does NOT bubble to the backdrop and close the menu by accident.
-            The generous padding above and below the links means the user
-            has a big tap-to-close zone without stretching to the top bar.
-          */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "2.5rem",
-              padding: "3rem 4rem",
+              width: "100%",
+              padding: "5rem 2rem 4rem",
+              gap: 0,
             }}
           >
-            {NAV_LINKS.map((link) => (
+            {ALL_NAV.map((link, i) => (
               <Link
                 key={link.href}
                 to={link.href}
                 onClick={() => setMobileOpen(false)}
                 style={{
                   fontFamily: '"Bebas Neue", cursive',
-                  fontSize: "3rem",
+                  fontSize: "clamp(2rem, 8vw, 2.8rem)",
                   letterSpacing: "0.1em",
                   color: pathname === link.href ? "#00E5FF" : "white",
                   textDecoration: "none",
+                  padding: "0.6rem 0",
+                  width: "100%",
+                  textAlign: "center",
+                  borderBottom:
+                    i < ALL_NAV.length - 1
+                      ? "1px solid rgba(255,255,255,0.05)"
+                      : "none",
+                  transition: "color 0.2s",
                 }}
               >
                 {link.label}
@@ -189,13 +308,12 @@ export default function Header() {
               to={NAV_CTA.href}
               onClick={() => setMobileOpen(false)}
               className="btn-primary"
-              style={{ marginTop: "1rem" }}
+              style={{ marginTop: "2rem", fontSize: "0.7rem" }}
             >
               {NAV_CTA.label} <ArrowRight size={14} />
             </Link>
           </div>
 
-          {/* Subtle hint at the bottom so it's discoverable */}
           <span
             style={{
               position: "absolute",
@@ -203,7 +321,7 @@ export default function Header() {
               fontFamily: '"Space Mono", monospace',
               fontSize: "0.6rem",
               letterSpacing: "0.15em",
-              color: "rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,0.2)",
               textTransform: "uppercase",
               pointerEvents: "none",
             }}
@@ -216,11 +334,11 @@ export default function Header() {
       <style>{`
         @media (max-width: 767px) {
           .hidden-mobile { display: none !important; }
-          .show-mobile { display: flex !important; }
+          .show-mobile   { display: flex !important; }
         }
         @media (min-width: 768px) {
           .hidden-mobile { display: flex !important; }
-          .show-mobile { display: none !important; }
+          .show-mobile   { display: none !important; }
         }
       `}</style>
     </>

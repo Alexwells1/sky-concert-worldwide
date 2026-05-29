@@ -1,58 +1,261 @@
-import { Check } from 'lucide-react';
-import SectionLabel from '../../common/SectionLabel';
-import { SERVICES_TECH } from '../../../constants';
-import { useInView } from '../../../hooks/useInView';
+import { useInView } from "../../../hooks/useInView";
+
+const TECH_HIGHLIGHTS = [
+  {
+    title: "Precision Swarm Synchronization",
+    detail:
+      "RTK-GPS positioning with centimeter-level accuracy across hundreds of simultaneous flight paths.",
+    accent: "#00E5FF",
+  },
+  {
+    title: "Military-Grade Positioning Systems",
+    detail:
+      "Redundant telemetry and real-time correction ensure every drone is exactly where it must be.",
+    accent: "#C9A84C",
+  },
+  {
+    title: "Large-Scale Formation Control",
+    detail:
+      "Proprietary swarm intelligence enables complex animated formations at any fleet size.",
+    accent: "#00E5FF",
+  },
+  {
+    title: "Environmentally Responsible Operations",
+    detail:
+      "Zero pyrotechnics. Zero waste. Fully reusable systems designed for responsible spectacle.",
+    accent: "#C9A84C",
+  },
+];
 
 export default function TechAdvantage() {
   const { ref, inView } = useInView();
+
   return (
-    <section style={{ background: 'transparent', padding: '6rem 1.5rem' }}>
-      <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
+    <section
+      style={{
+        background: "#020810",
+        position: "relative",
+        overflow: "hidden",
+        padding: "0",
+      }}
+    >
+      {/* Top separator */}
+      <div
+        style={{
+          height: "1px",
+          background:
+            "linear-gradient(to right, transparent, rgba(0,229,255,0.2), transparent)",
+        }}
+      />
+
+      <div
+        ref={ref}
+        className="tech-grid"
+        style={{
+          opacity: inView ? 1 : 0,
+          transition: "opacity 1s ease",
+        }}
+      >
+        {/* Image panel */}
         <div
-          ref={ref}
+          className="tech-image-panel"
           style={{
-            background: 'rgba(8,15,35,0.55)',
-            border: '1px solid rgba(0,229,255,0.1)',
-            borderRadius: '2px',
-            padding: 'clamp(1.5rem, 4vw, 3rem)',
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(1.75rem)',
-            transition: 'opacity 0.7s ease, transform 0.7s ease',
+            position: "relative",
+            overflow: "hidden",
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=900&q=80)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-            <SectionLabel text={SERVICES_TECH.sectionLabel} />
-          </div>
-          <h2 style={{
-            fontFamily: '"Playfair Display", serif',
-            fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
-            color: 'white',
-            lineHeight: 1.2,
-            marginBottom: '2rem',
-            maxWidth: '600px',
-          }}>
-            {SERVICES_TECH.headline}
+          <div
+            className="tech-image-overlay"
+            style={{
+              position: "absolute",
+              inset: 0,
+            }}
+          />
+        </div>
+
+        {/* Text panel */}
+        <div
+          className="tech-text-panel"
+          style={{
+            background: "#020810",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: '"Space Mono", monospace',
+              fontSize: "0.6rem",
+              letterSpacing: "0.3em",
+              color: "#00E5FF",
+              textTransform: "uppercase",
+              display: "block",
+              marginBottom: "1.5rem",
+            }}
+          >
+            Technology Advantage
+          </span>
+
+          <h2
+            style={{
+              fontFamily: '"Bebas Neue", cursive',
+              fontSize: "clamp(2rem, 4vw, 4rem)",
+              color: "white",
+              lineHeight: 0.95,
+              letterSpacing: "0.02em",
+              marginBottom: "3.5rem",
+            }}
+          >
+            The World's Most Advanced
+            <br />
+            <span style={{ color: "rgba(0,229,255,0.6)" }}>
+              Drone Show Technology
+            </span>
           </h2>
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 2rem', display: 'flex', flexDirection: 'column', gap: '0' }}>
-            {SERVICES_TECH.bullets.map((b) => (
-              <li key={b} style={{
-                display: 'flex', alignItems: 'flex-start', gap: '0.75rem',
-                color: '#CCCCCC', fontSize: '0.95rem', lineHeight: 1.6,
-                padding: '1rem 0', borderBottom: '1px solid rgba(255,255,255,0.04)',
-              }}>
-                <Check size={16} style={{ color: '#00E5FF', marginTop: '3px', flexShrink: 0 }} />
-                {b}
-              </li>
+
+          {/* Highlights */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+            {TECH_HIGHLIGHTS.map((item, i) => (
+              <div
+                key={item.title}
+                style={{
+                  padding: "2rem 0",
+                  borderBottom:
+                    i < TECH_HIGHLIGHTS.length - 1
+                      ? "1px solid rgba(255,255,255,0.05)"
+                      : "none",
+                  opacity: inView ? 1 : 0,
+                  transform: inView ? "translateX(0)" : "translateX(30px)",
+                  transition: `opacity 0.7s ${
+                    0.2 + i * 0.1
+                  }s ease, transform 0.7s ${0.2 + i * 0.1}s ease`,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "1.25rem",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "2px",
+                      minHeight: "40px",
+                      background: `linear-gradient(to bottom, ${item.accent}, transparent)`,
+                      flexShrink: 0,
+                      marginTop: "4px",
+                    }}
+                  />
+                  <div>
+                    <h3
+                      style={{
+                        fontFamily: '"Playfair Display", serif',
+                        fontSize: "1.05rem",
+                        color: "white",
+                        marginBottom: "0.5rem",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      style={{
+                        color: "rgba(140,140,140,0.8)",
+                        fontSize: "0.85rem",
+                        lineHeight: 1.75,
+                        margin: 0,
+                      }}
+                    >
+                      {item.detail}
+                    </p>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
-          <p style={{
-            fontFamily: '"Space Mono", monospace', fontSize: '0.7rem',
-            color: '#C9A84C', letterSpacing: '0.15em', textTransform: 'uppercase',
-          }}>
-            {SERVICES_TECH.closing}
-          </p>
+          </div>
+
+          {/* Closing statement */}
+          <div
+            style={{
+              marginTop: "3rem",
+              paddingTop: "2.5rem",
+              borderTop: "1px solid rgba(0,229,255,0.1)",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: '"Space Mono", monospace',
+                fontSize: "0.65rem",
+                letterSpacing: "0.15em",
+                color: "#C9A84C",
+                textTransform: "uppercase",
+              }}
+            >
+              Every performance engineered for reliability, visual impact, and
+              safety.
+            </p>
+          </div>
         </div>
       </div>
+
+      {/* Bottom separator */}
+      <div
+        style={{
+          height: "1px",
+          background:
+            "linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent)",
+        }}
+      />
+
+      <style>{`
+        /* ── Desktop ── */
+        .tech-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          min-height: 80vh;
+        }
+        .tech-image-panel {
+          min-height: 500px;
+        }
+        .tech-image-overlay {
+          background: linear-gradient(to right, rgba(2,8,16,0.3) 0%, rgba(2,8,16,0.7) 80%, rgba(2,8,16,1) 100%);
+        }
+        .tech-text-panel {
+          padding: clamp(3rem, 6vw, 7rem) clamp(2.5rem, 5vw, 6rem);
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+          .tech-grid {
+            display: block;
+            min-height: unset;
+          }
+          /* Image becomes a tall cinematic banner on top */
+          .tech-image-panel {
+            height: 55vw;
+            min-height: 240px;
+            max-height: 360px;
+          }
+          /* Overlay fades to bottom so it blends into the dark section below */
+          .tech-image-overlay {
+            background: linear-gradient(
+              to bottom,
+              rgba(2,8,16,0.2) 0%,
+              rgba(2,8,16,0.5) 60%,
+              rgba(2,8,16,1) 100%
+            );
+          }
+          .tech-text-panel {
+            padding: 2.5rem 1.5rem 4rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

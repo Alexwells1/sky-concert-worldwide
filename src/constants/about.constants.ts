@@ -8,42 +8,62 @@ export const ABOUT_HERO = {
 
 export const ABOUT_STORY = {
   sectionLabel: 'Our Story',
-  headline:     'Our Story',
+  headline:     'Born From a Bold Idea',
   paragraphs: [
-    'Sky Concert Worldwide is an advanced-thinking global drone technology company dedicated to transforming the future of publicity, entertainment, and brand communication.',
-    'We specialize in creating breathtaking aerial experiences that captivate audiences across the world — using advanced drone systems to deliver large-scale visual campaigns, promotional activations, and unforgettable sky-based storytelling.',
-    "Founded on a powerful belief — that attention is the new currency — we help ambitious brands, governments, corporations, event organizers, and visionary leaders rise above traditional marketing. We create moments that don't just get noticed — they inspire, engage, and are remembered long after the lights fade.",
-    'From product launches and luxury brand showcases to concerts, political rallies, sports events, tourism campaigns, and national celebrations, we bring bold imagination to life in the skies.',
+    'Sky Concert Worldwide was founded on a single, powerful conviction: that the sky is the most underutilized canvas in the world of brand communication and live entertainment.',
+    'Today we stand as a pioneer in aerial entertainment across Nigeria and the African continent — combining drone engineering, creative direction, marketing strategy, and live event production to craft sky experiences that captivate audiences at scale.',
   ],
 } as const;
 
 export const ABOUT_WHO_WE_ARE = {
   sectionLabel: 'Who We Are',
   intro: 'We are more than a drone company.',
-  body: 'We are a fusion of cutting-edge technology, creative excellence, and strategic vision. Our team combines world-class drone engineers, creative storytellers, precision flight directors, and marketing strategists who work together to craft experiences that are technically flawless and emotionally powerful.',
-  commitments: [
-    {
-      title: 'Global Excellence',
-      description: 'We operate with international standards while maintaining deep respect for local cultures, regulations, and audience preferences. Our global mindset allows us to deliver seamless experiences anywhere in the world.',
-    },
-    {
-      title: 'Sustainable Innovation',
-      description: 'We are deeply committed to environmental responsibility. Our drone solutions provide a cleaner, quieter, reusable, and more eco-conscious alternative to traditional fireworks and heavy staging systems.',
-    },
-    {
-      title: 'Safety, Precision & Professionalism',
-      description: 'Every operation is guided by strict technical standards, rigorous risk management, full regulatory compliance, and highly trained personnel. Safety and flawless execution are non-negotiable.',
-    },
+  body: 'A fusion of cutting-edge technology, creative excellence, and strategic vision — our team brings together world-class drone engineers, creative storytellers, precision flight directors, and marketing strategists who collaborate to deliver technically flawless, emotionally powerful experiences.',
+  pillars: [
+    'Drone technology and precision swarm engineering',
+    'Creative storytelling and sky-based brand narratives',
+    'Full regulatory compliance and safety-first operations',
+    'Sustainable, eco-conscious alternatives to traditional fireworks',
   ],
+  founderNote: 'Founded and led by a team of technology and entertainment professionals committed to putting Africa on the global aerial entertainment map.',
+} as const;
+
+
+
+export const ABOUT_VISION = {
+  sectionLabel: "Our Vision",
+  headline: "Shaping the Future of African Skies",
+  body: "We envision a Nigeria and an Africa where world-class aerial entertainment is no longer a rarity, but a defining feature of the continent's creative and commercial identity. We do not just follow the future — we help shape it.",
 } as const;
 
 export const ABOUT_PHILOSOPHY = {
-  sectionLabel: 'Our Philosophy',
-  headline:     'Attention is the New Currency',
+  sectionLabel: "Our Philosophy",
+  headline: "Where Infinite Scale Meets Flawless Precision",
   paragraphs: [
-    "In today's world, visibility is everything. We help our clients command it boldly and beautifully.",
-    "We don't just fly drones — we design emotional connections between brands and audiences. We create shareable wonder. We build sky experiences that spark conversations, drive engagement, and leave lasting impressions.",
-    'We are Architects of Attention, Creators of Wonder, and trusted Partners in Global Brand Elevation.',
+    "At Sky Concert Worldwide, we believe that the grander the canvas, the greater the responsibility for precision. Every pixel in the sky represents a deliberate intersection of cutting-edge engineering and emotional resonance, ensuring our spectacles are as reliable as they are breathtaking.",
+    "We treat attention not merely as something to grab, but as a currency to respect. By replacing traditional explosive entertainment with sustainable, data-driven light formations, we prove that the most powerful statements on Earth can be made while leaving the environment unharmed.",
+  ],
+} as const;
+
+export const ABOUT_MISSION_VISION = {
+  sectionLabel: 'Purpose and Direction',
+  mission: {
+    label: 'Our Mission',
+    body: 'To help brands, governments, and event organizers command attention boldly and beautifully — transforming the sky into a powerful platform for stories that move audiences and are remembered long after the moment ends.',
+  },
+  vision: {
+    label: 'Our Vision',
+    body: 'A Nigeria and an Africa where world-class aerial entertainment is no longer a rarity but a defining feature of the continent\'s creative and commercial identity. We do not follow the future — we help shape it.',
+  },
+  purpose: {
+    label: 'Company Purpose',
+    body: 'Attention is the new currency. We exist to help visionary organizations earn it — by creating sky experiences that spark conversations, drive engagement, and deliver measurable brand impact.',
+  },
+  longTermGoals: [
+    'Establish Sky Concert Worldwide as the leading aerial entertainment company across Africa',
+    'Build a continent-wide network of certified drone show operators and creative partners',
+    'Develop proprietary sky storytelling formats for African cultural and national moments',
+    'Set the regional benchmark for drone show safety, regulation, and sustainability standards',
   ],
 } as const;
 
@@ -51,24 +71,72 @@ export const ABOUT_APPROACH_ITEMS: ApproachItem[] = [
   { title: 'Cutting-Edge Drone Technology', description: 'Advanced swarm systems with precision control and intelligent formation programming.' },
   { title: 'Creative Storytelling',         description: 'Turning ideas into emotional sky narratives that audiences connect with and share.'   },
   { title: 'Precision Engineering',         description: 'Millimeter-accurate execution and absolute reliability from rehearsal to live show.'  },
-  { title: 'Strategic Insight',             description: 'Campaigns designed to achieve real business and brand objectives — not just visual spectacle.' },
+  { title: 'Strategic Insight',             description: 'Campaigns designed to achieve real business and brand objectives, not just visual spectacle.' },
 ];
 
 export const ABOUT_APPROACH_META = {
   sectionLabel: 'Our Approach',
   headline:     'Four Elements. One Extraordinary Result.',
-  closing:      "From concept development to final execution and content delivery, we provide a complete turnkey experience tailored to each client's unique goals.",
+  closing:      'From concept development to final execution and content delivery, we provide a complete turnkey experience tailored to each client\'s unique goals.',
 } as const;
 
-export const ABOUT_VISION = {
-  sectionLabel: 'Our Vision',
-  headline:     "We Don't Follow the Future — We Help Shape It.",
-  body:         'As technology evolves and audiences become more difficult to reach, Sky Concert Worldwide remains committed to pushing boundaries, setting new standards in aerial innovation, and helping our clients own the sky.',
+export interface PartnerItem {
+  name: string;
+  logoUrl: string;
+}
+
+export const ABOUT_PARTNERS: PartnerItem[] = [
+  {
+    name: "BotLab Dynamics",
+    logoUrl:
+      "https://www.botlabdynamics.com/sites/default/files/2022-11/BL%20Botlab%20Dynamics%20%281%29.avif",
+  }
+];
+
+export const ABOUT_PARTNERS_META = {
+  sectionLabel: "Strategic Partnerships",
+  headline: "Trusted by the Best",
+} as const;
+
+export const ABOUT_TRUST = {
+  sectionLabel: 'Trust and Credibility',
+  headline:     'Built on Integrity. Backed by Standards.',
+  items: [
+    { title: 'Registered Company'       },
+    { title: 'NCAA Safety Compliance'   },
+    { title: 'Fully Insured Operations' },
+    { title: 'International Standards'  },
+  ],
+} as const;
+
+export const ABOUT_TESTIMONIALS = {
+  sectionLabel: 'Client Testimonials',
+  headline:     'What Our Clients Say',
+  items: [
+    {
+      quote: 'The aerial display at our product launch was unlike anything our guests had ever experienced. The precision, the creativity, and the sheer scale of it left everyone speechless. Sky Concert Worldwide delivered something truly world-class.',
+      name: 'Adaeze Okonkwo',
+      role: 'Head of Brand Marketing',
+      company: 'Lagos',
+    },
+    {
+      quote: 'We needed something that would define our national celebration and set a new benchmark for event entertainment in Nigeria. Sky Concert Worldwide exceeded every expectation. The coordination was flawless and the visual storytelling was deeply moving.',
+      name: 'Emeka Nwosu',
+      role: 'Director of Events',
+      company: 'Abuja',
+    },
+    {
+      quote: 'From the initial brief to the final execution, the professionalism of the Sky Concert team was outstanding. They understood our brand story and translated it into a sky experience that drove massive social media coverage for three days straight.',
+      name: 'Tunde Adeyemi',
+      role: 'Chief Executive Officer',
+      company: 'Lagos',
+    },
+  ],
 } as const;
 
 export const ABOUT_CTA = {
   headline:    'Ready to Create a Sky-Defining Moment?',
-  subheadline: "Let's bring your vision to life with a custom aerial experience.",
+  subheadline: 'Let us bring your vision to life with a custom aerial experience designed around your goals.',
   cta1:        'Start a Conversation',
   cta2:        'Request a Proposal',
 } as const;

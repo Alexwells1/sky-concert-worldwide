@@ -1,6 +1,6 @@
 import SectionLabel from '../../common/SectionLabel';
-import { ABOUT_PHILOSOPHY } from '../../../constants';
 import { useInView } from '../../../hooks/useInView';
+import { ABOUT_PHILOSOPHY } from '../../../constants/about.constants';
 
 export default function OurPhilosophy() {
   const { ref, inView } = useInView();

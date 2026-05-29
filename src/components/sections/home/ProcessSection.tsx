@@ -1,91 +1,262 @@
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
-import SectionLabel from "../../common/SectionLabel";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { HOME_PROCESS_STEPS, HOME_PROCESS_META } from "../../../constants";
 import { useInView } from "../../../hooks/useInView";
 
 export default function ProcessSection() {
   const { ref, inView } = useInView();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canLeft, setCanLeft] = useState(false);
+  const [canRight, setCanRight] = useState(true);
+  const [isLarge, setIsLarge] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 900px)");
+    const update = (e: MediaQueryListEvent | MediaQueryList) => setIsLarge(e.matches);
+    update(mq);
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const updateArrows = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 4);
+    setCanRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  };
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir === "right" ? 300 : -300, behavior: "smooth" });
+  };
+
   return (
-    <section style={{ background: "transparent", padding: "4rem 1.5rem" }}>
-      <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
+    <>
+      <style>{`
+        .process-section {
+          padding: 8rem 0;
+          position: relative;
+          overflow: hidden;
+        }
+        .process-glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 50% 70% at 70% 50%, rgba(0,40,100,0.06) 0%, transparent 60%);
+          pointer-events: none;
+        }
+        .process-header {
+          padding: 0 1.5rem;
+          max-width: 80rem;
+          margin: 0 auto 3rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          flex-wrap: wrap;
+          gap: 1.5rem;
+        }
+        .process-label {
+          font-family: 'Space Mono', monospace;
+          font-size: 0.58rem;
+          letter-spacing: 0.3em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.25);
+          display: block;
+          margin-bottom: 1.25rem;
+        }
+        .process-headline {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 200;
+          font-size: clamp(1.75rem, 4vw, 3rem);
+          line-height: 1.05;
+          letter-spacing: -0.03em;
+          color: rgba(255,255,255,0.92);
+          margin: 0;
+        }
+        .process-header-right {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          flex-shrink: 0;
+        }
+        .process-arrow-btn {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.12);
+          background: transparent;
+          color: rgba(255,255,255,0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: border-color 0.25s, color 0.25s, background 0.25s;
+          flex-shrink: 0;
+        }
+        .process-arrow-btn:hover:not(:disabled) {
+          border-color: rgba(255,255,255,0.4);
+          color: rgba(255,255,255,0.9);
+          background: rgba(255,255,255,0.05);
+        }
+        .process-arrow-btn:disabled { opacity: 0.25; cursor: default; }
+
+        /* Mobile/tablet: horizontal scroll cards */
+        .process-scroll-outer {
+          overflow-x: auto;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+          padding: 0 1.5rem;
+        }
+        .process-scroll-outer::-webkit-scrollbar { display: none; }
+        .process-cards-track {
+          display: flex;
+          gap: 2px;
+          min-width: max-content;
+        }
+        .process-card {
+          flex-shrink: 0;
+          width: 260px;
+          padding: 2rem 1.75rem;
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.06);
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .process-card-num {
+          font-family: 'Space Mono', monospace;
+          font-size: 0.52rem;
+          color: rgba(255,255,255,0.18);
+          letter-spacing: 0.18em;
+        }
+        .process-card-title {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 300;
+          font-size: 1.05rem;
+          color: rgba(255,255,255,0.85);
+          line-height: 1.35;
+          margin: 0;
+        }
+        .process-card-desc {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.78rem;
+          color: rgba(255,255,255,0.3);
+          line-height: 1.75;
+          margin: 0;
+        }
+
+        /* Large: vertical timeline */
+        @media (min-width: 900px) {
+          .process-scroll-outer {
+            overflow: visible;
+            padding: 0 1.5rem;
+            max-width: 80rem;
+            margin: 0 auto;
+          }
+          .process-cards-track {
+            display: block;
+            min-width: auto;
+          }
+          .process-card {
+            width: auto;
+            display: grid;
+            grid-template-columns: 7rem 1fr;
+            gap: 0 2rem;
+            align-items: start;
+            background: transparent;
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-radius: 0;
+            padding: 2.75rem 0 2.75rem 2rem;
+            transition: background 0.3s ease;
+          }
+          .process-card:last-child {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+          }
+          .process-card:hover {
+            background: rgba(255,255,255,0.015);
+          }
+          .process-card-title { font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
+          .process-arrow-btn { display: none !important; }
+        }
+
+        .process-footer {
+          padding: 2rem 1.5rem 0;
+          max-width: 80rem;
+          margin: 0 auto;
+        }
+      `}</style>
+
+      <section className="process-section">
+        <div className="process-glow" />
+
         <div
           ref={ref}
+          className="process-header"
           style={{
-            textAlign: "center",
-            marginBottom: "2.5rem",
             opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : "translateY(1.25rem)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
+            transform: inView ? "translateY(0)" : "translateY(1.5rem)",
+            transition: "opacity 0.8s ease, transform 0.8s ease",
           }}
         >
-          <SectionLabel text={HOME_PROCESS_META.sectionLabel} />
-          <h2
-            style={{
-              fontFamily: '"Playfair Display", serif',
-              fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-              color: "white",
-              lineHeight: 1.2,
-              margin: 0,
-            }}
-          >
-            {HOME_PROCESS_META.headline}
-          </h2>
+          <div>
+            <span className="process-label">{HOME_PROCESS_META.sectionLabel}</span>
+            <h2 className="process-headline">{HOME_PROCESS_META.headline}</h2>
+          </div>
+          <div className="process-header-right">
+            {!isLarge && (
+              <>
+                <button className="process-arrow-btn" onClick={() => scroll("left")} disabled={!canLeft} aria-label="Scroll left">
+                  <ChevronLeft size={16} />
+                </button>
+                <button className="process-arrow-btn" onClick={() => scroll("right")} disabled={!canRight} aria-label="Scroll right">
+                  <ChevronRight size={16} />
+                </button>
+              </>
+            )}
+            <Link to="/process" className="btn-ghost" style={{ flexShrink: 0 }}>
+              How It Works <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
 
-        {/* Compact step strip */}
         <div
+          className="process-scroll-outer"
+          ref={scrollRef}
+          onScroll={updateArrows}
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-            gap: "0",
+            opacity: inView ? 1 : 0,
+            transition: "opacity 0.8s ease 0.15s",
           }}
         >
-          {HOME_PROCESS_STEPS.map((step, i) => (
-            <div
-              key={step.number}
-              style={{
-                padding: "1.25rem 1rem",
-                borderLeft:
-                  i === 0 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                borderRight: "1px solid rgba(255,255,255,0.08)",
-                borderTop: "1px solid rgba(255,255,255,0.08)",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.4rem",
-              }}
-            >
-              <span
+          <div className="process-cards-track">
+            {HOME_PROCESS_STEPS.map((step, i) => (
+              <div
+                key={step.number}
+                className="process-card"
                 style={{
-                  fontFamily: '"Playfair Display", serif',
-                  fontSize: "0.7rem",
-                  color: "rgba(255,255,255,0.25)",
-                  letterSpacing: "0.12em",
+                  opacity: inView ? 1 : 0,
+                  transform: inView ? "translateY(0)" : "translateY(1.25rem)",
+                  transition: `opacity 0.7s ease ${0.1 + i * 0.07}s, transform 0.7s ease ${0.1 + i * 0.07}s`,
                 }}
               >
-                {step.number}
-              </span>
-              <span
-                style={{
-                  color: "rgba(255,255,255,0.85)",
-                  fontSize: "0.8rem",
-                  fontWeight: 500,
-                  lineHeight: 1.35,
-                }}
-              >
-                {step.title}
-              </span>
-            </div>
-          ))}
+                <span className="process-card-num">{step.number}</span>
+                <div>
+                  <h3 className="process-card-title">{step.title}</h3>
+                  <p className="process-card-desc" style={{ marginTop: "0.6rem" }}>{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        <div className="process-footer">
           <Link to="/process" className="btn-ghost">
-            See How It Works <ArrowRight size={14} />
+            See Full Process <ArrowRight size={14} />
           </Link>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -19,6 +19,7 @@ export interface ServiceItem {
   number: string;
   title: string;
   description: string;
+  media?: string; 
   idealFor?: string;
 }
 
@@ -100,4 +101,21 @@ export interface HeroSectionProps {
   subheadline: string;
   supporting?: string;
   overlayIntensity?: 'light' | 'medium' | 'heavy';
+}
+
+export interface TestimonialItem {
+  quote: string;
+  name: string;
+  role: string;
+  company: string;
+}
+
+export interface TrustItem {
+  title: string;
+  description: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
 }

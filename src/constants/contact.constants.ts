@@ -31,7 +31,7 @@ export const GLOBAL_PRESENCE_META = {
   sectionLabel: 'Global Operations',
   headline:     'We Operate Worldwide',
   body:         'Sky Concert Worldwide is positioned to serve clients across continents with full international standards and local expertise.',
-  headOffice:   '[City, Country] — Update before launch',
+  headOffice:   'Lagos, Nigeria',
   regions:      'Europe  •  Middle East  •  Africa  •  Asia  •  Americas',
   note:         'We adapt seamlessly to different time zones, regulations, and cultural expectations.',
 } as const;

@@ -14,7 +14,6 @@ export default function HomeHero() {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Escape to close
   useEffect(() => {
     if (!showreel) return;
     const h = (e: KeyboardEvent) => {
@@ -43,7 +42,7 @@ export default function HomeHero() {
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;1,9..40,200&display=swap');
 
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
+          from { opacity: 0; transform: translateY(20px); }
           to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeIn {
@@ -51,44 +50,49 @@ export default function HomeHero() {
           to   { opacity: 1; }
         }
         @keyframes scrollPulse {
-          0%, 100% { opacity: 0.4; transform: translateY(0) translateX(-50%); }
-          50%       { opacity: 0.8; transform: translateY(5px) translateX(-50%); }
+          0%, 100% { opacity: 0.35; transform: translateY(0) translateX(-50%); }
+          50%       { opacity: 0.7;  transform: translateY(6px) translateX(-50%); }
+        }
+        @keyframes lineGrow {
+          from { transform: scaleY(0); }
+          to   { transform: scaleY(1); }
         }
 
         .hero-watch-btn {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
+          gap: 14px;
           padding: 0;
           background: transparent;
           border: none;
           cursor: pointer;
-          color: rgba(255,255,255,0.75);
+          color: rgba(255,255,255,0.7);
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
-          font-size: 0.8rem;
-          letter-spacing: 0.18em;
+          font-size: 0.75rem;
+          letter-spacing: 0.2em;
           text-transform: uppercase;
           transition: color 0.4s ease;
         }
-        .hero-watch-btn:hover {
-          color: rgba(255,255,255,1);
-        }
+        .hero-watch-btn:hover { color: rgba(255,255,255,1); }
+
         .hero-watch-btn .play-ring {
-          width: 36px;
-          height: 36px;
+          width: 52px;
+          height: 52px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.35);
+          border: 1px solid rgba(255,255,255,0.3);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          transition: border-color 0.4s ease, background 0.4s ease;
+          transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
         }
         .hero-watch-btn:hover .play-ring {
-          border-color: rgba(255,255,255,0.7);
-          background: rgba(255,255,255,0.07);
+          border-color: rgba(255,255,255,0.65);
+          background: rgba(255,255,255,0.06);
+          transform: scale(1.07);
         }
+
         .hero-video-bg {
           position: absolute;
           inset: 0;
@@ -96,8 +100,9 @@ export default function HomeHero() {
           height: 100%;
           object-fit: cover;
           object-position: center;
-          transition: opacity 1.8s ease;
+          transition: opacity 2s ease;
         }
+
         .scroll-cue {
           position: absolute;
           bottom: 2.25rem;
@@ -107,25 +112,27 @@ export default function HomeHero() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
           cursor: pointer;
           background: none;
           border: none;
           padding: 0;
-          animation: fadeIn 1s ease 2.4s both, scrollPulse 3s ease 3.4s infinite;
+          animation: fadeIn 1s ease 2.6s both, scrollPulse 3s ease 3.6s infinite;
         }
         .scroll-cue span {
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
-          font-size: 0.6rem;
-          letter-spacing: 0.25em;
+          font-size: 0.58rem;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.38);
+          color: rgba(255,255,255,0.32);
         }
         .scroll-cue-line {
           width: 1px;
-          height: 28px;
-          background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+          height: 32px;
+          background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+          transform-origin: top;
+          animation: lineGrow 0.8s ease 3.2s both;
         }
       `}</style>
 
@@ -136,24 +143,23 @@ export default function HomeHero() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "center",
           overflow: "hidden",
           paddingTop: `${HEADER_HEIGHT}px`,
-          paddingBottom: "12vh",
           boxSizing: "border-box",
         }}
       >
-        {/* ── Dark fallback ── */}
+        {/* Dark fallback */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            background: "#080a0e",
+            background: "#060810",
             zIndex: 0,
           }}
         />
 
-        {/* ── Background video ── */}
+        {/* Background video */}
         <video
           ref={videoRef}
           className="hero-video-bg"
@@ -165,53 +171,50 @@ export default function HomeHero() {
           disableRemotePlayback
           preload="auto"
           onCanPlay={() => setVideoLoaded(true)}
-          style={{
-            zIndex: 1,
-            opacity: videoLoaded ? 1 : 0,
-          }}
+          style={{ zIndex: 1, opacity: videoLoaded ? 1 : 0 }}
         />
 
-        {/* ── Overlay: light vignette only ── */}
+        {/* Gradient overlay */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background: `linear-gradient(
               to bottom,
-              rgba(0,0,0,0.38) 0%,
-              rgba(0,0,0,0.10) 35%,
-              rgba(0,0,0,0.10) 55%,
-              rgba(0,0,0,0.55) 100%
+              rgba(0,0,0,0.45) 0%,
+              rgba(0,0,0,0.15) 30%,
+              rgba(0,0,0,0.15) 60%,
+              rgba(0,0,0,0.65) 100%
             )`,
             zIndex: 2,
           }}
         />
 
-        {/* ── Radial edge vignette ── */}
+        {/* Radial vignette */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 110% 100% at 50% 50%, transparent 40%, rgba(0,0,0,0.5) 100%)",
+              "radial-gradient(ellipse 110% 100% at 50% 50%, transparent 38%, rgba(0,0,0,0.55) 100%)",
             zIndex: 3,
           }}
         />
 
-        {/* ── Hero content ── */}
+        {/* Hero content — centered */}
         <div
           style={{
             position: "relative",
             zIndex: 6,
             width: "100%",
-            maxWidth: "720px",
+            maxWidth: "800px",
             margin: "0 auto",
             padding: "0 2rem",
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "2rem",
+            gap: "2.25rem",
           }}
         >
           {/* Label */}
@@ -219,13 +222,13 @@ export default function HomeHero() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 300,
-              fontSize: "0.7rem",
-              letterSpacing: "0.28em",
+              fontSize: "0.65rem",
+              letterSpacing: "0.32em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(255,255,255,0.38)",
               margin: 0,
               opacity: 0,
-              animation: "fadeUp 1.4s cubic-bezier(0.16,1,0.3,1) 0.3s forwards",
+              animation: "fadeUp 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s forwards",
             }}
           >
             Sky Concert Worldwide
@@ -236,24 +239,41 @@ export default function HomeHero() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 200,
-              fontSize: "clamp(2rem, 4vw, 3.75rem)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              color: "rgba(255,255,255,0.92)",
+              fontSize: "clamp(2.25rem, 5vw, 4.5rem)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.025em",
+              color: "rgba(255,255,255,0.94)",
               margin: 0,
               opacity: 0,
-              animation:
-                "fadeUp 1.6s cubic-bezier(0.16,1,0.3,1) 0.55s forwards",
+              animation: "fadeUp 1.6s cubic-bezier(0.16,1,0.3,1) 0.4s forwards",
             }}
           >
             {HOME_HERO.headline1}
             <br />
-            <span style={{ fontWeight: 200, color: "rgba(255,255,255,0.6)" }}>
+            <span style={{ fontWeight: 200, color: "rgba(255,255,255,0.55)" }}>
               {HOME_HERO.headline2}
             </span>
           </h1>
 
-          {/* Watch Showreel */}
+          {/* Subheadline — short, punchy */}
+          <p
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
+              lineHeight: 1.65,
+              color: "rgba(255,255,255,0.45)",
+              maxWidth: "480px",
+              margin: 0,
+              opacity: 0,
+              animation:
+                "fadeUp 1.6s cubic-bezier(0.16,1,0.3,1) 0.65s forwards",
+            }}
+          >
+            500 drones. One sky. Your audience won't look away.
+          </p>
+
+          {/* Watch Showreel CTA */}
           <div
             style={{
               opacity: 0,
@@ -267,9 +287,9 @@ export default function HomeHero() {
             >
               <span className="play-ring">
                 <Play
-                  size={11}
+                  size={14}
                   fill="currentColor"
-                  style={{ marginLeft: "2px" }}
+                  style={{ marginLeft: "3px" }}
                 />
               </span>
               Watch Showreel
@@ -277,7 +297,7 @@ export default function HomeHero() {
           </div>
         </div>
 
-        {/* ── Scroll indicator ── */}
+        {/* Scroll indicator */}
         <button
           className="scroll-cue"
           onClick={() => {
@@ -293,7 +313,7 @@ export default function HomeHero() {
         </button>
       </section>
 
-      {/* ── Showreel modal ── */}
+      {/* Showreel modal */}
       {showreel && SHOWREEL_URL && (
         <div
           onClick={(e) => {
@@ -303,24 +323,23 @@ export default function HomeHero() {
             position: "fixed",
             inset: 0,
             zIndex: 9999,
-            background: "rgba(0,0,0,0.88)",
+            background: "rgba(0,0,0,0.9)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             padding: "1.5rem",
-            backdropFilter: "blur(10px)",
+            backdropFilter: "blur(12px)",
           }}
         >
           <div
             style={{
               position: "relative",
               width: "100%",
-              maxWidth: "960px",
-              background: "#0a0c10",
-              border: "1px solid rgba(255,255,255,0.08)",
+              maxWidth: "980px",
+              background: "#08090e",
+              border: "1px solid rgba(255,255,255,0.07)",
             }}
           >
-            {/* Close */}
             <button
               onClick={() => setShowreel(false)}
               style={{
@@ -329,15 +348,15 @@ export default function HomeHero() {
                 right: 0,
                 background: "transparent",
                 border: "none",
-                color: "rgba(255,255,255,0.5)",
+                color: "rgba(255,255,255,0.45)",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
                 gap: "0.5rem",
                 fontFamily: "'DM Sans', sans-serif",
                 fontWeight: 300,
-                fontSize: "0.65rem",
-                letterSpacing: "0.22em",
+                fontSize: "0.6rem",
+                letterSpacing: "0.24em",
                 textTransform: "uppercase",
                 transition: "color 0.2s",
                 padding: 0,
@@ -348,14 +367,12 @@ export default function HomeHero() {
               }
               onMouseLeave={(e) =>
                 ((e.currentTarget as HTMLElement).style.color =
-                  "rgba(255,255,255,0.5)")
+                  "rgba(255,255,255,0.45)")
               }
             >
-              <X size={13} />
+              <X size={12} />
               Close
             </button>
-
-            {/* Video */}
             <div style={{ position: "relative", paddingTop: "56.25%" }}>
               <video
                 src={SHOWREEL_URL}

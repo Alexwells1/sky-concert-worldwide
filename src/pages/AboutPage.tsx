@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import { SITE_NAME, ABOUT_HERO, ABOUT_CTA } from '../constants';
-import HeroSection from '../components/common/HeroSection';
-import OurStory from '../components/sections/about/OurStory';
-import WhoWeAre from '../components/sections/about/WhoWeAre';
-import OurPhilosophy from '../components/sections/about/OurPhilosophy';
-import OurApproach from '../components/sections/about/OurApproach';
-import OurVision from '../components/sections/about/OurVision';
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { SITE_NAME, ABOUT_HERO } from "../constants";
+import HeroSection from "../components/common/HeroSection";
+import OurStory from "../components/sections/about/OurStory";
+import WhoWeAre from "../components/sections/about/WhoWeAre";
+import MissionVision from "../components/sections/about/MissionVision";
+import Partnership from "../components/sections/about/Partnership";
+import TrustCredibility from "../components/sections/about/TrustCredibility";
+import BuildingTheFuture from "../components/sections/about/BuildingTheFuture";
+import LeadershipPhilosophy from "../components/sections/about/LeadershipPhilosophy";
 
 export default function AboutPage() {
   useEffect(() => {
@@ -16,55 +18,164 @@ export default function AboutPage() {
 
   return (
     <>
+      {/* 1. HERO */}
       <HeroSection
         headline={ABOUT_HERO.headline}
         subheadline={ABOUT_HERO.subheadline}
         supporting={ABOUT_HERO.supporting}
         overlayIntensity="heavy"
       />
-      <OurStory />
-      <WhoWeAre />
-      <OurPhilosophy />
-      <OurApproach />
-      <OurVision />
 
-      {/* About CTA */}
-      <section style={{
-        background: '#060A14',
-        padding: '6rem 1.5rem',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'radial-gradient(ellipse at 50% 50%, rgba(0,229,255,0.05) 0%, transparent 65%)',
-          pointerEvents: 'none',
-        }} />
-        <div style={{ maxWidth: '640px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <h2 style={{
-            fontFamily: '"Bebas Neue", cursive',
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-            color: 'white',
-            lineHeight: 0.95,
-            letterSpacing: '0.02em',
-            marginBottom: '1rem',
-          }}>
-            {ABOUT_CTA.headline}
-          </h2>
-          <p style={{ color: '#AAAAAA', fontSize: '1rem', lineHeight: 1.75, marginBottom: '2.5rem' }}>
-            {ABOUT_CTA.subheadline}
+      {/* 2. OUR STORY — cinematic split layout */}
+      <OurStory />
+
+      {/* 3. WHO WE ARE — editorial, no checklist */}
+      <WhoWeAre />
+
+      {/* 4. MISSION / VISION / GOALS — oversized editorial typography */}
+      <MissionVision />
+
+      {/* 5. BUILDING THE FUTURE — replaces any timeline */}
+      <BuildingTheFuture />
+
+      {/* 6. LEADERSHIP PHILOSOPHY — replaces fake team */}
+      <LeadershipPhilosophy />
+
+      {/* 7. PARTNERS — logo marquee */}
+      <Partnership />
+
+      {/* 8. TRUST STRIP */}
+      <TrustCredibility />
+
+      {/* 9. FINAL CTA — cinematic ending scene */}
+      <section
+        style={{
+          background: "#060A14",
+          padding: "10rem 1.5rem",
+          textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Atmospheric background glow */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(ellipse at 50% 60%, rgba(0,229,255,0.06) 0%, transparent 65%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Slow pulse ring */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "600px",
+            height: "600px",
+            borderRadius: "50%",
+            border: "1px solid rgba(0,229,255,0.04)",
+            pointerEvents: "none",
+            animation: "pulsRing 6s ease-in-out infinite",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "900px",
+            height: "900px",
+            borderRadius: "50%",
+            border: "1px solid rgba(0,229,255,0.02)",
+            pointerEvents: "none",
+            animation: "pulsRing 6s ease-in-out 2s infinite",
+          }}
+        />
+
+        <div
+          style={{
+            maxWidth: "800px",
+            margin: "0 auto",
+            position: "relative",
+            zIndex: 1,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: '"Space Mono", monospace',
+              fontSize: "0.58rem",
+              color: "#00E5FF",
+              letterSpacing: "0.3em",
+              textTransform: "uppercase",
+              marginBottom: "2.5rem",
+              animation: "fadeUp 0.8s ease forwards",
+              opacity: 0,
+            }}
+          >
+            Ready to Begin
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+
+          <h2
+            style={{
+              fontFamily: '"Bebas Neue", cursive',
+              fontSize: "clamp(3.5rem, 10vw, 9rem)",
+              color: "white",
+              lineHeight: 0.88,
+              letterSpacing: "0.02em",
+              marginBottom: "2.5rem",
+              animation: "fadeUp 0.8s ease 0.15s forwards",
+              opacity: 0,
+            }}
+          >
+            The Sky Is Your Biggest Stage
+          </h2>
+
+          <p
+            style={{
+              color: "#666",
+              fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
+              lineHeight: 1.85,
+              marginBottom: "3.5rem",
+              animation: "fadeUp 0.8s ease 0.3s forwards",
+              opacity: 0,
+            }}
+          >
+            Let us bring your vision to life with a custom aerial experience
+            designed around your goals.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "1rem",
+              justifyContent: "center",
+              animation: "fadeUp 0.8s ease 0.45s forwards",
+              opacity: 0,
+            }}
+          >
             <Link to="/contact" className="btn-primary">
-              {ABOUT_CTA.cta1} <ArrowRight size={14} />
+              Start a Conversation <ArrowRight size={14} />
             </Link>
             <Link to="/contact" className="btn-secondary">
-              {ABOUT_CTA.cta2}
+              Request a Proposal
             </Link>
           </div>
         </div>
       </section>
+
+      <style>{`
+        @keyframes pulsRing {
+          0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+          50%       { opacity: 0.2; transform: translate(-50%, -50%) scale(1.04); }
+        }
+      `}</style>
     </>
   );
 }

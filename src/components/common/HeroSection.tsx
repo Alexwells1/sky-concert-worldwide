@@ -60,28 +60,6 @@ export default function HeroSection({ headline, subheadline, supporting }: HeroS
           </p>
         )}
       </div>
-
-      {/* Scroll indicator */}
-      <div style={{
-        position: 'absolute',
-        bottom: '2rem',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 2,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '0.4rem',
-        opacity: 0.5,
-      }}>
-        <div style={{
-          width: '1px',
-          height: '40px',
-          background: 'linear-gradient(to bottom, rgba(0,229,255,0.8), transparent)',
-          animation: 'fadeIn 1s ease 1s forwards',
-          opacity: 0,
-        }} />
-      </div>
     </section>
   );
 }
