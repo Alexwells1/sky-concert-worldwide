@@ -18,7 +18,7 @@ export default function WhoWeAre() {
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(2rem)",
             transition: "opacity 0.9s ease, transform 0.9s ease",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid rgba(255,255,255,0.07)",
             paddingTop: "4rem",
             marginBottom: "5rem",
           }}
@@ -26,7 +26,7 @@ export default function WhoWeAre() {
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.58rem",
+              fontSize: "0.72rem",
               color: "#C9A84C",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
@@ -61,7 +61,7 @@ export default function WhoWeAre() {
             alignItems: "start",
           }}
         >
-          {/* Left — body and founder note */}
+          {/* Left body and founder note */}
           <div
             style={{
               opacity: inView ? 1 : 0,
@@ -81,75 +81,6 @@ export default function WhoWeAre() {
             >
               {ABOUT_WHO_WE_ARE.body}
             </p>
-
-            {/* Founder note — cinematic pull quote */}
-            <blockquote
-              style={{
-                margin: 0,
-                padding: "2rem",
-                background: "rgba(0,229,255,0.03)",
-                borderLeft: "2px solid rgba(0,229,255,0.25)",
-              }}
-            >
-              <p
-                style={{
-                  color: "#999",
-                  fontSize: "0.9rem",
-                  lineHeight: 1.8,
-                  margin: 0,
-                  fontStyle: "italic",
-                }}
-              >
-                {ABOUT_WHO_WE_ARE.founderNote}
-              </p>
-            </blockquote>
-          </div>
-
-          {/* Right — pillars as stacked editorial lines */}
-          <div
-            style={{
-              opacity: inView ? 1 : 0,
-              transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-              transition: "opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: '"Space Mono", monospace',
-                fontSize: "0.55rem",
-                color: "rgba(255,255,255,0.3)",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                marginBottom: "2rem",
-              }}
-            >
-              What We Stand For
-            </p>
-            {ABOUT_WHO_WE_ARE.pillars.map((pillar, i) => (
-              <div
-                key={i}
-                className="pillar-item"
-                style={{
-                  padding: "1.4rem 0",
-                  borderBottom: "1px solid rgba(255,255,255,0.05)",
-                  cursor: "default",
-                }}
-              >
-                <span
-                  className="pillar-text"
-                  style={{
-                    fontFamily: '"Playfair Display", serif',
-                    fontSize: "clamp(0.9rem, 1.3vw, 1rem)",
-                    color: "#666",
-                    lineHeight: 1.5,
-                    display: "block",
-                    transition: "color 0.3s ease",
-                  }}
-                >
-                  {pillar}
-                </span>
-              </div>
-            ))}
           </div>
         </div>
       </div>

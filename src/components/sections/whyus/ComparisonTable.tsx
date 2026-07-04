@@ -8,8 +8,8 @@ export default function ComparisonTable() {
   return (
     <section
       style={{
-        background: "#020810",
-        padding: "10rem 1.5rem",
+        background: "var(--color-surface-8)",
+        padding: "var(--space-8) var(--space-6)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -56,39 +56,44 @@ export default function ComparisonTable() {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(0,229,255,0.04) 0%, transparent 65%)",
+            "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(var(--primary-rgb), 0.04) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
 
       <div
-        style={{ maxWidth: "80rem", margin: "0 auto", position: "relative" }}
+        style={{
+          maxWidth: "var(--container-2xl)",
+          margin: "0 auto",
+          position: "relative",
+        }}
       >
         {/* Header */}
         <div
           ref={headerRef}
           className="comparison-header-grid"
           style={{
-            marginBottom: "6rem",
+            marginBottom: "var(--space-24)",
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "4rem",
+            gap: "var(--space-16)",
             alignItems: "end",
             opacity: headerInView ? 1 : 0,
             transform: headerInView ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.8s ease, transform 0.8s ease",
+            transition:
+              "opacity var(--duration-slowest) var(--ease-default), transform var(--duration-slowest) var(--ease-default)",
           }}
         >
           <div>
             <span
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.65rem",
-                letterSpacing: "0.3em",
-                color: "#00E5FF",
+                fontSize: "var(--text-label)",
+                letterSpacing: "var(--tracking-wide)",
+                color: "var(--primary)",
                 textTransform: "uppercase",
                 display: "block",
-                marginBottom: "1.5rem",
+                marginBottom: "var(--space-6)",
               }}
             >
               {COMPARISON_META.sectionLabel}
@@ -97,9 +102,9 @@ export default function ComparisonTable() {
               style={{
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "clamp(3rem, 6vw, 6rem)",
-                color: "white",
+                color: "var(--foreground)",
                 lineHeight: 0.88,
-                letterSpacing: "0.02em",
+                letterSpacing: "var(--tracking-normal)",
                 margin: 0,
               }}
             >
@@ -109,13 +114,13 @@ export default function ComparisonTable() {
           <p
             style={{
               color: "rgba(200,200,200,0.85)",
-              fontSize: "1rem",
+              fontSize: "var(--text-base)",
               lineHeight: 1.85,
               margin: 0,
             }}
           >
             See exactly how drone light shows compare to conventional event
-            entertainment — across every dimension that matters.
+            entertainment across every dimension that matters.
           </p>
         </div>
 
@@ -125,7 +130,8 @@ export default function ComparisonTable() {
           style={{
             opacity: tableInView ? 1 : 0,
             transform: tableInView ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.9s ease, transform 0.9s ease",
+            transition:
+              "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
           }}
         >
           <div
@@ -134,17 +140,17 @@ export default function ComparisonTable() {
               display: "grid",
               gridTemplateColumns: "1fr 1fr 1fr",
               marginBottom: "0",
-              borderBottom: "1px solid rgba(255,255,255,0.1)",
-              paddingBottom: "1.5rem",
+              borderBottom: "1px solid rgba(var(--foreground-rgb), 0.7)",
+              paddingBottom: "var(--space-6)",
             }}
           >
             <div
               className="comparison-col-category-header"
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.2em",
-                color: "rgba(160,160,160,0.9)",
+                color: "rgba(var(--color-gray-160-rgb), 0.9)",
                 textTransform: "uppercase",
               }}
             >
@@ -153,11 +159,11 @@ export default function ComparisonTable() {
             <div
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.2em",
-                color: "#00E5FF",
+                color: "var(--primary)",
                 textTransform: "uppercase",
-                padding: "0 1.5rem",
+                padding: "0 var(--space-6)",
               }}
             >
               {COMPARISON_META.ourLabel}
@@ -165,11 +171,11 @@ export default function ComparisonTable() {
             <div
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.2em",
-                color: "rgba(160,160,160,0.7)",
+                color: "rgba(var(--color-gray-160-rgb), 0.7)",
                 textTransform: "uppercase",
-                padding: "0 1.5rem",
+                padding: "0 var(--space-6)",
               }}
             >
               {COMPARISON_META.theirLabel}
@@ -184,7 +190,7 @@ export default function ComparisonTable() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr 1fr",
-                borderBottom: "1px solid rgba(255,255,255,0.07)",
+                borderBottom: "1px solid rgba(var(--foreground-rgb), 0.07)",
                 opacity: tableInView ? 1 : 0,
                 transform: tableInView ? "translateX(0)" : "translateX(-20px)",
                 transition: `opacity 0.6s ${
@@ -196,15 +202,15 @@ export default function ComparisonTable() {
               <div
                 className="comparison-row-category"
                 style={{
-                  padding: "2rem 0",
+                  padding: "var(--space-8) 0",
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.65rem",
+                  fontSize: "var(--text-3xs)",
                   letterSpacing: "0.1em",
-                  color: "rgba(180,180,180,0.9)",
+                  color: "rgba(var(--color-gray-180-rgb), 0.9)",
                   textTransform: "uppercase",
                   display: "flex",
                   alignItems: "center",
-                  fontWeight: 600,
+                  fontWeight: "var(--font-semibold)",
                 }}
               >
                 {row.category}
@@ -214,23 +220,23 @@ export default function ComparisonTable() {
               <div
                 className="comparison-value-cell"
                 style={{
-                  padding: "2rem 1.5rem",
+                  padding: "var(--space-8) var(--space-6)",
                   display: "flex",
                   alignItems: "flex-start",
                   gap: "0.85rem",
-                  borderLeft: "1px solid rgba(0,229,255,0.12)",
-                  background: "rgba(0,229,255,0.03)",
+                  borderLeft: "1px solid rgba(var(--primary-rgb), 0.12)",
+                  background: "rgba(var(--primary-rgb), 0.03)",
                 }}
               >
                 <div
                   style={{
                     width: "7px",
                     height: "7px",
-                    borderRadius: "50%",
-                    background: "#00E5FF",
+                    borderRadius: "var(--radius-full)",
+                    background: "var(--primary)",
                     flexShrink: 0,
                     marginTop: "5px",
-                    boxShadow: "0 0 10px rgba(0,229,255,0.6)",
+                    boxShadow: "var(--shadow-xs)",
                   }}
                 />
                 <div>
@@ -240,11 +246,11 @@ export default function ComparisonTable() {
                     style={{
                       display: "block",
                       fontFamily: '"Space Mono", monospace',
-                      fontSize: "0.5rem",
+                      fontSize: "var(--text-label)",
                       letterSpacing: "0.15em",
-                      color: "rgba(0,229,255,0.6)",
+                      color: "rgba(var(--primary-rgb), 0.6)",
                       textTransform: "uppercase",
-                      marginBottom: "0.4rem",
+                      marginBottom: "var(--space-0-5)",
                     }}
                   >
                     {/* Category shown inline on mobile */}
@@ -252,10 +258,10 @@ export default function ComparisonTable() {
                   <span
                     className="comparison-value-text"
                     style={{
-                      color: "white",
-                      fontSize: "1rem",
+                      color: "var(--foreground)",
+                      fontSize: "var(--text-base)",
                       lineHeight: 1.5,
-                      fontWeight: 500,
+                      fontWeight: "var(--font-medium)",
                     }}
                   >
                     {row.skyConcert}
@@ -267,18 +273,18 @@ export default function ComparisonTable() {
               <div
                 className="comparison-value-cell"
                 style={{
-                  padding: "2rem 1.5rem",
+                  padding: "var(--space-8) var(--space-6)",
                   display: "flex",
                   alignItems: "flex-start",
                   gap: "0.85rem",
-                  borderLeft: "1px solid rgba(255,255,255,0.06)",
+                  borderLeft: "1px solid rgba(var(--foreground-rgb), 0.06)",
                 }}
               >
                 <div
                   style={{
                     width: "7px",
                     height: "7px",
-                    borderRadius: "50%",
+                    borderRadius: "var(--radius-full)",
                     background: "rgba(100,100,100,0.5)",
                     flexShrink: 0,
                     marginTop: "5px",
@@ -287,8 +293,8 @@ export default function ComparisonTable() {
                 <span
                   className="comparison-value-text"
                   style={{
-                    color: "rgba(160,160,160,0.85)",
-                    fontSize: "1rem",
+                    color: "rgba(var(--color-gray-160-rgb), 0.85)",
+                    fontSize: "var(--text-base)",
                     lineHeight: 1.5,
                   }}
                 >
@@ -297,58 +303,6 @@ export default function ComparisonTable() {
               </div>
             </div>
           ))}
-
-          {/* Footer bar */}
-          <div
-            className="comparison-footer"
-            style={{
-              marginTop: "4rem",
-              padding: "2.5rem 3rem",
-              background: "rgba(0,229,255,0.03)",
-              border: "1px solid rgba(0,229,255,0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              gap: "1rem",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: '"Playfair Display", serif',
-                fontStyle: "italic",
-                fontSize: "1.15rem",
-                color: "rgba(0,229,255,0.7)",
-                margin: 0,
-              }}
-            >
-              There is no comparison — only a new standard.
-            </p>
-            <div
-              className="comparison-badges"
-              style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}
-            >
-              {[
-                "Fully Insured",
-                "International Safety Standards",
-                "Eco-Conscious",
-                "End-to-End In-House",
-              ].map((badge) => (
-                <span
-                  key={badge}
-                  style={{
-                    fontFamily: '"Space Mono", monospace',
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.15em",
-                    color: "rgba(160,160,160,0.8)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

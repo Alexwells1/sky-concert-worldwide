@@ -7,7 +7,12 @@ import { useInView } from "../../../hooks/useInView";
 export default function WhyUsPreview() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: "transparent", padding: "4rem 1.5rem" }}>
+    <section
+      style={{
+        background: "transparent",
+        padding: "var(--space-16) var(--space-6)",
+      }}
+    >
       <div style={{ maxWidth: "56rem", margin: "0 auto", textAlign: "center" }}>
         <div
           ref={ref}
@@ -23,9 +28,9 @@ export default function WhyUsPreview() {
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: "clamp(1.5rem, 3.5vw, 2.25rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 1.2,
-              marginBottom: "0.75rem",
+              marginBottom: "var(--space-3)",
             }}
           >
             {HOME_WHY_US_META.headline}
@@ -33,36 +38,36 @@ export default function WhyUsPreview() {
 
           <p
             style={{
-              color: "rgba(255,255,255,0.45)",
-              fontSize: "0.9rem",
+              color: "rgba(var(--foreground-rgb), 0.45)",
+              fontSize: "var(--text-md)",
               lineHeight: 1.7,
-              marginBottom: "2rem",
+              marginBottom: "var(--space-8)",
             }}
           >
             {HOME_WHY_US_META.subheadline}
           </p>
 
-          {/* Inline pill list — no cards, no descriptions */}
+          {/* Inline pill list no cards, no descriptions */}
           <div
             style={{
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
-              gap: "0.6rem",
-              marginBottom: "2rem",
+              gap: "var(--space-1-5)",
+              marginBottom: "var(--space-8)",
             }}
           >
             {HOME_WHY_US_PILLARS.map((pillar) => (
               <span
                 key={pillar.id}
                 style={{
-                  padding: "0.45rem 1rem",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  borderRadius: "100px",
-                  color: "rgba(255,255,255,0.75)",
+                  padding: "0.45rem var(--space-4)",
+                  border: "1px solid rgba(var(--foreground-rgb), 0.12)",
+                  borderRadius: "var(--radius-lg)",
+                  color: "rgba(var(--foreground-rgb), 0.75)",
                   fontSize: "0.8rem",
-                  letterSpacing: "0.02em",
-                  background: "rgba(255,255,255,0.03)",
+                  letterSpacing: "var(--tracking-normal)",
+                  background: "rgba(var(--foreground-rgb), 0.4)",
                   whiteSpace: "nowrap",
                 }}
               >

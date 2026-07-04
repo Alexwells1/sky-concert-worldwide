@@ -63,14 +63,14 @@ export default function Header() {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "0 2rem",
+    padding: "0 var(--space-8)",
     height: "80px",
     transition:
       "background 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease",
     background: scrolled ? "rgba(4,8,16,0.92)" : "transparent",
     backdropFilter: scrolled ? "blur(12px)" : "none",
     borderBottom: scrolled
-      ? "1px solid rgba(0,229,255,0.08)"
+      ? "1px solid rgba(var(--primary-rgb), 0.08)"
       : "1px solid transparent",
   };
 
@@ -95,7 +95,7 @@ export default function Header() {
 
         {/* ── Desktop Nav ── */}
         <div
-          style={{ display: "flex", alignItems: "center", gap: "2rem" }}
+          style={{ display: "flex", alignItems: "center", gap: "var(--space-8)" }}
           className="hidden-mobile"
         >
           {PRIMARY_NAV.map((link) => (
@@ -104,16 +104,16 @@ export default function Header() {
               to={link.href}
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.65rem",
+                fontSize: "var(--text-3xs)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 color:
-                  pathname === link.href ? "#00E5FF" : "rgba(255,255,255,0.75)",
+                  pathname === link.href ? "var(--primary)" : "rgba(var(--foreground-rgb), 0.75)",
                 textDecoration: "none",
-                transition: "color 0.2s",
+                transition: "color var(--duration-fast-alt)",
                 borderBottom:
                   pathname === link.href
-                    ? "1px solid #00E5FF"
+                    ? "1px solid var(--primary)"
                     : "1px solid transparent",
                 paddingBottom: "2px",
               }}
@@ -134,15 +134,15 @@ export default function Header() {
                 alignItems: "center",
                 gap: "0.3rem",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.65rem",
+                fontSize: "var(--text-3xs)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
-                color: isMoreActive ? "#00E5FF" : "rgba(255,255,255,0.75)",
+                color: isMoreActive ? "var(--primary)" : "rgba(var(--foreground-rgb), 0.75)",
                 borderBottom: isMoreActive
-                  ? "1px solid #00E5FF"
+                  ? "1px solid var(--primary)"
                   : "1px solid transparent",
                 paddingBottom: "2px",
-                transition: "color 0.2s",
+                transition: "color var(--duration-fast-alt)",
               }}
             >
               More
@@ -163,9 +163,9 @@ export default function Header() {
                   right: 0,
                   background: "rgba(4,8,20,0.97)",
                   backdropFilter: "blur(16px)",
-                  border: "1px solid rgba(0,229,255,0.12)",
-                  borderRadius: "4px",
-                  padding: "0.75rem 0",
+                  border: "1px solid rgba(var(--primary-rgb), 0.12)",
+                  borderRadius: "var(--radius-md)",
+                  padding: "var(--space-3) 0",
                   minWidth: "160px",
                   display: "flex",
                   flexDirection: "column",
@@ -178,26 +178,26 @@ export default function Header() {
                     onClick={() => setMoreOpen(false)}
                     style={{
                       fontFamily: '"Space Mono", monospace',
-                      fontSize: "0.6rem",
+                      fontSize: "var(--text-xs)",
                       letterSpacing: "0.15em",
                       textTransform: "uppercase",
                       color:
                         pathname === link.href
-                          ? "#00E5FF"
-                          : "rgba(255,255,255,0.65)",
+                          ? "var(--primary)"
+                          : "rgba(var(--foreground-rgb), 0.65)",
                       textDecoration: "none",
-                      padding: "0.6rem 1.25rem",
+                      padding: "var(--space-1-5) var(--space-5)",
                       transition: "color 0.15s, background 0.15s",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = "white";
-                      e.currentTarget.style.background = "rgba(0,229,255,0.06)";
+                      e.currentTarget.style.color = "var(--foreground)";
+                      e.currentTarget.style.background = "rgba(var(--primary-rgb), 0.06)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.color =
                         pathname === link.href
-                          ? "#00E5FF"
-                          : "rgba(255,255,255,0.65)";
+                          ? "var(--primary)"
+                          : "rgba(var(--foreground-rgb), 0.65)";
                       e.currentTarget.style.background = "transparent";
                     }}
                   >
@@ -211,7 +211,7 @@ export default function Header() {
           <Link
             to={NAV_CTA.href}
             className="btn-primary"
-            style={{ padding: "0.6rem 1.4rem", fontSize: "0.6rem" }}
+            style={{ padding: "var(--space-1-5) 1.4rem", fontSize: "var(--text-xs)" }}
           >
             {NAV_CTA.label} <ArrowRight size={12} />
           </Link>
@@ -223,9 +223,9 @@ export default function Header() {
           style={{
             background: "none",
             border: "none",
-            color: "white",
+            color: "var(--foreground)",
             cursor: "pointer",
-            padding: "0.5rem",
+            padding: "var(--space-2)",
             display: "none",
           }}
           className="show-mobile"
@@ -260,7 +260,7 @@ export default function Header() {
               right: "2rem",
               background: "none",
               border: "none",
-              color: "white",
+              color: "var(--foreground)",
               cursor: "pointer",
             }}
             aria-label="Close menu"
@@ -275,7 +275,7 @@ export default function Header() {
               flexDirection: "column",
               alignItems: "center",
               width: "100%",
-              padding: "5rem 2rem 4rem",
+              padding: "var(--space-20) var(--space-8) var(--space-16)",
               gap: 0,
             }}
           >
@@ -288,16 +288,16 @@ export default function Header() {
                   fontFamily: '"Bebas Neue", cursive',
                   fontSize: "clamp(2rem, 8vw, 2.8rem)",
                   letterSpacing: "0.1em",
-                  color: pathname === link.href ? "#00E5FF" : "white",
+                  color: pathname === link.href ? "var(--primary)" : "white",
                   textDecoration: "none",
-                  padding: "0.6rem 0",
+                  padding: "var(--space-1-5) 0",
                   width: "100%",
                   textAlign: "center",
                   borderBottom:
                     i < ALL_NAV.length - 1
-                      ? "1px solid rgba(255,255,255,0.05)"
+                      ? "1px solid rgba(var(--foreground-rgb), 0.05)"
                       : "none",
-                  transition: "color 0.2s",
+                  transition: "color var(--duration-fast-alt)",
                 }}
               >
                 {link.label}
@@ -308,7 +308,7 @@ export default function Header() {
               to={NAV_CTA.href}
               onClick={() => setMobileOpen(false)}
               className="btn-primary"
-              style={{ marginTop: "2rem", fontSize: "0.7rem" }}
+              style={{ marginTop: "var(--space-8)", fontSize: "var(--text-button)" }}
             >
               {NAV_CTA.label} <ArrowRight size={14} />
             </Link>
@@ -319,9 +319,9 @@ export default function Header() {
               position: "absolute",
               bottom: "2rem",
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.6rem",
+              fontSize: "var(--text-xs)",
               letterSpacing: "0.15em",
-              color: "rgba(255,255,255,0.2)",
+              color: "rgba(var(--foreground-rgb), 0.2)",
               textTransform: "uppercase",
               pointerEvents: "none",
             }}

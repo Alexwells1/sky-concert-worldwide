@@ -5,25 +5,25 @@ const TECH_HIGHLIGHTS = [
     title: "Precision Swarm Synchronization",
     detail:
       "RTK-GPS positioning with centimeter-level accuracy across hundreds of simultaneous flight paths.",
-    accent: "#00E5FF",
+    accent: "var(--primary)",
   },
   {
     title: "Military-Grade Positioning Systems",
     detail:
       "Redundant telemetry and real-time correction ensure every drone is exactly where it must be.",
-    accent: "#C9A84C",
+    accent: "var(--secondary)",
   },
   {
     title: "Large-Scale Formation Control",
     detail:
       "Proprietary swarm intelligence enables complex animated formations at any fleet size.",
-    accent: "#00E5FF",
+    accent: "var(--primary)",
   },
   {
     title: "Environmentally Responsible Operations",
     detail:
       "Zero pyrotechnics. Zero waste. Fully reusable systems designed for responsible spectacle.",
-    accent: "#C9A84C",
+    accent: "var(--secondary)",
   },
 ];
 
@@ -33,7 +33,7 @@ export default function TechAdvantage() {
   return (
     <section
       style={{
-        background: "#020810",
+        background: "var(--color-surface-8)",
         position: "relative",
         overflow: "hidden",
         padding: "0",
@@ -44,7 +44,7 @@ export default function TechAdvantage() {
         style={{
           height: "1px",
           background:
-            "linear-gradient(to right, transparent, rgba(0,229,255,0.2), transparent)",
+            "linear-gradient(to right, transparent, rgba(var(--primary-rgb), 0.2), transparent)",
         }}
       />
 
@@ -53,7 +53,7 @@ export default function TechAdvantage() {
         className="tech-grid"
         style={{
           opacity: inView ? 1 : 0,
-          transition: "opacity 1s ease",
+          transition: "opacity var(--duration-crawl-alt) var(--ease-default)",
         }}
       >
         {/* Image panel */}
@@ -81,7 +81,7 @@ export default function TechAdvantage() {
         <div
           className="tech-text-panel"
           style={{
-            background: "#020810",
+            background: "var(--color-surface-8)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -90,12 +90,12 @@ export default function TechAdvantage() {
           <span
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.6rem",
-              letterSpacing: "0.3em",
-              color: "#00E5FF",
+              fontSize: "var(--text-label)",
+              letterSpacing: "var(--tracking-wide)",
+              color: "var(--primary)",
               textTransform: "uppercase",
               display: "block",
-              marginBottom: "1.5rem",
+              marginBottom: "var(--space-6)",
             }}
           >
             Technology Advantage
@@ -105,15 +105,15 @@ export default function TechAdvantage() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(2rem, 4vw, 4rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.95,
-              letterSpacing: "0.02em",
-              marginBottom: "3.5rem",
+              letterSpacing: "var(--tracking-normal)",
+              marginBottom: "var(--space-14)",
             }}
           >
             The World's Most Advanced
             <br />
-            <span style={{ color: "rgba(0,229,255,0.6)" }}>
+            <span style={{ color: "rgba(var(--primary-rgb), 0.6)" }}>
               Drone Show Technology
             </span>
           </h2>
@@ -124,10 +124,10 @@ export default function TechAdvantage() {
               <div
                 key={item.title}
                 style={{
-                  padding: "2rem 0",
+                  padding: "var(--space-8) 0",
                   borderBottom:
                     i < TECH_HIGHLIGHTS.length - 1
-                      ? "1px solid rgba(255,255,255,0.05)"
+                      ? "1px solid rgba(var(--foreground-rgb), 0.4)"
                       : "none",
                   opacity: inView ? 1 : 0,
                   transform: inView ? "translateX(0)" : "translateX(30px)",
@@ -140,7 +140,7 @@ export default function TechAdvantage() {
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
-                    gap: "1.25rem",
+                    gap: "var(--space-5)",
                   }}
                 >
                   <div
@@ -156,9 +156,9 @@ export default function TechAdvantage() {
                     <h3
                       style={{
                         fontFamily: '"Playfair Display", serif',
-                        fontSize: "1.05rem",
-                        color: "white",
-                        marginBottom: "0.5rem",
+                        fontSize: "var(--text-md-alt)",
+                        color: "var(--foreground)",
+                        marginBottom: "var(--space-2)",
                         lineHeight: 1.2,
                       }}
                     >
@@ -167,7 +167,7 @@ export default function TechAdvantage() {
                     <p
                       style={{
                         color: "rgba(140,140,140,0.8)",
-                        fontSize: "0.85rem",
+                        fontSize: "var(--text-sm-alt)",
                         lineHeight: 1.75,
                         margin: 0,
                       }}
@@ -183,17 +183,17 @@ export default function TechAdvantage() {
           {/* Closing statement */}
           <div
             style={{
-              marginTop: "3rem",
-              paddingTop: "2.5rem",
-              borderTop: "1px solid rgba(0,229,255,0.1)",
+              marginTop: "var(--space-12)",
+              paddingTop: "var(--space-10)",
+              borderTop: "1px solid rgba(var(--primary-rgb), 0.1)",
             }}
           >
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.65rem",
+                fontSize: "var(--text-3xs)",
                 letterSpacing: "0.15em",
-                color: "#C9A84C",
+                color: "var(--secondary)",
                 textTransform: "uppercase",
               }}
             >
@@ -209,7 +209,7 @@ export default function TechAdvantage() {
         style={{
           height: "1px",
           background:
-            "linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent)",
+            "linear-gradient(to right, transparent, rgba(var(--secondary-rgb), 0.15), transparent)",
         }}
       />
 
@@ -224,7 +224,7 @@ export default function TechAdvantage() {
           min-height: 500px;
         }
         .tech-image-overlay {
-          background: linear-gradient(to right, rgba(2,8,16,0.3) 0%, rgba(2,8,16,0.7) 80%, rgba(2,8,16,1) 100%);
+          background: linear-gradient(to right, rgba(var(--color-surface-8-rgb), 0.3) 0%, rgba(var(--color-surface-8-rgb), 0.7) 80%, rgba(var(--color-surface-8-rgb), 1) 100%);
         }
         .tech-text-panel {
           padding: clamp(3rem, 6vw, 7rem) clamp(2.5rem, 5vw, 6rem);
@@ -246,9 +246,9 @@ export default function TechAdvantage() {
           .tech-image-overlay {
             background: linear-gradient(
               to bottom,
-              rgba(2,8,16,0.2) 0%,
-              rgba(2,8,16,0.5) 60%,
-              rgba(2,8,16,1) 100%
+              rgba(var(--color-surface-8-rgb), 0.2) 0%,
+              rgba(var(--color-surface-8-rgb), 0.5) 60%,
+              rgba(var(--color-surface-8-rgb), 1) 100%
             );
           }
           .tech-text-panel {

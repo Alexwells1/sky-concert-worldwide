@@ -15,27 +15,36 @@ function SupportingInfo() {
 
   const contactItems = [
     {
-      icon: <Mail size={18} style={{ color: "#00E5FF", flexShrink: 0 }} />,
+      icon: (
+        <Mail size={18} style={{ color: "var(--primary)", flexShrink: 0 }} />
+      ),
       label: "Email",
       value: CONTACT_INFO.email,
       href: `mailto:${CONTACT_INFO.email}`,
     },
     {
-      icon: <Phone size={18} style={{ color: "#00E5FF", flexShrink: 0 }} />,
+      icon: (
+        <Phone size={18} style={{ color: "var(--primary)", flexShrink: 0 }} />
+      ),
       label: "Phone / WhatsApp",
       value: CONTACT_INFO.phone,
       href: `tel:${CONTACT_INFO.phone}`,
     },
     {
       icon: (
-        <MessageCircle size={18} style={{ color: "#00E5FF", flexShrink: 0 }} />
+        <MessageCircle
+          size={18}
+          style={{ color: "var(--primary)", flexShrink: 0 }}
+        />
       ),
       label: "Emergency Enquiries",
       value: CONTACT_INFO.emergencyEmail,
       href: `mailto:${CONTACT_INFO.emergencyEmail}`,
     },
     {
-      icon: <Clock size={18} style={{ color: "#C9A84C", flexShrink: 0 }} />,
+      icon: (
+        <Clock size={18} style={{ color: "var(--secondary)", flexShrink: 0 }} />
+      ),
       label: "Response Time",
       value: CONTACT_INFO.responseTime,
       href: null,
@@ -48,10 +57,11 @@ function SupportingInfo() {
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-        transition: "opacity 0.7s ease, transform 0.7s ease",
+        transition:
+          "opacity var(--duration-slower) var(--ease-default), transform var(--duration-slower) var(--ease-default)",
         maxWidth: "1080px",
         margin: "0 auto",
-        padding: "0 1.5rem 8rem",
+        padding: "0 var(--space-6) var(--space-32)",
       }}
     >
       {/* Thin top divider */}
@@ -59,8 +69,8 @@ function SupportingInfo() {
         style={{
           height: "1px",
           background:
-            "linear-gradient(to right, transparent, rgba(255,255,255,0.12), transparent)",
-          marginBottom: "4rem",
+            "linear-gradient(to right, transparent, rgba(var(--foreground-rgb), 0.12), transparent)",
+          marginBottom: "var(--space-16)",
         }}
       />
 
@@ -69,22 +79,22 @@ function SupportingInfo() {
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: "5rem",
+          gap: "var(--space-20)",
           alignItems: "start",
         }}
         className="supporting-info-grid"
       >
-        {/* Left — Direct contact */}
+        {/* Left Direct contact */}
         <div>
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.75rem", // was 0.55rem
-              fontWeight: 700,
+              fontSize: "var(--text-sm)", // was 0.55rem
+              fontWeight: "var(--font-bold)",
               letterSpacing: "0.22em",
-              color: "rgba(0,229,255,0.75)", // was 0.4
+              color: "rgba(var(--primary-rgb), 0.75)", // was 0.4
               textTransform: "uppercase",
-              marginBottom: "1.75rem",
+              marginBottom: "var(--space-7)",
             }}
           >
             Reach Us Directly
@@ -96,11 +106,11 @@ function SupportingInfo() {
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
-                    gap: "1rem",
+                    gap: "var(--space-4)",
                     padding: "1.1rem 0",
                     borderBottom:
                       i < contactItems.length - 1
-                        ? "1px solid rgba(255,255,255,0.08)"
+                        ? "1px solid rgba(var(--foreground-rgb), 0.5)"
                         : "none",
                   }}
                 >
@@ -109,9 +119,9 @@ function SupportingInfo() {
                     <p
                       style={{
                         fontFamily: '"Space Mono", monospace',
-                        fontSize: "0.65rem", // was 0.5rem
-                        fontWeight: 700,
-                        color: "rgba(255,255,255,0.55)", // was 0.25
+                        fontSize: "var(--text-3xs)", // was 0.5rem
+                        fontWeight: "var(--font-bold)",
+                        color: "rgba(var(--foreground-rgb), 0.55)", // was 0.25
                         letterSpacing: "0.15em",
                         textTransform: "uppercase",
                         marginBottom: "0.3rem",
@@ -121,9 +131,11 @@ function SupportingInfo() {
                     </p>
                     <p
                       style={{
-                        color: item.href ? "#00E5FF" : "rgba(255,255,255,0.85)", // brighter
-                        fontSize: "1rem", // was 0.85rem
-                        fontWeight: 600,
+                        color: item.href
+                          ? "var(--primary)"
+                          : "rgba(var(--foreground-rgb), 0.85)", // brighter
+                        fontSize: "var(--text-base)", // was 0.85rem
+                        fontWeight: "var(--font-semibold)",
                         margin: 0,
                         lineHeight: 1.5,
                       }}
@@ -150,17 +162,17 @@ function SupportingInfo() {
           </div>
         </div>
 
-        {/* Right — What's next */}
+        {/* Right What's next */}
         <div>
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.75rem", // was 0.55rem
-              fontWeight: 700,
+              fontSize: "var(--text-sm)", // was 0.55rem
+              fontWeight: "var(--font-bold)",
               letterSpacing: "0.22em",
-              color: "rgba(0,229,255,0.75)", // was 0.4
+              color: "rgba(var(--primary-rgb), 0.75)", // was 0.4
               textTransform: "uppercase",
-              marginBottom: "1.75rem",
+              marginBottom: "var(--space-7)",
             }}
           >
             {WHATS_NEXT_META?.sectionLabel ?? "What Happens Next"}
@@ -171,7 +183,7 @@ function SupportingInfo() {
                 key={step.number}
                 style={{
                   display: "flex",
-                  gap: "1rem",
+                  gap: "var(--space-4)",
                   paddingBottom:
                     i < WHATS_NEXT_STEPS.length - 1 ? "1.75rem" : 0,
                   position: "relative",
@@ -186,7 +198,7 @@ function SupportingInfo() {
                       bottom: 0,
                       width: "1px",
                       background:
-                        "linear-gradient(to bottom, rgba(0,229,255,0.25), transparent)",
+                        "linear-gradient(to bottom, rgba(var(--primary-rgb), 0.25), transparent)",
                     }}
                   />
                 )}
@@ -194,34 +206,34 @@ function SupportingInfo() {
                   style={{
                     width: "36px", // was 32px
                     height: "36px",
-                    border: "1px solid rgba(0,229,255,0.35)",
-                    borderRadius: "50%",
+                    border: "1px solid rgba(var(--primary-rgb), 0.35)",
+                    borderRadius: "var(--radius-full)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
-                    background: "rgba(6,10,20,0.6)",
+                    background: "rgba(var(--color-surface-3-rgb), 0.6)",
                     zIndex: 1,
                   }}
                 >
                   <span
                     style={{
                       fontFamily: '"Space Mono", monospace',
-                      fontSize: "0.65rem", // was 0.5rem
-                      fontWeight: 700,
-                      color: "#00E5FF",
+                      fontSize: "var(--text-3xs)", // was 0.5rem
+                      fontWeight: "var(--font-bold)",
+                      color: "var(--primary)",
                     }}
                   >
                     {step.number}
                   </span>
                 </div>
-                <div style={{ paddingTop: "0.4rem" }}>
+                <div style={{ paddingTop: "var(--space-0-5)" }}>
                   <h4
                     style={{
                       fontFamily: '"Playfair Display", serif',
-                      fontSize: "1.1rem", // was 0.95rem
-                      fontWeight: 700,
-                      color: "white",
+                      fontSize: "var(--text-md)", // was 0.95rem
+                      fontWeight: "var(--font-bold)",
+                      color: "var(--foreground)",
                       marginBottom: "0.3rem",
                       lineHeight: 1.3,
                     }}
@@ -230,9 +242,9 @@ function SupportingInfo() {
                   </h4>
                   <p
                     style={{
-                      color: "rgba(255,255,255,0.6)", // was 0.35
-                      fontSize: "0.9rem", // was 0.8rem
-                      fontWeight: 400,
+                      color: "rgba(var(--foreground-rgb), 0.7)", // was 0.35
+                      fontSize: "var(--text-md)", // was 0.8rem
+                      fontWeight: "var(--font-normal)",
                       lineHeight: 1.7,
                       margin: 0,
                     }}
@@ -252,15 +264,15 @@ function SupportingInfo() {
           <div
             style={{
               height: "1px",
-              background: "rgba(255,255,255,0.08)",
-              margin: "3.5rem 0 2rem",
+              background: "rgba(var(--foreground-rgb), 0.5)",
+              margin: "var(--space-14) 0 var(--space-8)",
             }}
           />
           <p
             style={{
-              color: "rgba(255,255,255,0.45)", // was 0.2
-              fontSize: "0.95rem", // was 0.8rem
-              fontWeight: 400,
+              color: "rgba(var(--foreground-rgb), 0.45)", // was 0.2
+              fontSize: "var(--text-body-lg)", // was 0.8rem
+              fontWeight: "var(--font-normal)",
               lineHeight: 1.85,
               fontFamily: '"DM Sans", sans-serif',
               fontStyle: "italic",
@@ -295,7 +307,7 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Full-width form — no sidebar */}
+      {/* Full-width form no sidebar */}
       <ContactForm />
 
       {/* Supporting info underneath */}

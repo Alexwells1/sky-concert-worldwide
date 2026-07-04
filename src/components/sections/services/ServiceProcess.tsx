@@ -46,8 +46,8 @@ export default function ServiceProcess() {
     <section
       ref={sectionRef}
       style={{
-        background: "#060A14",
-        padding: "10rem 1.5rem",
+        background: "var(--color-surface-3)",
+        padding: "var(--space-8) var(--space-6)",
         overflow: "hidden",
         position: "relative",
       }}
@@ -58,7 +58,7 @@ export default function ServiceProcess() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "radial-gradient(circle at 20% 50%, rgba(0,229,255,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(201,168,76,0.03) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, rgba(var(--primary-rgb), 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(var(--secondary-rgb), 0.03) 0%, transparent 50%)",
           pointerEvents: "none",
         }}
       />
@@ -70,21 +70,22 @@ export default function ServiceProcess() {
         <div
           ref={headerRef}
           style={{
-            marginBottom: "7rem",
+            marginBottom: "var(--space-28)",
             opacity: headerInView ? 1 : 0,
             transform: headerInView ? "translateY(0)" : "translateY(30px)",
-            transition: "opacity 0.8s ease, transform 0.8s ease",
+            transition:
+              "opacity var(--duration-slowest) var(--ease-default), transform var(--duration-slowest) var(--ease-default)",
           }}
         >
           <span
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.6rem",
-              letterSpacing: "0.3em",
-              color: "#00E5FF",
+              fontSize: "var(--text-label)",
+              letterSpacing: "var(--tracking-wide)",
+              color: "var(--primary)",
               textTransform: "uppercase",
               display: "block",
-              marginBottom: "1.5rem",
+              marginBottom: "var(--space-6)",
             }}
           >
             {SERVICES_PROCESS_META.sectionLabel}
@@ -93,9 +94,9 @@ export default function ServiceProcess() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(3rem, 7vw, 7rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.9,
-              letterSpacing: "0.02em",
+              letterSpacing: "var(--tracking-normal)",
               margin: 0,
             }}
           >
@@ -110,9 +111,9 @@ export default function ServiceProcess() {
             <div
               style={{
                 position: "relative",
-                marginBottom: "4rem",
+                marginBottom: "var(--space-16)",
                 height: "1px",
-                background: "rgba(255,255,255,0.06)",
+                background: "rgba(var(--foreground-rgb), 0.06)",
               }}
             >
               <div
@@ -123,7 +124,8 @@ export default function ServiceProcess() {
                   top: 0,
                   height: "100%",
                   width: `${lineProgress * 100}%`,
-                  background: "linear-gradient(to right, #00E5FF, #C9A84C)",
+                  background:
+                    "linear-gradient(to right, var(--primary), var(--secondary))",
                   transition: "width 0.1s linear",
                 }}
               />
@@ -134,7 +136,7 @@ export default function ServiceProcess() {
               style={{
                 display: "grid",
                 gridTemplateColumns: `repeat(${SERVICES_PROCESS_STEPS.length}, 1fr)`,
-                gap: "1rem",
+                gap: "var(--space-4)",
               }}
             >
               {SERVICES_PROCESS_STEPS.map((step, i) => {
@@ -157,16 +159,17 @@ export default function ServiceProcess() {
                       style={{
                         width: isCurrent ? "12px" : "8px",
                         height: isCurrent ? "12px" : "8px",
-                        borderRadius: "50%",
+                        borderRadius: "var(--radius-full)",
                         background: isCurrent
-                          ? "#00E5FF"
+                          ? "var(--primary)"
                           : isActive
-                          ? "rgba(0,229,255,0.5)"
-                          : "rgba(255,255,255,0.15)",
-                        marginBottom: "2rem",
-                        transition: "all 0.4s ease",
+                          ? "rgba(var(--primary-rgb), 0.5)"
+                          : "rgba(var(--foreground-rgb), 0.15)",
+                        marginBottom: "var(--space-8)",
+                        transition:
+                          "all var(--duration-moderate-alt) var(--ease-default)",
                         boxShadow: isCurrent
-                          ? "0 0 20px rgba(0,229,255,0.6)"
+                          ? "0 0 20px rgba(var(--primary-rgb), 0.6)"
                           : "none",
                         marginTop: "-10px",
                       }}
@@ -177,11 +180,12 @@ export default function ServiceProcess() {
                         fontSize: "4.5rem",
                         lineHeight: 0.85,
                         color: isActive
-                          ? "rgba(0,229,255,0.12)"
-                          : "rgba(255,255,255,0.04)",
-                        letterSpacing: "-0.02em",
-                        marginBottom: "1.25rem",
-                        transition: "color 0.5s ease",
+                          ? "rgba(var(--primary-rgb), 0.12)"
+                          : "rgba(var(--foreground-rgb), 0.4)",
+                        letterSpacing: "var(--tracking-tight)",
+                        marginBottom: "var(--space-5)",
+                        transition:
+                          "color var(--duration-medium-alt) var(--ease-default)",
                         userSelect: "none",
                       }}
                     >
@@ -190,10 +194,13 @@ export default function ServiceProcess() {
                     <h3
                       style={{
                         fontFamily: '"Playfair Display", serif',
-                        fontSize: "1.05rem",
-                        color: isActive ? "white" : "rgba(255,255,255,0.4)",
-                        marginBottom: "0.75rem",
-                        transition: "color 0.5s ease",
+                        fontSize: "var(--text-md-alt)",
+                        color: isActive
+                          ? "white"
+                          : "rgba(var(--foreground-rgb), 0.4)",
+                        marginBottom: "var(--space-3)",
+                        transition:
+                          "color var(--duration-medium-alt) var(--ease-default)",
                         lineHeight: 1.2,
                       }}
                     >
@@ -202,11 +209,12 @@ export default function ServiceProcess() {
                     <p
                       style={{
                         color: isActive
-                          ? "rgba(160,160,160,0.85)"
+                          ? "rgba(var(--color-gray-160-rgb), 0.85)"
                           : "rgba(100,100,100,0.5)",
                         fontSize: "0.82rem",
                         lineHeight: 1.75,
-                        transition: "color 0.5s ease",
+                        transition:
+                          "color var(--duration-medium-alt) var(--ease-default)",
                       }}
                     >
                       {step.description}
@@ -223,7 +231,7 @@ export default function ServiceProcess() {
           <div
             style={{
               position: "relative",
-              paddingLeft: "2.5rem",
+              paddingLeft: "var(--space-10)",
             }}
           >
             {/* Vertical progress line */}
@@ -234,7 +242,7 @@ export default function ServiceProcess() {
                 top: 0,
                 bottom: 0,
                 width: "1px",
-                background: "rgba(255,255,255,0.06)",
+                background: "rgba(var(--foreground-rgb), 0.06)",
               }}
             >
               <div
@@ -244,7 +252,8 @@ export default function ServiceProcess() {
                   top: 0,
                   width: "100%",
                   height: `${lineProgress * 100}%`,
-                  background: "linear-gradient(to bottom, #00E5FF, #C9A84C)",
+                  background:
+                    "linear-gradient(to bottom, var(--primary), var(--secondary))",
                   transition: "height 0.1s linear",
                 }}
               />
@@ -273,16 +282,17 @@ export default function ServiceProcess() {
                       top: "4px",
                       width: isCurrent ? "14px" : "10px",
                       height: isCurrent ? "14px" : "10px",
-                      borderRadius: "50%",
+                      borderRadius: "var(--radius-full)",
                       background: isCurrent
-                        ? "#00E5FF"
+                        ? "var(--primary)"
                         : isActive
-                        ? "rgba(0,229,255,0.5)"
-                        : "rgba(255,255,255,0.15)",
+                        ? "rgba(var(--primary-rgb), 0.5)"
+                        : "rgba(var(--foreground-rgb), 0.15)",
                       marginLeft: isCurrent ? "-2px" : "0",
-                      transition: "all 0.4s ease",
+                      transition:
+                        "all var(--duration-moderate-alt) var(--ease-default)",
                       boxShadow: isCurrent
-                        ? "0 0 16px rgba(0,229,255,0.6)"
+                        ? "0 0 16px rgba(var(--primary-rgb), 0.6)"
                         : "none",
                     }}
                   />
@@ -291,19 +301,20 @@ export default function ServiceProcess() {
                     style={{
                       display: "flex",
                       alignItems: "baseline",
-                      gap: "0.75rem",
+                      gap: "var(--space-3)",
                     }}
                   >
                     <span
                       style={{
                         fontFamily: '"Space Mono", monospace',
-                        fontSize: "0.55rem",
+                        fontSize: "var(--text-label)",
                         letterSpacing: "0.15em",
                         color: isActive
-                          ? "rgba(0,229,255,0.6)"
-                          : "rgba(255,255,255,0.2)",
+                          ? "rgba(var(--primary-rgb), 0.6)"
+                          : "rgba(var(--foreground-rgb), 0.2)",
                         flexShrink: 0,
-                        transition: "color 0.5s ease",
+                        transition:
+                          "color var(--duration-medium-alt) var(--ease-default)",
                       }}
                     >
                       {step.number}
@@ -311,11 +322,14 @@ export default function ServiceProcess() {
                     <h3
                       style={{
                         fontFamily: '"Playfair Display", serif',
-                        fontSize: "1rem",
-                        color: isActive ? "white" : "rgba(255,255,255,0.35)",
+                        fontSize: "var(--text-base)",
+                        color: isActive
+                          ? "white"
+                          : "rgba(var(--foreground-rgb), 0.35)",
                         margin: 0,
                         lineHeight: 1.3,
-                        transition: "color 0.5s ease",
+                        transition:
+                          "color var(--duration-medium-alt) var(--ease-default)",
                       }}
                     >
                       {step.title}

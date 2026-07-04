@@ -186,7 +186,7 @@ export default function StarField() {
         background:
           'radial-gradient(ellipse 120% 80% at 30% 20%, rgba(0,40,80,0.18) 0%, transparent 55%),' +
           'radial-gradient(ellipse 80% 60% at 80% 70%, rgba(0,15,40,0.12) 0%, transparent 50%),' +
-          'linear-gradient(170deg, #01020a 0%, #030712 35%, #020508 65%, #01020a 100%)',
+          'linear-gradient(170deg, var(--background) 0%, #030712 35%, #020508 65%, var(--background) 100%)',
       }}
     />
   );

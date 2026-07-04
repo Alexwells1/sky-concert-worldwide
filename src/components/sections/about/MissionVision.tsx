@@ -26,18 +26,17 @@ function EditorialBlock({
         transform: inView ? "translateY(0)" : "translateY(2rem)",
         transition: `opacity 0.8s ease ${delay}ms, transform 0.8s ease ${delay}ms`,
         textAlign: align,
-        padding: "4rem 0",
-        borderBottom: "1px solid rgba(255,255,255,0.05)",
+        padding: "var(--space-16) 0",
       }}
     >
       <p
         style={{
           fontFamily: '"Space Mono", monospace',
-          fontSize: "0.58rem",
-          color: labelColor ?? "#00E5FF",
+          fontSize: "var(--text-label)",
+          color: labelColor ?? "var(--primary)",
           letterSpacing: "0.3em",
           textTransform: "uppercase",
-          marginBottom: "1.5rem",
+          marginBottom: "var(--space-6)",
         }}
       >
         {label}
@@ -47,10 +46,10 @@ function EditorialBlock({
           style={{
             fontFamily: '"Bebas Neue", cursive',
             fontSize: "clamp(3rem, 7vw, 6.5rem)",
-            color: "white",
+            color: "var(--foreground)",
             lineHeight: 0.9,
-            letterSpacing: "0.02em",
-            marginBottom: "1.75rem",
+            letterSpacing: "var(--tracking-normal)",
+            marginBottom: "var(--space-7)",
             maxWidth: "900px",
             marginLeft: align === "right" ? "auto" : undefined,
             marginRight: align === "center" ? "auto" : undefined,
@@ -61,7 +60,7 @@ function EditorialBlock({
       )}
       <p
         style={{
-          color: "#999",
+          color: "var(--muted-foreground-3)",
           fontSize: "clamp(0.95rem, 1.5vw, 1.05rem)",
           lineHeight: 1.85,
           maxWidth: "640px",
@@ -85,56 +84,62 @@ export default function MissionVision() {
   const { mission, vision, purpose, longTermGoals } = ABOUT_MISSION_VISION;
 
   return (
-    <section style={{ background: "transparent", padding: "2rem 1.5rem 6rem" }}>
-      <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
-        {/* VISION — oversized, left */}
+    <section
+      style={{
+        background: "transparent",
+        padding: "var(--space-8) var(--space-6) var(--space-24)",
+      }}
+    >
+      <div style={{ maxWidth: "var(--container-2xl)", margin: "0 auto" }}>
+        {/* VISION oversized, left */}
         <EditorialBlock
           label="Our Vision"
-          labelColor="#00E5FF"
+          labelColor="var(--primary)"
           statement={vision.body.split("—")[0].trim()}
           body={vision.body}
           delay={0}
           align="left"
         />
 
-        {/* MISSION — oversized, pushed right */}
+        {/* MISSION oversized, pushed right */}
         <EditorialBlock
           label="Our Mission"
-          labelColor="#C9A84C"
+          labelColor="var(--secondary)"
           statement="Command Attention."
           body={mission.body}
           delay={100}
           align="right"
         />
 
-        {/* PURPOSE — centered */}
+        {/* PURPOSE centered */}
         <EditorialBlock
           label="Company Purpose"
-          labelColor="#00E5FF"
+          labelColor="var(--primary)"
           statement="Attention Is the New Currency."
           body={purpose.body}
           delay={0}
           align="center"
         />
 
-        {/* GOALS — editorial list */}
+        {/* GOALS editorial list */}
         <div
           ref={goalsRef}
           style={{
-            paddingTop: "4rem",
+            paddingTop: "var(--space-16)",
             opacity: goalsInView ? 1 : 0,
             transform: goalsInView ? "translateY(0)" : "translateY(2rem)",
-            transition: "opacity 0.8s ease, transform 0.8s ease",
+            transition:
+              "opacity var(--duration-slowest) var(--ease-default), transform var(--duration-slowest) var(--ease-default)",
           }}
         >
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.58rem",
-              color: "#C9A84C",
+              fontSize: "var(--text-label)",
+              color: "var(--secondary)",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              marginBottom: "3rem",
+              marginBottom: "var(--space-12)",
             }}
           >
             Goals
@@ -147,9 +152,9 @@ export default function MissionVision() {
                 style={{
                   display: "flex",
                   alignItems: "baseline",
-                  gap: "2rem",
-                  padding: "1.75rem 0",
-                  borderBottom: "1px solid rgba(255,255,255,0.05)",
+                  gap: "var(--space-8)",
+                  padding: "var(--space-7) 0",
+                  borderBottom: "1px solid rgba(var(--foreground-rgb), 0.07)",
                   cursor: "default",
                   transition: "background 0.2s ease",
                 }}
@@ -158,11 +163,12 @@ export default function MissionVision() {
                   style={{
                     fontFamily: '"Bebas Neue", cursive',
                     fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                    color: "rgba(255,255,255,0.08)",
+                    color: "rgba(var(--foreground-rgb), 0.5)",
                     lineHeight: 1,
                     flexShrink: 0,
                     width: "3rem",
-                    transition: "color 0.3s ease",
+                    transition:
+                      "color var(--duration-normal-alt) var(--ease-default)",
                   }}
                   className="goal-num"
                 >
@@ -172,9 +178,10 @@ export default function MissionVision() {
                   style={{
                     fontFamily: '"Playfair Display", serif',
                     fontSize: "clamp(1rem, 1.8vw, 1.25rem)",
-                    color: "#888",
+                    color: "#d8d8d8",
                     lineHeight: 1.5,
-                    transition: "color 0.3s ease",
+                    transition:
+                      "color var(--duration-normal-alt) var(--ease-default)",
                   }}
                   className="goal-text"
                 >
@@ -188,10 +195,10 @@ export default function MissionVision() {
 
       <style>{`
         .goal-row:hover .goal-num {
-          color: rgba(0, 229, 255, 0.3);
+          color: rgba(var(--primary-rgb), 0.3);
         }
         .goal-row:hover .goal-text {
-          color: #cccccc;
+          color: var(--muted-foreground-2);
         }
       `}</style>
     </section>

@@ -6,8 +6,6 @@ import HeroSection from "../components/common/HeroSection";
 import OurStory from "../components/sections/about/OurStory";
 import WhoWeAre from "../components/sections/about/WhoWeAre";
 import MissionVision from "../components/sections/about/MissionVision";
-import Partnership from "../components/sections/about/Partnership";
-import TrustCredibility from "../components/sections/about/TrustCredibility";
 import BuildingTheFuture from "../components/sections/about/BuildingTheFuture";
 import LeadershipPhilosophy from "../components/sections/about/LeadershipPhilosophy";
 
@@ -26,32 +24,26 @@ export default function AboutPage() {
         overlayIntensity="heavy"
       />
 
-      {/* 2. OUR STORY — cinematic split layout */}
+      {/* 2. OUR STORY cinematic split layout */}
       <OurStory />
 
-      {/* 3. WHO WE ARE — editorial, no checklist */}
+      {/* 3. WHO WE ARE editorial, no checklist */}
       <WhoWeAre />
 
-      {/* 4. MISSION / VISION / GOALS — oversized editorial typography */}
+      {/* 4. MISSION / VISION / GOALS oversized editorial typography */}
       <MissionVision />
 
-      {/* 5. BUILDING THE FUTURE — replaces any timeline */}
+      {/* 5. BUILDING THE FUTURE replaces any timeline */}
       <BuildingTheFuture />
 
-      {/* 6. LEADERSHIP PHILOSOPHY — replaces fake team */}
+      {/* 6. LEADERSHIP PHILOSOPHY replaces fake team */}
       <LeadershipPhilosophy />
 
-      {/* 7. PARTNERS — logo marquee */}
-      <Partnership />
-
-      {/* 8. TRUST STRIP */}
-      <TrustCredibility />
-
-      {/* 9. FINAL CTA — cinematic ending scene */}
+      {/* 7. FINAL CTA */}
       <section
         style={{
-          background: "#060A14",
-          padding: "10rem 1.5rem",
+          background: "var(--color-surface-3)",
+          padding: "var(--space-8) var(--space-6)",
           textAlign: "center",
           position: "relative",
           overflow: "hidden",
@@ -63,7 +55,7 @@ export default function AboutPage() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse at 50% 60%, rgba(0,229,255,0.06) 0%, transparent 65%)",
+              "radial-gradient(ellipse at 50% 60%, rgba(var(--primary-rgb), 0.06) 0%, transparent 65%)",
             pointerEvents: "none",
           }}
         />
@@ -77,8 +69,8 @@ export default function AboutPage() {
             transform: "translate(-50%, -50%)",
             width: "600px",
             height: "600px",
-            borderRadius: "50%",
-            border: "1px solid rgba(0,229,255,0.04)",
+            borderRadius: "var(--radius-full)",
+            border: "1px solid rgba(var(--primary-rgb), 0.04)",
             pointerEvents: "none",
             animation: "pulsRing 6s ease-in-out infinite",
           }}
@@ -91,8 +83,8 @@ export default function AboutPage() {
             transform: "translate(-50%, -50%)",
             width: "900px",
             height: "900px",
-            borderRadius: "50%",
-            border: "1px solid rgba(0,229,255,0.02)",
+            borderRadius: "var(--radius-full)",
+            border: "1px solid rgba(var(--primary-rgb), 0.02)",
             pointerEvents: "none",
             animation: "pulsRing 6s ease-in-out 2s infinite",
           }}
@@ -109,11 +101,11 @@ export default function AboutPage() {
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.58rem",
-              color: "#00E5FF",
-              letterSpacing: "0.3em",
+              fontSize: "var(--text-label)",
+              color: "var(--primary)",
+              letterSpacing: "var(--tracking-wide)",
               textTransform: "uppercase",
-              marginBottom: "2.5rem",
+              marginBottom: "var(--space-10)",
               animation: "fadeUp 0.8s ease forwards",
               opacity: 0,
             }}
@@ -125,10 +117,10 @@ export default function AboutPage() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(3.5rem, 10vw, 9rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.88,
-              letterSpacing: "0.02em",
-              marginBottom: "2.5rem",
+              letterSpacing: "var(--tracking-normal)",
+              marginBottom: "var(--space-10)",
               animation: "fadeUp 0.8s ease 0.15s forwards",
               opacity: 0,
             }}
@@ -138,10 +130,10 @@ export default function AboutPage() {
 
           <p
             style={{
-              color: "#666",
+              color: "rgba(var(--foreground-rgb), 0.7)",
               fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
               lineHeight: 1.85,
-              marginBottom: "3.5rem",
+              marginBottom: "var(--space-14)",
               animation: "fadeUp 0.8s ease 0.3s forwards",
               opacity: 0,
             }}
@@ -153,18 +145,21 @@ export default function AboutPage() {
           <div
             style={{
               display: "flex",
-              flexWrap: "wrap",
-              gap: "1rem",
               justifyContent: "center",
               animation: "fadeUp 0.8s ease 0.45s forwards",
               opacity: 0,
             }}
           >
-            <Link to="/contact" className="btn-primary">
-              Start a Conversation <ArrowRight size={14} />
-            </Link>
-            <Link to="/contact" className="btn-secondary">
-              Request a Proposal
+            <Link
+              to="/contact"
+              className="btn-primary"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "var(--space-2)",
+              }}
+            >
+              Book a Show <ArrowRight size={14} />
             </Link>
           </div>
         </div>

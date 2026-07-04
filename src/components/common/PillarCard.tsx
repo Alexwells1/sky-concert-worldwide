@@ -9,20 +9,20 @@ export default function PillarCard({ item }: PillarCardProps) {
     <div
       className="card-base"
       style={{
-        padding: '2rem',
-        borderRadius: '2px',
+        padding: 'var(--space-8)',
+        borderRadius: 'var(--radius-xs)',
         gridColumn: item.wide ? 'span 2' : 'span 1',
       }}
     >
       <h3 style={{
         fontFamily: '"Playfair Display", serif',
-        fontSize: '1.25rem',
-        color: 'white',
-        marginBottom: '0.75rem',
+        fontSize: 'var(--text-lg)',
+        color: 'var(--foreground)',
+        marginBottom: 'var(--space-3)',
       }}>
         {item.title}
       </h3>
-      <p style={{ color: '#AAAAAA', fontSize: '0.9rem', lineHeight: 1.75 }}>
+      <p style={{ color: 'var(--muted-foreground)', fontSize: 'var(--text-md)', lineHeight: 1.75 }}>
         {item.description}
       </p>
     </div>

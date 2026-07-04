@@ -66,7 +66,7 @@ export default function HomeHero() {
           background: transparent;
           border: none;
           cursor: pointer;
-          color: rgba(255,255,255,0.7);
+          color: rgba(var(--foreground-rgb), 0.7);
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
           font-size: 0.75rem;
@@ -74,13 +74,13 @@ export default function HomeHero() {
           text-transform: uppercase;
           transition: color 0.4s ease;
         }
-        .hero-watch-btn:hover { color: rgba(255,255,255,1); }
+        .hero-watch-btn:hover { color: rgba(var(--foreground-rgb), 1); }
 
         .hero-watch-btn .play-ring {
           width: 52px;
           height: 52px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.3);
+          border: 1px solid rgba(var(--foreground-rgb), 0.7);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -88,8 +88,8 @@ export default function HomeHero() {
           transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
         }
         .hero-watch-btn:hover .play-ring {
-          border-color: rgba(255,255,255,0.65);
-          background: rgba(255,255,255,0.06);
+          border-color: rgba(var(--foreground-rgb), 0.65);
+          background: rgba(var(--foreground-rgb), 0.06);
           transform: scale(1.07);
         }
 
@@ -121,16 +121,16 @@ export default function HomeHero() {
         }
         .scroll-cue span {
           font-family: 'DM Sans', sans-serif;
-          font-weight: 300;
-          font-size: 0.58rem;
+          font-weight: 400;
+          font-size: 0.65rem;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.32);
+          color: rgba(var(--foreground-rgb), 0.55);
         }
         .scroll-cue-line {
           width: 1px;
           height: 32px;
-          background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+          background: linear-gradient(to bottom, rgba(var(--foreground-rgb), 0.7), transparent);
           transform-origin: top;
           animation: lineGrow 0.8s ease 3.2s both;
         }
@@ -181,10 +181,10 @@ export default function HomeHero() {
             inset: 0,
             background: `linear-gradient(
               to bottom,
-              rgba(0,0,0,0.45) 0%,
-              rgba(0,0,0,0.15) 30%,
-              rgba(0,0,0,0.15) 60%,
-              rgba(0,0,0,0.65) 100%
+              rgba(var(--overlay-rgb), 0.45) 0%,
+              rgba(var(--overlay-rgb), 0.15) 30%,
+              rgba(var(--overlay-rgb), 0.15) 60%,
+              rgba(var(--overlay-rgb), 0.65) 100%
             )`,
             zIndex: 2,
           }}
@@ -196,12 +196,12 @@ export default function HomeHero() {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(ellipse 110% 100% at 50% 50%, transparent 38%, rgba(0,0,0,0.55) 100%)",
+              "radial-gradient(ellipse 110% 100% at 50% 50%, transparent 38%, rgba(var(--overlay-rgb), 0.55) 100%)",
             zIndex: 3,
           }}
         />
 
-        {/* Hero content — centered */}
+        {/* Hero content centered */}
         <div
           style={{
             position: "relative",
@@ -209,7 +209,7 @@ export default function HomeHero() {
             width: "100%",
             maxWidth: "800px",
             margin: "0 auto",
-            padding: "0 2rem",
+            padding: "0 var(--space-8)",
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
@@ -221,11 +221,11 @@ export default function HomeHero() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 300,
-              fontSize: "0.65rem",
-              letterSpacing: "0.32em",
+              fontWeight: "var(--font-normal)",
+              fontSize: "var(--text-sm)",
+              letterSpacing: "0.3em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.38)",
+              color: "var(--primary)",
               margin: 0,
               opacity: 0,
               animation: "fadeUp 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s forwards",
@@ -238,11 +238,11 @@ export default function HomeHero() {
           <h1
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 200,
+              fontWeight: "var(--font-extralight)",
               fontSize: "clamp(2.25rem, 5vw, 4.5rem)",
               lineHeight: 1.08,
               letterSpacing: "-0.025em",
-              color: "rgba(255,255,255,0.94)",
+              color: "rgba(var(--foreground-rgb), 0.94)",
               margin: 0,
               opacity: 0,
               animation: "fadeUp 1.6s cubic-bezier(0.16,1,0.3,1) 0.4s forwards",
@@ -250,19 +250,24 @@ export default function HomeHero() {
           >
             {HOME_HERO.headline1}
             <br />
-            <span style={{ fontWeight: 200, color: "rgba(255,255,255,0.55)" }}>
+            <span
+              style={{
+                fontWeight: "var(--font-extralight)",
+                color: "rgba(var(--foreground-rgb), 0.55)",
+              }}
+            >
               {HOME_HERO.headline2}
             </span>
           </h1>
 
-          {/* Subheadline — short, punchy */}
+          {/* Subheadline short, punchy */}
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 300,
+              fontWeight: "var(--font-light)",
               fontSize: "clamp(0.9rem, 1.5vw, 1.05rem)",
               lineHeight: 1.65,
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(var(--foreground-rgb), 0.72)",
               maxWidth: "480px",
               margin: 0,
               opacity: 0,
@@ -322,12 +327,12 @@ export default function HomeHero() {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 9999,
-            background: "rgba(0,0,0,0.9)",
+            zIndex: "var(--z-modal)",
+            background: "rgba(var(--overlay-rgb), 0.9)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "1.5rem",
+            padding: "var(--space-6)",
             backdropFilter: "blur(12px)",
           }}
         >
@@ -337,7 +342,7 @@ export default function HomeHero() {
               width: "100%",
               maxWidth: "980px",
               background: "#08090e",
-              border: "1px solid rgba(255,255,255,0.07)",
+              border: "1px solid rgba(var(--foreground-rgb), 0.07)",
             }}
           >
             <button
@@ -348,26 +353,26 @@ export default function HomeHero() {
                 right: 0,
                 background: "transparent",
                 border: "none",
-                color: "rgba(255,255,255,0.45)",
+                color: "rgba(var(--foreground-rgb), 0.45)",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.5rem",
+                gap: "var(--space-2)",
                 fontFamily: "'DM Sans', sans-serif",
-                fontWeight: 300,
-                fontSize: "0.6rem",
+                fontWeight: "var(--font-light)",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.24em",
                 textTransform: "uppercase",
-                transition: "color 0.2s",
+                transition: "color var(--duration-fast-alt)",
                 padding: 0,
               }}
               onMouseEnter={(e) =>
                 ((e.currentTarget as HTMLElement).style.color =
-                  "rgba(255,255,255,0.9)")
+                  "rgba(var(--foreground-rgb), 0.9)")
               }
               onMouseLeave={(e) =>
                 ((e.currentTarget as HTMLElement).style.color =
-                  "rgba(255,255,255,0.45)")
+                  "rgba(var(--foreground-rgb), 0.45)")
               }
             >
               <X size={12} />
@@ -384,7 +389,7 @@ export default function HomeHero() {
                   width: "100%",
                   height: "100%",
                   display: "block",
-                  background: "#000",
+                  background: "var(--overlay)",
                 }}
               />
             </div>

@@ -6,7 +6,8 @@ import { useInView } from "../../../hooks/useInView";
 
 const SERVICE_VISUALS = [
   {
-    gradient: "linear-gradient(160deg, #0a1535 0%, #0d2040 60%, #080d1c 100%)",
+    gradient:
+      "linear-gradient(160deg, var(--color-surface-12) 0%, #0d2040 60%, #080d1c 100%)",
     accent: "rgba(80,160,255,0.18)",
   },
   {
@@ -14,7 +15,8 @@ const SERVICE_VISUALS = [
     accent: "rgba(140,80,255,0.18)",
   },
   {
-    gradient: "linear-gradient(160deg, #0a2520 0%, #0d3028 60%, #070f0e 100%)",
+    gradient:
+      "linear-gradient(160deg, var(--color-surface-13) 0%, #0d3028 60%, #070f0e 100%)",
     accent: "rgba(60,200,160,0.15)",
   },
   {
@@ -47,7 +49,7 @@ function ServiceMedia({ url }: { url: string; gradient: string }) {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+          transition: "transform var(--duration-slow) var(--ease-emphasized)",
         }}
         className="service-panel-media"
       />
@@ -64,7 +66,7 @@ function ServiceMedia({ url }: { url: string; gradient: string }) {
         width: "100%",
         height: "100%",
         objectFit: "cover",
-        transition: "transform 0.6s cubic-bezier(0.16,1,0.3,1)",
+        transition: "transform var(--duration-slow) var(--ease-emphasized)",
       }}
       className="service-panel-media"
     />
@@ -141,10 +143,10 @@ export default function ServicesPreview() {
         }
         .services-cinema-label {
           font-family: 'Space Mono', monospace;
-          font-size: 0.58rem;
-          letter-spacing: 0.3em;
+          font-size: 0.72rem;
+          letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.25);
+          color: var(--primary);
           display: block;
           margin-bottom: 1.25rem;
         }
@@ -154,7 +156,7 @@ export default function ServicesPreview() {
           font-size: clamp(2rem, 5vw, 3.75rem);
           line-height: 1.05;
           letter-spacing: -0.03em;
-          color: rgba(255,255,255,0.92);
+          color: rgba(var(--foreground-rgb), 0.92);
           margin: 0 0 1.5rem;
         }
         .services-scroll-outer {
@@ -208,29 +210,29 @@ export default function ServicesPreview() {
           position: relative;
           z-index: 2;
           padding: 1.5rem 1.5rem;
-          background: linear-gradient(to top, rgba(4,6,14,0.95) 0%, rgba(4,6,14,0.3) 70%, transparent 100%);
+          background: linear-gradient(to top, rgba(var(--color-surface-11-rgb), 0.95) 0%, rgba(var(--color-surface-11-rgb), 0.3) 70%, transparent 100%);
         }
         .service-panel-num {
           font-family: 'Space Mono', monospace;
-          font-size: 0.5rem;
-          color: rgba(255,255,255,0.22);
+          font-size: 0.62rem;
+          color: rgba(var(--foreground-rgb), 0.55);
           letter-spacing: 0.2em;
           display: block;
           margin-bottom: 0.6rem;
         }
         .service-panel-title {
           font-family: 'DM Sans', sans-serif;
-          font-weight: 300;
-          font-size: 0.95rem;
-          color: rgba(255,255,255,0.88);
+          font-weight: 400;
+          font-size: 1rem;
+          color: rgba(var(--foreground-rgb), 0.95);
           line-height: 1.4;
           margin: 0 0 0.75rem;
           display: block;
         }
         .service-panel-desc {
           font-family: 'DM Sans', sans-serif;
-          font-size: 0.75rem;
-          color: rgba(255,255,255,0);
+          font-size: 0.8rem;
+          color: rgba(var(--foreground-rgb), 0);
           line-height: 1.7;
           margin: 0;
           max-height: 0;
@@ -239,7 +241,7 @@ export default function ServicesPreview() {
         }
         .service-panel:hover .service-panel-desc {
           max-height: 6rem;
-          color: rgba(255,255,255,0.45);
+          color: rgba(var(--foreground-rgb), 0.65);
         }
         .services-footer {
           padding: 2.5rem 1.5rem 0;
@@ -255,7 +257,8 @@ export default function ServicesPreview() {
           style={{
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-            transition: "opacity 0.8s ease, transform 0.8s ease",
+            transition:
+              "opacity var(--duration-slowest) var(--ease-default), transform var(--duration-slowest) var(--ease-default)",
           }}
         >
           <span className="services-cinema-label">
@@ -285,7 +288,7 @@ export default function ServicesPreview() {
                 ];
               return (
                 <div key={`${service.id}-${i}`} className="service-panel">
-                  {/* Fallback gradient bg — always present behind media */}
+                  {/* Fallback gradient bg always present behind media */}
                   <div
                     className="service-panel-bg"
                     style={{ background: visual.gradient }}

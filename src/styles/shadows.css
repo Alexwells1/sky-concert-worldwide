@@ -1,0 +1,24 @@
+/* ============================================================
+   SHADOW TOKENS
+   The codebase doesn't use conventional drop shadows it uses
+   soft "glow" box-shadows in the brand cyan (plus one destructive
+   red glow). Tokenized 1:1 against the 6 exact values found.
+   ============================================================ */
+
+:root {
+  --shadow-xs: 0 0 10px rgba(var(--primary-rgb), 0.6);
+  --shadow-sm: 0 0 32px rgba(var(--primary-rgb), 0.3);
+  --shadow-md: 0 4px 8px rgba(var(--overlay-rgb), 0.1); /* was 0 4px 8px rgba(0,0,0,.1), btn-primary */
+  --shadow-lg: 0 0 80px rgba(var(--primary-rgb), 0.12);
+  --shadow-xl: 0 0 100px rgba(var(--primary-rgb), 0.06);
+  --shadow-2xl: 0 0 100px rgba(var(--primary-rgb), 0.08);
+
+  /* Hover-elevation shadow used by .card-base */
+  --shadow-card-hover: 0 12px 40px rgba(var(--primary-rgb), 0.08);
+
+  /* Single-purpose status glow */
+  --shadow-destructive: 0 0 6px var(--destructive);
+
+  /* Ambient text glow utility (.text-cyan-glow) */
+  --shadow-text-glow: 0 0 60px rgba(var(--primary-rgb), 0.3);
+}

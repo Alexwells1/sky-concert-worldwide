@@ -53,7 +53,7 @@ export default function IntroScreen({ gifSrc, onComplete }: IntroScreenProps) {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 9999,
+        zIndex: "var(--z-modal)",
         cursor: "pointer",
         overflow: "hidden",
         opacity: phase === "fading" ? 0 : 1,
@@ -64,7 +64,7 @@ export default function IntroScreen({ gifSrc, onComplete }: IntroScreenProps) {
         pointerEvents: phase === "fading" ? "none" : "all",
       }}
     >
-      {/* Fullscreen gif — moves up on scroll (parallax) */}
+      {/* Fullscreen gif moves up on scroll (parallax) */}
       <img
         src={gifSrc}
         alt="Intro"
@@ -86,12 +86,12 @@ export default function IntroScreen({ gifSrc, onComplete }: IntroScreenProps) {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 40%, transparent 100%)",
+            "linear-gradient(to top, rgba(var(--overlay-rgb), 0.75) 0%, rgba(var(--overlay-rgb), 0.1) 40%, transparent 100%)",
           pointerEvents: "none",
         }}
       />
 
-      {/* Scroll hint — fades as user scrolls */}
+      {/* Scroll hint fades as user scrolls */}
       <div
         style={{
           position: "absolute",
@@ -101,7 +101,7 @@ export default function IntroScreen({ gifSrc, onComplete }: IntroScreenProps) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "0.5rem",
+          gap: "var(--space-2)",
           opacity: overlayOpacity,
           transition: "opacity 0.15s",
           pointerEvents: "none",
@@ -111,10 +111,10 @@ export default function IntroScreen({ gifSrc, onComplete }: IntroScreenProps) {
         <span
           style={{
             fontFamily: '"Space Mono", monospace',
-            fontSize: "0.6rem",
-            letterSpacing: "0.25em",
+            fontSize: "var(--text-xs)",
+            letterSpacing: "var(--tracking-wide)",
             textTransform: "uppercase",
-            color: "rgba(255,255,255,0.7)",
+            color: "rgba(var(--foreground-rgb), 0.7)",
           }}
         >
           Scroll or tap to enter
@@ -130,7 +130,7 @@ export default function IntroScreen({ gifSrc, onComplete }: IntroScreenProps) {
         >
           <polyline
             points="4,7 10,13 16,7"
-            stroke="rgba(255,255,255,0.7)"
+            stroke="rgba(var(--foreground-rgb), 0.7)"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"

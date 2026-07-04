@@ -51,8 +51,8 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "#01020A",
-        borderTop: "1px solid rgba(0,229,255,0.12)",
+        background: "var(--background)",
+        borderTop: "1px solid rgba(var(--primary-rgb), 0.12)",
         overflow: "hidden",
         position: "relative",
       }}
@@ -67,9 +67,9 @@ export default function Footer() {
           transform: "translate(-50%, -50%)",
           fontFamily: '"Bebas Neue", cursive',
           fontSize: "clamp(80px, 18vw, 220px)",
-          fontWeight: 900,
-          letterSpacing: "-0.02em",
-          color: "rgba(0,229,255,0.03)",
+          fontWeight: "var(--font-black)",
+          letterSpacing: "var(--tracking-tight)",
+          color: "rgba(var(--primary-rgb), 0.03)",
           whiteSpace: "nowrap",
           userSelect: "none",
           pointerEvents: "none",
@@ -84,7 +84,7 @@ export default function Footer() {
         style={{
           height: "3px",
           background:
-            "linear-gradient(90deg, transparent, #00E5FF 40%, transparent)",
+            "linear-gradient(90deg, transparent, var(--primary) 40%, transparent)",
         }}
       />
 
@@ -92,7 +92,7 @@ export default function Footer() {
         style={{
           maxWidth: "82rem",
           margin: "0 auto",
-          padding: "0 2rem",
+          padding: "0 var(--space-8)",
           position: "relative",
           zIndex: 1,
         }}
@@ -102,9 +102,9 @@ export default function Footer() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "3.5rem",
+            gap: "var(--space-14)",
             padding: "4.5rem 0",
-            borderBottom: "1px solid rgba(255,255,255,0.06)",
+            borderBottom: "1px solid rgba(var(--foreground-rgb), 0.7)",
           }}
         >
           {/* Brand */}
@@ -116,8 +116,8 @@ export default function Footer() {
                 display: "inline-flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                gap: "0.5rem",
-                marginBottom: "1.5rem",
+                gap: "var(--space-2)",
+                marginBottom: "var(--space-6)",
               }}
             >
               <img
@@ -128,21 +128,23 @@ export default function Footer() {
               <div
                 style={{
                   fontFamily: '"Bebas Neue", cursive',
-                  fontSize: "1.1rem",
+                  fontSize: "var(--text-md)",
                   letterSpacing: "0.12em",
-                  color: "white",
+                  color: "var(--foreground)",
                   whiteSpace: "nowrap",
                 }}
               >
                 {LOGO_TEXT.prefix}
-                <span style={{ color: "#00E5FF" }}>{LOGO_TEXT.highlight}</span>
+                <span style={{ color: "var(--primary)" }}>
+                  {LOGO_TEXT.highlight}
+                </span>
                 {LOGO_TEXT.suffix}
               </div>
             </Link>
             <p
               style={{
-                color: "#4a4a5a",
-                fontSize: "0.95rem",
+                color: "rgba(var(--foreground-rgb), 0.7)",
+                fontSize: "var(--text-body-lg)",
                 lineHeight: 1.8,
                 maxWidth: "260px",
               }}
@@ -156,11 +158,11 @@ export default function Footer() {
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.68rem",
-                letterSpacing: "0.28em",
-                color: "#00E5FF",
+                fontSize: "var(--text-label)",
+                letterSpacing: "var(--tracking-wide)",
+                color: "var(--primary)",
                 textTransform: "uppercase",
-                marginBottom: "1.75rem",
+                marginBottom: "var(--space-7)",
               }}
             >
               Navigate
@@ -169,7 +171,7 @@ export default function Footer() {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "1rem",
+                gap: "var(--space-4)",
               }}
             >
               {NAV_LINKS.map((link) => (
@@ -178,20 +180,21 @@ export default function Footer() {
                   to={link.href}
                   style={{
                     fontFamily: '"DM Sans", sans-serif',
-                    fontSize: "1.05rem",
-                    color: "#555",
+                    fontSize: "var(--text-md-alt)",
+                    color: "rgba(var(--foreground-rgb), 0.75)",
                     textDecoration: "none",
                     transition: "color 0.2s, letter-spacing 0.2s",
                     letterSpacing: "0.01em",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLAnchorElement).style.color =
-                      "white";
+                      "var(--foreground)";
                     (e.currentTarget as HTMLAnchorElement).style.letterSpacing =
                       "0.04em";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#555";
+                    (e.currentTarget as HTMLAnchorElement).style.color =
+                      "rgba(var(--foreground-rgb), 0.75)";
                     (e.currentTarget as HTMLAnchorElement).style.letterSpacing =
                       "0.01em";
                   }}
@@ -202,13 +205,13 @@ export default function Footer() {
             </div>
 
             {/* Social links directly below nav items */}
-            <div style={{ marginTop: "2rem" }}>
+            <div style={{ marginTop: "var(--space-8)" }}>
               <p
                 style={{
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.28em",
-                  color: "#00E5FF",
+                  fontSize: "var(--text-label)",
+                  letterSpacing: "var(--tracking-wide)",
+                  color: "var(--primary)",
                   textTransform: "uppercase",
                   marginBottom: "1.1rem",
                 }}
@@ -218,7 +221,7 @@ export default function Footer() {
               <div
                 style={{
                   display: "flex",
-                  gap: "1.25rem",
+                  gap: "var(--space-5)",
                   alignItems: "center",
                 }}
               >
@@ -230,20 +233,21 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     aria-label={s.platform}
                     style={{
-                      color: "#3a3a4a",
-                      transition: "color 0.2s, transform 0.2s",
+                      color: "rgba(var(--foreground-rgb), 0.55)",
+                      transition:
+                        "color var(--duration-fast-alt), transform var(--duration-fast-alt)",
                       display: "flex",
                       alignItems: "center",
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLAnchorElement).style.color =
-                        "#00E5FF";
+                        "var(--primary)";
                       (e.currentTarget as HTMLAnchorElement).style.transform =
                         "translateY(-3px)";
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLAnchorElement).style.color =
-                        "#3a3a4a";
+                        "rgba(var(--foreground-rgb), 0.55)";
                       (e.currentTarget as HTMLAnchorElement).style.transform =
                         "translateY(0)";
                     }}
@@ -260,11 +264,11 @@ export default function Footer() {
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.68rem",
-                letterSpacing: "0.28em",
-                color: "#00E5FF",
+                fontSize: "var(--text-label)",
+                letterSpacing: "var(--tracking-wide)",
+                color: "var(--primary)",
                 textTransform: "uppercase",
-                marginBottom: "1.75rem",
+                marginBottom: "var(--space-7)",
               }}
             >
               Contact
@@ -279,25 +283,30 @@ export default function Footer() {
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
                 style={{
-                  color: "#555",
-                  fontSize: "1rem",
+                  color: "rgba(var(--foreground-rgb), 0.8)",
+                  fontSize: "var(--text-base)",
                   textDecoration: "none",
                   fontFamily: '"DM Sans", sans-serif',
-                  transition: "color 0.2s",
+                  transition: "color var(--duration-fast-alt)",
                 }}
                 onMouseEnter={(e) =>
                   ((e.currentTarget as HTMLAnchorElement).style.color =
-                    "#00E5FF")
+                    "var(--primary)")
                 }
                 onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "#555")
+                  ((e.currentTarget as HTMLAnchorElement).style.color =
+                    "rgba(var(--foreground-rgb), 0.8)")
                 }
               >
                 {CONTACT_INFO.email}
               </a>
 
               <div
-                style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}
+                style={{
+                  display: "flex",
+                  gap: "var(--space-3)",
+                  flexWrap: "wrap",
+                }}
               >
                 <a
                   href={`tel:${CONTACT_INFO.phone}`}
@@ -305,23 +314,25 @@ export default function Footer() {
                     fontFamily: '"Space Mono", monospace',
                     fontSize: "0.68rem",
                     letterSpacing: "0.1em",
-                    color: "#888",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    padding: "0.55rem 1rem",
+                    color: "rgba(var(--foreground-rgb), 0.7)",
+                    border: "1px solid rgba(var(--foreground-rgb), 0.6)",
+                    padding: "0.55rem var(--space-4)",
                     textDecoration: "none",
                     textTransform: "uppercase",
-                    transition: "color 0.2s, border-color 0.2s",
+                    transition:
+                      "color var(--duration-fast-alt), border-color var(--duration-fast-alt)",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLAnchorElement).style.color =
-                      "white";
+                      "var(--foreground)";
                     (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                      "rgba(255,255,255,0.35)";
+                      "rgba(var(--foreground-rgb), 0.7)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#888";
+                    (e.currentTarget as HTMLAnchorElement).style.color =
+                      "rgba(var(--foreground-rgb), 0.7)";
                     (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                      "rgba(255,255,255,0.1)";
+                      "rgba(var(--foreground-rgb), 0.6)";
                   }}
                 >
                   📞 Call
@@ -335,23 +346,25 @@ export default function Footer() {
                     fontFamily: '"Space Mono", monospace',
                     fontSize: "0.68rem",
                     letterSpacing: "0.1em",
-                    color: "#888",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    padding: "0.55rem 1rem",
+                    color: "rgba(var(--foreground-rgb), 0.7)",
+                    border: "1px solid rgba(var(--foreground-rgb), 0.6)",
+                    padding: "0.55rem var(--space-4)",
                     textDecoration: "none",
                     textTransform: "uppercase",
-                    transition: "color 0.2s, border-color 0.2s",
+                    transition:
+                      "color var(--duration-fast-alt), border-color var(--duration-fast-alt)",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLAnchorElement).style.color =
-                      "#25D366";
+                      "var(--whatsapp)";
                     (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                      "#25D366";
+                      "var(--whatsapp)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#888";
+                    (e.currentTarget as HTMLAnchorElement).style.color =
+                      "rgba(var(--foreground-rgb), 0.7)";
                     (e.currentTarget as HTMLAnchorElement).style.borderColor =
-                      "rgba(255,255,255,0.1)";
+                      "rgba(var(--foreground-rgb), 0.6)";
                   }}
                 >
                   💬 WhatsApp
@@ -362,9 +375,9 @@ export default function Footer() {
                 style={{
                   fontFamily: '"Space Mono", monospace',
                   fontSize: "0.68rem",
-                  color: "#333",
+                  color: "rgba(var(--foreground-rgb), 0.7)",
                   letterSpacing: "0.08em",
-                  marginTop: "0.25rem",
+                  marginTop: "var(--space-1)",
                 }}
               >
                 {CONTACT_INFO.responseTime}
@@ -381,22 +394,27 @@ export default function Footer() {
             alignItems: "center",
             justifyContent: "space-between",
             padding: "2.25rem 0",
-            gap: "1.5rem",
+            gap: "var(--space-6)",
           }}
         >
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
               fontSize: "0.68rem",
-              color: "#2a2a35",
+              color: "rgba(var(--foreground-rgb), 0.45)",
               letterSpacing: "0.1em",
             }}
           >
             {LEGAL_TEXT}
           </p>
 
-          {/* Social icons also in the bottom bar */}
-          <div style={{ display: "flex", gap: "1.5rem", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: "var(--space-6)",
+              alignItems: "center",
+            }}
+          >
             {SOCIAL_LINKS.map((s) => (
               <a
                 key={s.platform}
@@ -405,20 +423,21 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label={s.platform}
                 style={{
-                  color: "#3a3a4a",
-                  transition: "color 0.2s, transform 0.2s",
+                  color: "rgba(var(--foreground-rgb), 0.45)",
+                  transition:
+                    "color var(--duration-fast-alt), transform var(--duration-fast-alt)",
                   display: "flex",
                   alignItems: "center",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.color =
-                    "#00E5FF";
+                    "var(--primary)";
                   (e.currentTarget as HTMLAnchorElement).style.transform =
                     "translateY(-3px)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.color =
-                    "#3a3a4a";
+                    "rgba(var(--foreground-rgb), 0.45)";
                   (e.currentTarget as HTMLAnchorElement).style.transform =
                     "translateY(0)";
                 }}

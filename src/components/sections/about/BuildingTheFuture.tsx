@@ -4,22 +4,103 @@ const FUTURE_PILLARS = [
   {
     label: "Expansion",
     heading: "Continent-Wide Reach",
-    body:
-      "From Lagos to Nairobi, Accra to Johannesburg — we are building the infrastructure to deliver world-class aerial experiences across every major African market.",
+    body: "From Lagos to Nairobi, Accra to Johannesburg we are building the infrastructure to deliver world-class aerial experiences across every major African market.",
   },
   {
     label: "Innovation",
     heading: "Proprietary Sky Formats",
-    body:
-      "We are developing original sky storytelling formats built specifically for African cultural identity, national moments, and brand narratives.",
+    body: "We are developing original sky storytelling formats built specifically for African cultural identity, national moments, and brand narratives.",
   },
   {
     label: "Technology",
     heading: "Next-Generation Swarm Systems",
-    body:
-      "Pushing the frontier of drone intelligence — more drones, tighter formations, richer colour palettes, and real-time adaptive choreography.",
+    body: "Pushing the frontier of drone intelligence more drones, tighter formations, richer colour palettes, and real-time adaptive choreography.",
   },
 ];
+
+// Extracted into its own component so useInView is called at the top level
+function PillarRow({
+  pillar,
+  index,
+}: {
+  pillar: (typeof FUTURE_PILLARS)[number];
+  index: number;
+}) {
+  const { ref, inView } = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className="future-row"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "80px 1fr 1.5fr",
+        gap: "var(--space-12)",
+        padding: "var(--space-14) 0",
+        borderTop: "1px solid rgba(var(--foreground-rgb), 0.07)",
+        alignItems: "start",
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : "translateY(1.5rem)",
+        transition: `opacity 0.8s ease ${index * 100}ms, transform 0.8s ease ${
+          index * 100
+        }ms`,
+      }}
+    >
+      {/* Index */}
+      <span
+        style={{
+          fontFamily: '"Bebas Neue", cursive',
+          fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
+          color: "rgba(var(--foreground-rgb), 0.4)",
+          lineHeight: 1,
+        }}
+      >
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      {/* Heading */}
+      <div>
+        <p
+          style={{
+            fontFamily: '"Space Mono", monospace',
+            fontSize: "var(--text-label)",
+            color: "var(--secondary)",
+            letterSpacing: "var(--tracking-wide)",
+            textTransform: "uppercase",
+            marginBottom: "var(--space-3)",
+          }}
+        >
+          {pillar.label}
+        </p>
+        <h3
+          style={{
+            fontFamily: '"Bebas Neue", cursive',
+            fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
+            color: "var(--foreground)",
+            letterSpacing: "0.03em",
+            lineHeight: 1,
+            margin: 0,
+          }}
+        >
+          {pillar.heading}
+        </h3>
+      </div>
+
+      {/* Body */}
+      <p
+        style={{
+          color: "#aaa",
+          fontSize: "clamp(0.9rem, 1.3vw, 1rem)",
+          lineHeight: 1.85,
+          margin: 0,
+          paddingTop: "var(--space-1)",
+        }}
+      >
+        {pillar.body}
+      </p>
+    </div>
+  );
+}
 
 export default function BuildingTheFuture() {
   const { ref: headRef, inView: headInView } = useInView();
@@ -28,7 +109,7 @@ export default function BuildingTheFuture() {
     <section
       style={{
         background: "transparent",
-        padding: "8rem 1.5rem",
+        padding: "var(--space-4) var(--space-6)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -42,32 +123,39 @@ export default function BuildingTheFuture() {
           transform: "translate(-50%, -50%)",
           width: "60vw",
           height: "60vw",
-          borderRadius: "50%",
+          borderRadius: "var(--radius-full)",
           background:
-            "radial-gradient(ellipse, rgba(0,229,255,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse, rgba(var(--primary-rgb), 0.04) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
 
-      <div style={{ maxWidth: "80rem", margin: "0 auto", position: "relative" }}>
+      <div
+        style={{
+          maxWidth: "var(--container-2xl)",
+          margin: "0 auto",
+          position: "relative",
+        }}
+      >
         {/* Large heading */}
         <div
           ref={headRef}
           style={{
             opacity: headInView ? 1 : 0,
             transform: headInView ? "translateY(0)" : "translateY(2.5rem)",
-            transition: "opacity 1s ease, transform 1s ease",
-            marginBottom: "6rem",
+            transition:
+              "opacity var(--duration-crawl-alt) var(--ease-default), transform var(--duration-crawl-alt) var(--ease-default)",
+            marginBottom: "var(--space-24)",
           }}
         >
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.58rem",
-              color: "#00E5FF",
-              letterSpacing: "0.3em",
+              fontSize: "var(--text-label)",
+              color: "var(--primary)",
+              letterSpacing: "var(--tracking-wide)",
               textTransform: "uppercase",
-              marginBottom: "2rem",
+              marginBottom: "var(--space-8)",
             }}
           >
             What We're Building
@@ -76,93 +164,22 @@ export default function BuildingTheFuture() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(3rem, 8vw, 8rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.88,
-              letterSpacing: "0.02em",
+              letterSpacing: "var(--tracking-normal)",
               maxWidth: "880px",
-              margin: "0 0 0 0",
+              margin: 0,
             }}
           >
             Building the Future of Aerial Entertainment
           </h2>
         </div>
 
-        {/* Pillars — large numbered editorial rows */}
+        {/* Pillars */}
         <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-          {FUTURE_PILLARS.map((pillar, i) => {
-            const { ref, inView } = useInView();
-            return (
-              <div
-                key={i}
-                ref={ref}
-                className="future-row"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "80px 1fr 1.5fr",
-                  gap: "3rem",
-                  padding: "3.5rem 0",
-                  borderTop: "1px solid rgba(255,255,255,0.05)",
-                  alignItems: "start",
-                  opacity: inView ? 1 : 0,
-                  transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-                  transition: `opacity 0.8s ease ${i * 100}ms, transform 0.8s ease ${i * 100}ms`,
-                }}
-              >
-                {/* Index */}
-                <span
-                  style={{
-                    fontFamily: '"Bebas Neue", cursive',
-                    fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
-                    color: "rgba(255,255,255,0.06)",
-                    lineHeight: 1,
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                {/* Heading */}
-                <div>
-                  <p
-                    style={{
-                      fontFamily: '"Space Mono", monospace',
-                      fontSize: "0.5rem",
-                      color: "#C9A84C",
-                      letterSpacing: "0.25em",
-                      textTransform: "uppercase",
-                      marginBottom: "0.75rem",
-                    }}
-                  >
-                    {pillar.label}
-                  </p>
-                  <h3
-                    style={{
-                      fontFamily: '"Bebas Neue", cursive',
-                      fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-                      color: "white",
-                      letterSpacing: "0.03em",
-                      lineHeight: 1,
-                      margin: 0,
-                    }}
-                  >
-                    {pillar.heading}
-                  </h3>
-                </div>
-
-                {/* Body */}
-                <p
-                  style={{
-                    color: "#777",
-                    fontSize: "clamp(0.9rem, 1.3vw, 1rem)",
-                    lineHeight: 1.85,
-                    margin: 0,
-                    paddingTop: "0.25rem",
-                  }}
-                >
-                  {pillar.body}
-                </p>
-              </div>
-            );
-          })}
+          {FUTURE_PILLARS.map((pillar, i) => (
+            <PillarRow key={pillar.label} pillar={pillar} index={i} />
+          ))}
         </div>
       </div>
 

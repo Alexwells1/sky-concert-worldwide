@@ -15,11 +15,11 @@ export default function TrustCredibility() {
     <section
       style={{
         background: "transparent",
-        padding: "3.5rem 0",
+        padding: "var(--space-14) 0",
         overflow: "hidden",
       }}
     >
-      {/* Fade-in wrapper — only the opacity entrance, no translateY to avoid clipping */}
+      {/* Fade-in wrapper only the opacity entrance, no translateY to avoid clipping */}
       <div
         ref={ref}
         style={{
@@ -37,7 +37,8 @@ export default function TrustCredibility() {
               top: 0,
               bottom: 0,
               width: "100px",
-              background: "linear-gradient(to right, #060A14, transparent)",
+              background:
+                "linear-gradient(to right, var(--color-surface-3), transparent)",
               zIndex: 2,
               pointerEvents: "none",
             }}
@@ -50,21 +51,22 @@ export default function TrustCredibility() {
               top: 0,
               bottom: 0,
               width: "100px",
-              background: "linear-gradient(to left, #060A14, transparent)",
+              background:
+                "linear-gradient(to left, var(--color-surface-3), transparent)",
               zIndex: 2,
               pointerEvents: "none",
             }}
           />
 
-          {/* Border lines — full width strip feel */}
+          {/* Border lines full width strip feel */}
           <div
             style={{
-              borderTop: "1px solid rgba(255,255,255,0.06)",
-              borderBottom: "1px solid rgba(255,255,255,0.06)",
+              borderTop: "1px solid rgba(var(--foreground-rgb), 0.06)",
+              borderBottom: "1px solid rgba(var(--foreground-rgb), 0.06)",
               padding: "0",
             }}
           >
-            {/* Marquee track — scrolls right to left */}
+            {/* Marquee track scrolls right to left */}
             <div
               className="trust-track"
               style={{
@@ -82,8 +84,8 @@ export default function TrustCredibility() {
                     display: "flex",
                     alignItems: "center",
                     gap: "0.65rem",
-                    padding: "1.1rem 2.5rem",
-                    borderRight: "1px solid rgba(255,255,255,0.06)",
+                    padding: "1.1rem var(--space-10)",
+                    borderRight: "1px solid rgba(var(--foreground-rgb), 0.06)",
                     flexShrink: 0,
                     cursor: "default",
                   }}
@@ -92,8 +94,8 @@ export default function TrustCredibility() {
                     style={{
                       width: "5px",
                       height: "5px",
-                      borderRadius: "50%",
-                      background: "#00E5FF",
+                      borderRadius: "var(--radius-full)",
+                      background: "var(--primary)",
                       flexShrink: 0,
                       opacity: 0.6,
                     }}
@@ -103,7 +105,7 @@ export default function TrustCredibility() {
                     style={{
                       fontFamily: '"Space Mono", monospace',
                       fontSize: "0.62rem",
-                      color: "rgba(255,255,255,0.45)",
+                      color: "rgba(var(--foreground-rgb), 0.45)",
                       letterSpacing: "0.18em",
                       textTransform: "uppercase",
                       whiteSpace: "nowrap",
@@ -128,7 +130,7 @@ export default function TrustCredibility() {
           animation-play-state: paused;
         }
         .trust-item:hover .trust-label {
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(var(--foreground-rgb), 0.85);
         }
         .trust-item:hover span:first-child {
           opacity: 1;

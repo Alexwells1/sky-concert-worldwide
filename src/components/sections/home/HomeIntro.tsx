@@ -1,18 +1,24 @@
-import SectionLabel from '../../common/SectionLabel';
-import { HOME_INTRO } from '../../../constants';
-import { useInView } from '../../../hooks/useInView';
+import SectionLabel from "../../common/SectionLabel";
+import { HOME_INTRO } from "../../../constants";
+import { useInView } from "../../../hooks/useInView";
 
 export default function HomeIntro() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: "transparent", padding: "6rem 1.5rem" }}>
+    <section
+      style={{
+        background: "transparent",
+        padding: "var(--space-8) var(--space-6)",
+      }}
+    >
       <div
         ref={ref}
         style={{
           maxWidth: "860px",
           margin: "0 auto",
           textAlign: "center",
-          transition: "opacity 0.7s ease, transform 0.7s ease",
+          transition:
+            "opacity var(--duration-slower) var(--ease-default), transform var(--duration-slower) var(--ease-default)",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(1.75rem)",
         }}
@@ -22,9 +28,9 @@ export default function HomeIntro() {
           style={{
             fontFamily: '"Playfair Display", serif',
             fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-            color: "white",
+            color: "var(--foreground)",
             lineHeight: 1.2,
-            marginBottom: "2rem",
+            marginBottom: "var(--space-8)",
           }}
         >
           {HOME_INTRO.headline}
@@ -33,10 +39,13 @@ export default function HomeIntro() {
           <p
             key={i}
             style={{
-              color: i === 0 ? "#CCCCCC" : "#AAAAAA",
-              fontSize: "1rem",
+              color:
+                i === 0
+                  ? "var(--muted-foreground-2)"
+                  : "var(--muted-foreground)",
+              fontSize: "var(--text-base)",
               lineHeight: 1.8,
-              marginBottom: "1.25rem",
+              marginBottom: "var(--space-5)",
             }}
           >
             {p}

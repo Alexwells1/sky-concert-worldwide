@@ -1,0 +1,148 @@
+/* ============================================================
+   COLOR TOKENS
+   Two-tier system:
+   1. PRIMITIVES every distinct raw value found in the codebase
+      that was reused in 2+ places (or is a core brand color),
+      given a stable name. Nothing here changes what a value
+      *looks like* it only gives it an address.
+   2. SEMANTIC role-based aliases ("primary", "background",
+      "muted-foreground"...) that components should reference.
+      Changing a semantic token's target primitive re-themes
+      every consumer at once.
+
+   Each color that is also used at variable opacity (rgba(...))
+   additionally exposes a "-rgb" primitive holding the bare
+   "r, g, b" channel list, so call sites can do:
+       rgba(var(--color-primary-rgb), 0.35)
+   and keep their exact original alpha value.
+   ============================================================ */
+
+:root {
+  /* ---- Primitives: brand ---- */
+  --color-primitive-cyan: #00e5ff; /* was #00e5ff (100 occurrences) */
+  --color-primitive-cyan-rgb: 0, 229, 255;
+  --color-primitive-cyan-hover: #33eaff; /* btn-primary hover state */
+  --color-primitive-gold: #c9a84c; /* was #c9a84c (38 occurrences) */
+  --color-primitive-gold-rgb: 201, 168, 76;
+
+  /* ---- Primitives: neutrals ---- */
+  --color-primitive-white: #ffffff;
+  --color-primitive-white-rgb: 255, 255, 255;
+  --color-primitive-black: #000000;
+  --color-primitive-black-rgb: 0, 0, 0;
+
+  /* ---- Primitives: status ---- */
+  --color-primitive-green: #4ade80; /* was #4ade80 / rgb(74,222,128) */
+  --color-primitive-green-rgb: 74, 222, 128;
+  --color-primitive-red: #ff4444; /* was #ff4444 */
+  --color-primitive-red-strong: #ff6b6b; /* was #ff6b6b, form-error red */
+  --color-primitive-whatsapp: #25d366; /* single-purpose WhatsApp brand color */
+  --color-primitive-whatsapp-rgb: 37, 211, 102;
+
+  /* ---- Primitives: surfaces (dark navy backdrops used across sections) ----
+     These preserve every visually-distinct "near black" background that
+     appeared 2+ times in the codebase. They are intentionally NOT merged
+     into one value each is a slightly different shade and merging them
+     would change the visual design. See MIGRATION_REPORT.md for the full
+     list of one-off (count == 1) surface shades that were left as local
+     literals rather than promoted to a global token. */
+  --color-surface-1: #01020a; /* body background, was #01020a */
+  --color-surface-2: #0a0f1e; /* == existing --color-brand-dark */
+  --color-surface-3: #060a14; /* == existing --color-brand-darker */
+  --color-surface-3-rgb: 6, 10, 20;
+  --color-surface-4: #0d1426; /* == existing --color-brand-card */
+  --color-surface-5: #111827; /* == existing --color-brand-card2 */
+  --color-surface-6: #040810; /* == existing --color-brand-navy */
+  --color-surface-7: #040d20;
+  --color-surface-8: #020810;
+  --color-surface-8-rgb: 2, 8, 16;
+  --color-surface-9: #010610;
+  --color-surface-10: #020510;
+  --color-surface-11: #040609;
+  --color-surface-11-rgb: 4, 6, 14;
+  --color-surface-12: #0a1535;
+  --color-surface-13: #0a2520;
+  --color-surface-14: #060c18;
+  --color-surface-15: #0a1520;
+  --color-surface-16: #040a1e; /* rgb(4,10,30) */
+  --color-surface-16-rgb: 4, 10, 30;
+  --color-surface-17-rgb: 8, 15, 35; /* rgb(8,15,35) used by .card-base in index.css */
+
+  /* ---- Primitives: muted grayscale (solid, non-alpha text colors) ---- */
+  --color-gray-100: #cccccc;
+  --color-gray-200: #aaaaaa;
+  --color-gray-300: #999999;
+  --color-gray-400: #888888;
+  --color-gray-500: #555555;
+
+  /* ---- Primitives: muted grayscale used only as rgba(...) overlays ---- */
+  --color-gray-160-rgb: 160, 160, 160;
+  --color-gray-180-rgb: 180, 180, 180;
+
+  /* ==========================================================
+     SEMANTIC TOKENS reference these from components/CSS.
+     ========================================================== */
+
+  /* backgrounds */
+  --background: var(--color-surface-1);
+  --foreground: var(--color-primitive-white);
+  --foreground-rgb: var(--color-primitive-white-rgb);
+
+  /* primary */
+  --primary: var(--color-primitive-cyan);
+  --primary-rgb: var(--color-primitive-cyan-rgb);
+  --primary-hover: var(--color-primitive-cyan-hover);
+  --primary-foreground: var(--color-surface-3);
+
+  /* secondary (gold accent) */
+  --secondary: var(--color-primitive-gold);
+  --secondary-rgb: var(--color-primitive-gold-rgb);
+  --secondary-foreground: var(--color-surface-3);
+
+  /* accent alias of primary, kept distinct so accent-only usages
+     can be retargeted independently of the primary brand color */
+  --accent: var(--color-primitive-cyan);
+  --accent-rgb: var(--color-primitive-cyan-rgb);
+  --accent-foreground: var(--color-surface-3);
+
+  /* muted */
+  --muted: var(--color-gray-500);
+  --muted-foreground: var(--color-gray-200);
+  --muted-foreground-2: var(--color-gray-100);
+  --muted-foreground-3: var(--color-gray-300);
+  --muted-foreground-4: var(--color-gray-400);
+
+  /* card / popover surfaces */
+  --card: var(--color-surface-4);
+  --card-foreground: var(--foreground);
+  --popover: var(--color-surface-5);
+  --popover-foreground: var(--foreground);
+
+  /* borders / inputs / focus ring */
+  --border: rgba(var(--foreground-rgb), 0.1);
+  --input: rgba(var(--foreground-rgb), 0.3);
+  --ring: var(--primary);
+
+  /* overlay (black scrims / shadow tints) */
+  --overlay: var(--color-primitive-black);
+  --overlay-rgb: var(--color-primitive-black-rgb);
+
+  /* status */
+  --success: var(--color-primitive-green);
+  --success-rgb: var(--color-primitive-green-rgb);
+  --success-foreground: var(--color-surface-3);
+
+  --warning: var(--color-primitive-gold);
+  --warning-foreground: var(--color-surface-3);
+
+  --destructive: var(--color-primitive-red);
+  --destructive-strong: var(--color-primitive-red-strong);
+  --destructive-foreground: var(--color-primitive-white);
+
+  --info: var(--color-primitive-cyan);
+  --info-foreground: var(--color-surface-3);
+
+  /* brand-specific single-purpose colors */
+  --whatsapp: var(--color-primitive-whatsapp);
+  --whatsapp-rgb: var(--color-primitive-whatsapp-rgb);
+}

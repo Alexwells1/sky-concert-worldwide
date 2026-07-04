@@ -56,15 +56,17 @@ function Field({
         style={{
           fontFamily: '"Space Mono", monospace',
           fontSize: "0.8rem",
-          fontWeight: 700,
+          fontWeight: "var(--font-bold)",
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.75)",
+          color: "rgba(var(--foreground-rgb), 0.9)",
         }}
       >
         {label}
         {required && (
-          <span style={{ color: "#00E5FF", marginLeft: "0.3rem" }}>*</span>
+          <span style={{ color: "var(--primary)", marginLeft: "0.3rem" }}>
+            *
+          </span>
         )}
       </label>
       {children}
@@ -129,13 +131,15 @@ export default function ContactForm() {
     background: "transparent",
     border: "none",
     borderBottom: `2px solid ${
-      focused === name ? "rgba(0,229,255,0.8)" : "rgba(255,255,255,0.25)"
+      focused === name
+        ? "rgba(var(--primary-rgb), 0.8)"
+        : "rgba(var(--foreground-rgb), 0.6)"
     }`,
     borderRadius: 0,
-    color: "white",
+    color: "var(--foreground)",
     padding: "0.85rem 0",
-    fontSize: "1.15rem",
-    fontWeight: 600,
+    fontSize: "var(--text-md-lg)",
+    fontWeight: "var(--font-semibold)",
     fontFamily: '"DM Sans", sans-serif',
     outline: "none",
     transition: "border-color 0.2s",
@@ -151,7 +155,7 @@ export default function ContactForm() {
       <section
         id="contact-form"
         style={{
-          padding: "7rem 1.5rem",
+          padding: "var(--space-8) var(--space-6)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -164,8 +168,8 @@ export default function ContactForm() {
             style={{
               fontFamily: '"Space Mono", monospace',
               fontSize: "1.5rem",
-              color: "#00E5FF",
-              marginBottom: "1.5rem",
+              color: "var(--primary)",
+              marginBottom: "var(--space-6)",
               letterSpacing: "0.1em",
             }}
           >
@@ -175,9 +179,9 @@ export default function ContactForm() {
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: "2.8rem",
-              fontWeight: 700,
-              color: "white",
-              marginBottom: "1rem",
+              fontWeight: "var(--font-bold)",
+              color: "var(--foreground)",
+              marginBottom: "var(--space-4)",
               lineHeight: 1.15,
             }}
           >
@@ -185,11 +189,11 @@ export default function ContactForm() {
           </h3>
           <p
             style={{
-              color: "rgba(255,255,255,0.7)",
+              color: "rgba(var(--foreground-rgb), 0.7)",
               lineHeight: 1.9,
-              fontSize: "1.1rem",
-              fontWeight: 500,
-              marginBottom: "2.5rem",
+              fontSize: "var(--text-md)",
+              fontWeight: "var(--font-medium)",
+              marginBottom: "var(--space-10)",
             }}
           >
             Thank you for reaching out. Our team will be in touch within 24
@@ -213,7 +217,7 @@ export default function ContactForm() {
       <section
         id="contact-form"
         style={{
-          padding: "6rem 1.5rem 5rem",
+          padding: "var(--space-8) var(--space-6) var(--space-20)",
           position: "relative",
           overflow: "hidden", // CRITICAL FIX: Stops the absolute background glow from causing horizontal scrollbars
           width: "100%",
@@ -231,13 +235,14 @@ export default function ContactForm() {
             maxWidth: "800px",
             height: "500px",
             background:
-              "radial-gradient(ellipse, rgba(0,229,255,0.03) 0%, transparent 70%)",
+              "radial-gradient(ellipse, rgba(var(--primary-rgb), 0.03) 0%, transparent 70%)",
             pointerEvents: "none",
             zIndex: 0,
           }}
         />
 
         <div
+          className="contact-form-inner"
           style={{
             maxWidth: "1080px",
             margin: "0 auto",
@@ -250,41 +255,43 @@ export default function ContactForm() {
           {/* Heading */}
           <div
             style={{
-              marginBottom: "5rem",
+              marginBottom: "var(--space-12)",
               textAlign: "center",
-              padding: "0 1rem",
+              padding: "0 var(--space-4)",
             }}
           >
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.8rem",
-                fontWeight: 700,
-                letterSpacing: "0.25em",
-                color: "rgba(0,229,255,0.85)",
+                fontSize: "var(--text-label)",
+                fontWeight: "var(--font-bold)",
+                letterSpacing: "var(--tracking-wide)",
+                color: "rgba(var(--primary-rgb), 0.85)",
                 textTransform: "uppercase",
-                marginBottom: "1.25rem",
+                marginBottom: "var(--space-3)",
               }}
             >
               Start a Conversation
             </p>
             <h2
+              className="contact-heading"
               style={{
                 fontFamily: '"Playfair Display", serif',
-                fontSize: "clamp(2.6rem, 5vw, 4rem)",
-                fontWeight: 700,
-                color: "white",
+                fontSize: "clamp(1.75rem, 5vw, 4rem)",
+                fontWeight: "var(--font-bold)",
+                color: "var(--foreground)",
                 lineHeight: 1.1,
-                marginBottom: "1.25rem",
+                marginBottom: "var(--space-4)",
               }}
             >
               Tell Us About Your Vision
             </h2>
             <p
+              className="contact-sub"
               style={{
-                color: "rgba(255,255,255,0.65)",
-                fontSize: "1.05rem",
-                fontWeight: 500,
+                color: "rgba(var(--foreground-rgb), 0.65)",
+                fontSize: "var(--text-md-alt)",
+                fontWeight: "var(--font-medium)",
                 lineHeight: 1.9,
                 maxWidth: "520px",
                 margin: "0 auto",
@@ -307,7 +314,7 @@ export default function ContactForm() {
             {/* Section label */}
             <p style={sectionLabel}>Your Details</p>
 
-            {/* Row 1 — Name + Company */}
+            {/* Row 1 Name + Company */}
             <div style={twoCol} className="form-two-col">
               <Field label="Full Name" required>
                 <input
@@ -333,7 +340,7 @@ export default function ContactForm() {
               </Field>
             </div>
 
-            {/* Row 2 — Email + Phone */}
+            {/* Row 2 Email + Phone */}
             <div
               style={{ ...twoCol, marginTop: "2.75rem" }}
               className="form-two-col"
@@ -364,11 +371,11 @@ export default function ContactForm() {
             </div>
 
             {/* Spacer + section label */}
-            <p style={{ ...sectionLabel, marginTop: "3.5rem" }}>
+            <p style={{ ...sectionLabel, marginTop: "var(--space-14)" }}>
               Event Details
             </p>
 
-            {/* Row 3 — Date + Location */}
+            {/* Row 3 Date + Location */}
             <div style={twoCol} className="form-two-col">
               <Field label="Event / Project Date">
                 <input
@@ -408,7 +415,7 @@ export default function ContactForm() {
                       ...inp("projectType"),
                       appearance: "none",
                       cursor: "pointer",
-                      paddingRight: "2rem",
+                      paddingRight: "var(--space-8)",
                     }}
                     onFocus={focus("projectType")}
                     onBlur={blur}
@@ -417,7 +424,10 @@ export default function ContactForm() {
                       <option
                         key={opt.value}
                         value={opt.value}
-                        style={{ background: "#0D1426", color: "white" }}
+                        style={{
+                          background: "var(--card)",
+                          color: "var(--foreground)",
+                        }}
                       >
                         {opt.label}
                       </option>
@@ -430,8 +440,8 @@ export default function ContactForm() {
                       top: "50%",
                       transform: "translateY(-50%)",
                       pointerEvents: "none",
-                      color: "rgba(255,255,255,0.5)",
-                      fontSize: "0.9rem",
+                      color: "rgba(var(--foreground-rgb), 0.7)",
+                      fontSize: "var(--text-md)",
                     }}
                   >
                     ▾
@@ -441,9 +451,11 @@ export default function ContactForm() {
             </div>
 
             {/* Spacer + section label */}
-            <p style={{ ...sectionLabel, marginTop: "3.5rem" }}>Your Message</p>
+            <p style={{ ...sectionLabel, marginTop: "var(--space-14)" }}>
+              Your Message
+            </p>
 
-            {/* Message — full width */}
+            {/* Message full width */}
             <Field label="Project Brief" required>
               <textarea
                 name="message"
@@ -458,10 +470,10 @@ export default function ContactForm() {
                   lineHeight: 1.8,
                   borderBottom: `2px solid ${
                     focused === "message"
-                      ? "rgba(0,229,255,0.8)"
-                      : "rgba(255,255,255,0.25)"
+                      ? "rgba(var(--primary-rgb), 0.8)"
+                      : "rgba(var(--foreground-rgb), 0.6)"
                   }`,
-                  paddingBottom: "1rem",
+                  paddingBottom: "var(--space-4)",
                 }}
                 onFocus={focus("message")}
                 onBlur={blur}
@@ -472,75 +484,40 @@ export default function ContactForm() {
             {status === "error" && (
               <p
                 style={{
-                  color: "#ff6b6b",
+                  color: "var(--destructive-strong)",
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.85rem",
-                  fontWeight: 700,
+                  fontSize: "var(--text-sm-alt)",
+                  fontWeight: "var(--font-bold)",
                   letterSpacing: "0.05em",
-                  marginTop: "1.5rem",
+                  marginTop: "var(--space-6)",
                 }}
               >
                 ✕ Something went wrong. Please try again or email us directly.
               </p>
             )}
 
-            {/* Submit row */}
+            {/* Submit button centered, above trust items */}
             <div
               style={{
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                gap: "1.25rem",
-                paddingTop: "3rem",
-                marginTop: "1rem",
-                borderTop: "1px solid rgba(255,255,255,0.1)",
+                justifyContent: "center",
+                paddingTop: "var(--space-12)",
+                marginTop: "var(--space-4)",
+                borderTop: "1px solid rgba(var(--foreground-rgb), 0.7)",
                 width: "100%",
               }}
             >
-              {/* Trust badges */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem" }}>
-                {CONTACT_FORM_META.trustItems?.map((t: string) => (
-                  <span
-                    key={t}
-                    style={{
-                      fontFamily: '"Space Mono", monospace',
-                      fontSize: "0.7rem",
-                      fontWeight: 700,
-                      color: "rgba(255,255,255,0.45)",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* Submit */}
               <button
                 type="button"
                 onClick={handleSubmit}
                 disabled={status === "sending"}
-                className="contact-submit-btn"
+                className="btn-primary contact-submit-btn"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "0.6rem",
-                  background:
-                    status === "sending"
-                      ? "rgba(0,229,255,0.06)"
-                      : "rgba(0,229,255,0.1)",
-                  border: "1px solid rgba(0,229,255,0.55)",
-                  color: "#00E5FF",
-                  cursor: status === "sending" ? "not-allowed" : "pointer",
-                  padding: "1.1rem 2.8rem",
-                  fontFamily: '"Bebas Neue", cursive',
-                  fontSize: "1.25rem",
-                  letterSpacing: "0.28em",
-                  transition: "background 0.2s, box-shadow 0.2s",
+                  gap: "var(--space-1-5)",
                   opacity: status === "sending" ? 0.6 : 1,
-                  whiteSpace: "nowrap",
+                  cursor: status === "sending" ? "not-allowed" : "pointer",
                 }}
               >
                 {status === "sending" ? (
@@ -548,10 +525,38 @@ export default function ContactForm() {
                 ) : (
                   <>
                     {CONTACT_FORM_META.submitLabel ?? "Send Enquiry"}
-                    <ArrowRight size={16} />
+                    <ArrowRight size={15} />
                   </>
                 )}
               </button>
+            </div>
+
+            {/* Trust badges below button */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "var(--space-6)",
+                justifyContent: "center",
+                paddingTop: "var(--space-8)",
+                width: "100%",
+              }}
+            >
+              {CONTACT_FORM_META.trustItems?.map((t: string) => (
+                <span
+                  key={t}
+                  style={{
+                    fontFamily: '"Space Mono", monospace',
+                    fontSize: "var(--text-3xs)",
+                    fontWeight: "var(--font-bold)",
+                    color: "rgba(var(--foreground-rgb), 0.45)",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {t}
+                </span>
+              ))}
             </div>
 
             {/* Below note */}
@@ -559,11 +564,11 @@ export default function ContactForm() {
               style={{
                 fontFamily: '"Playfair Display", serif',
                 fontStyle: "italic",
-                color: "rgba(255,255,255,0.4)",
-                fontSize: "0.95rem",
-                marginTop: "1.75rem",
+                color: "rgba(var(--foreground-rgb), 0.4)",
+                fontSize: "var(--text-body-lg)",
+                marginTop: "var(--space-6)",
                 lineHeight: 1.7,
-                textAlign: "right",
+                textAlign: "center",
                 width: "100%",
               }}
             >
@@ -575,8 +580,7 @@ export default function ContactForm() {
 
       <style>{`
         .contact-submit-btn:hover:not(:disabled) {
-          background: rgba(0,229,255,0.18) !important;
-          box-shadow: 0 0 32px rgba(0,229,255,0.15);
+          opacity: 0.85 !important;
         }
         @media (max-width: 600px) {
           .form-two-col {
@@ -584,9 +588,21 @@ export default function ContactForm() {
             flex-direction: column !important;
             gap: 2rem !important;
           }
+          .contact-form-inner {
+            background: rgba(var(--color-surface-3-rgb), 0.75) !important;
+            border: 1px solid rgba(var(--foreground-rgb), 0.06) !important;
+            border-radius: 4px !important;
+            padding: 2rem 1.25rem !important;
+          }
+          .contact-sub {
+            display: none !important;
+          }
+          .contact-heading {
+            margin-bottom: 0 !important;
+          }
         }
         ::placeholder {
-          color: rgba(255,255,255,0.35) !important;
+          color: rgba(var(--foreground-rgb), 0.35) !important;
           font-weight: 400;
         }
       `}</style>
@@ -597,18 +613,18 @@ export default function ContactForm() {
 // ─── Shared styles ─────────────────────────────────────────────────
 const sectionLabel: React.CSSProperties = {
   fontFamily: '"Space Mono", monospace',
-  fontSize: "0.75rem",
-  fontWeight: 700,
+  fontSize: "var(--text-sm)",
+  fontWeight: "var(--font-bold)",
   letterSpacing: "0.22em",
-  color: "rgba(0,229,255,0.7)",
+  color: "rgba(var(--primary-rgb), 0.7)",
   textTransform: "uppercase",
-  marginBottom: "2rem",
+  marginBottom: "var(--space-8)",
   width: "100%",
 };
 
 const twoCol: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "3rem",
+  gap: "var(--space-12)",
   width: "100%",
 };

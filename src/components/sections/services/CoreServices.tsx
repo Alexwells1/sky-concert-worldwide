@@ -9,10 +9,10 @@ const SERVICES = [
     title: "Wedding Drone Experiences",
     emotion: "Transform Celebrations into Sky Poetry",
     description:
-      "Your love story deserves a canvas bigger than any stage. We choreograph synchronized aerial formations to your music, your names in light, your narrative written across the night sky — giving your guests a moment that outlasts memory.",
+      "Your love story deserves a canvas bigger than any stage. We choreograph synchronized aerial formations to your music, your names in light, your narrative written across the night sky giving your guests a moment that outlasts memory.",
     atmosphere: "Intimate. Breathtaking. Once in a lifetime.",
     eventType: "Private ceremonies, destination weddings, luxury receptions",
-    accentColor: "#C9A84C",
+    accentColor: "var(--secondary)",
     imageUrl:
       "https://i.pinimg.com/736x/de/27/22/de27225b8bf63e900d1928f2e953c2f5.jpg",
     layout: "image-left" as const,
@@ -27,7 +27,7 @@ const SERVICES = [
       "When the music peaks and the sky ignites in synchronized light, something irreversible happens to the audience. We synchronize drone formations with live performance, extending the emotional arc of the music into the atmosphere above.",
     atmosphere: "Electric. Transcendent. Unmissable.",
     eventType: "Live concerts, music festivals, artist tours",
-    accentColor: "#00E5FF",
+    accentColor: "var(--primary)",
     imageUrl:
       "https://i.pinimg.com/736x/7d/a3/4a/7da34abbbe824fc83a97f56109d79064.jpg",
     layout: "image-right" as const,
@@ -42,7 +42,7 @@ const SERVICES = [
       "Your logo visible for kilometers. Your product reveal choreographed across the night sky. Your brand narrative told through a hundred drones moving in perfect unison. This is marketing that becomes the story itself.",
     atmosphere: "Commanding. Unforgettable. Unprecedented.",
     eventType: "Product launches, brand activations, corporate galas",
-    accentColor: "#C9A84C",
+    accentColor: "var(--secondary)",
     imageUrl:
       "https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=900&q=80",
     layout: "fullscreen-banner" as const,
@@ -54,10 +54,10 @@ const SERVICES = [
     title: "Stadium Sky Spectacles",
     emotion: "Fill the Sky Above 50,000 People",
     description:
-      "Stadium shows demand a scale most productions cannot deliver. We design pre-show and halftime drone spectacles that match the intensity of the moment — generating broadcast content and social media moments that extend the event far beyond the venue.",
+      "Stadium shows demand a scale most productions cannot deliver. We design pre-show and halftime drone spectacles that match the intensity of the moment generating broadcast content and social media moments that extend the event far beyond the venue.",
     atmosphere: "Massive. High-energy. Broadcast-worthy.",
     eventType: "Stadium events, sports halftimes, national celebrations",
-    accentColor: "#00E5FF",
+    accentColor: "var(--primary)",
     imageUrl:
       "https://i.pinimg.com/736x/96/74/5d/96745db985ad5960526b616e2421a8a6.jpg",
     layout: "image-left" as const,
@@ -69,10 +69,10 @@ const SERVICES = [
     title: "Festival Finales",
     emotion: "The Closing Moment That Defines Everything",
     description:
-      "Every great festival needs a finale that makes the entire experience feel complete. We design large-scale drone light shows that serve as the crown jewel — an ending so spectacular that the audience leaves already planning to return.",
+      "Every great festival needs a finale that makes the entire experience feel complete. We design large-scale drone light shows that serve as the crown jewel an ending so spectacular that the audience leaves already planning to return.",
     atmosphere: "Epic. Communal. Unforgettable.",
     eventType: "Multi-day festivals, cultural events, national celebrations",
-    accentColor: "#C9A84C",
+    accentColor: "var(--secondary)",
     imageUrl:
       "https://i.pinimg.com/736x/56/76/00/567600679d8deb29c3dccf277f85c7dc.jpg",
     layout: "image-right" as const,
@@ -84,10 +84,10 @@ const SERVICES = [
     title: "Product Launch Activations",
     emotion: "Launch in the Most Dramatic Way Possible",
     description:
-      "A product reveal is only as powerful as the moment of surprise. We design aerial activations that make your launch the only story in the room — the kind of press moment that cannot be bought, only experienced.",
+      "A product reveal is only as powerful as the moment of surprise. We design aerial activations that make your launch the only story in the room the kind of press moment that cannot be bought, only experienced.",
     atmosphere: "Dramatic. Viral. Impossible to ignore.",
     eventType: "Product reveals, brand launches, investor events",
-    accentColor: "#00E5FF",
+    accentColor: "var(--primary)",
     imageUrl:
       "https://i.pinimg.com/736x/cf/4d/70/cf4d70f80af8c7434ff48d4d930cdedb.jpg",
     layout: "split-cinematic" as const,
@@ -183,7 +183,7 @@ function MobileCarousel() {
           left: 0,
           right: 0,
           height: "2px",
-          background: "rgba(255,255,255,0.06)",
+          background: "rgba(var(--foreground-rgb), 0.06)",
           zIndex: 10,
         }}
       >
@@ -236,7 +236,7 @@ function MobileCarousel() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to top, rgba(4,10,30,0.97) 0%, rgba(4,10,30,0.75) 45%, rgba(4,10,30,0.25) 100%)",
+                  "linear-gradient(to top, rgba(var(--color-surface-16-rgb), 0.97) 0%, rgba(var(--color-surface-16-rgb), 0.75) 45%, rgba(var(--color-surface-16-rgb), 0.25) 100%)",
                 pointerEvents: "none",
               }}
             />
@@ -247,31 +247,31 @@ function MobileCarousel() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-end",
-                padding: "2.5rem 1.75rem 5.5rem",
+                padding: "var(--space-10) var(--space-7) 5.5rem",
                 zIndex: 2,
               }}
             >
               <span
                 style={{
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.55rem",
+                  fontSize: "var(--text-2xs)",
                   letterSpacing: "0.28em",
                   color: service.accentColor,
                   textTransform: "uppercase",
                   display: "block",
-                  marginBottom: "0.75rem",
+                  marginBottom: "var(--space-3)",
                 }}
               >
-                {service.number} — {service.tag}
+                {service.number} {service.tag}
               </span>
               <h2
                 style={{
                   fontFamily: '"Bebas Neue", cursive',
                   fontSize: "clamp(2.4rem, 10vw, 3.5rem)",
-                  color: "white",
+                  color: "var(--foreground)",
                   lineHeight: 0.9,
-                  letterSpacing: "0.02em",
-                  marginBottom: "1rem",
+                  letterSpacing: "var(--tracking-normal)",
+                  marginBottom: "var(--space-4)",
                 }}
               >
                 {service.title}
@@ -280,7 +280,7 @@ function MobileCarousel() {
                 style={{
                   fontFamily: '"Playfair Display", serif',
                   fontStyle: "italic",
-                  fontSize: "1rem",
+                  fontSize: "var(--text-base)",
                   color: service.accentColor,
                   lineHeight: 1.45,
                   marginBottom: "1.1rem",
@@ -291,9 +291,9 @@ function MobileCarousel() {
               <p
                 style={{
                   color: "rgba(195,195,195,0.82)",
-                  fontSize: "0.85rem",
+                  fontSize: "var(--text-sm-alt)",
                   lineHeight: 1.85,
-                  marginBottom: "1.5rem",
+                  marginBottom: "var(--space-6)",
                   maxWidth: "360px",
                 }}
               >
@@ -302,7 +302,7 @@ function MobileCarousel() {
               <p
                 style={{
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.55rem",
+                  fontSize: "var(--text-2xs)",
                   letterSpacing: "0.15em",
                   color: "rgba(130,130,130,0.7)",
                   textTransform: "uppercase",
@@ -325,7 +325,7 @@ function MobileCarousel() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 1.75rem",
+          padding: "0 var(--space-7)",
           zIndex: 10,
         }}
       >
@@ -339,18 +339,21 @@ function MobileCarousel() {
           style={{
             width: "38px",
             height: "38px",
-            borderRadius: "50%",
+            borderRadius: "var(--radius-full)",
             border: `1px solid ${
-              current === 0 ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.3)"
+              current === 0
+                ? "rgba(var(--foreground-rgb), 0.7)"
+                : "rgba(var(--foreground-rgb), 0.7)"
             }`,
-            background: "rgba(4,10,30,0.6)",
+            background: "rgba(var(--color-surface-16-rgb), 0.6)",
             backdropFilter: "blur(8px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             cursor: current === 0 ? "not-allowed" : "pointer",
             opacity: current === 0 ? 0.35 : 1,
-            transition: "opacity 0.2s, border-color 0.2s",
+            transition:
+              "opacity var(--duration-fast-alt), border-color var(--duration-fast-alt)",
             flexShrink: 0,
           }}
         >
@@ -377,11 +380,11 @@ function MobileCarousel() {
               style={{
                 width: i === current ? "20px" : "6px",
                 height: "6px",
-                borderRadius: "3px",
+                borderRadius: "var(--radius-sm)",
                 background:
                   i === current
                     ? SERVICES[current].accentColor
-                    : "rgba(255,255,255,0.25)",
+                    : "rgba(var(--foreground-rgb), 0.6)",
                 border: "none",
                 padding: 0,
                 cursor: "pointer",
@@ -402,20 +405,21 @@ function MobileCarousel() {
           style={{
             width: "38px",
             height: "38px",
-            borderRadius: "50%",
+            borderRadius: "var(--radius-full)",
             border: `1px solid ${
               current === total - 1
-                ? "rgba(255,255,255,0.1)"
-                : "rgba(255,255,255,0.3)"
+                ? "rgba(var(--foreground-rgb), 0.7)"
+                : "rgba(var(--foreground-rgb), 0.7)"
             }`,
-            background: "rgba(4,10,30,0.6)",
+            background: "rgba(var(--color-surface-16-rgb), 0.6)",
             backdropFilter: "blur(8px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             cursor: current === total - 1 ? "not-allowed" : "pointer",
             opacity: current === total - 1 ? 0.35 : 1,
-            transition: "opacity 0.2s, border-color 0.2s",
+            transition:
+              "opacity var(--duration-fast-alt), border-color var(--duration-fast-alt)",
             flexShrink: 0,
           }}
         >
@@ -456,7 +460,7 @@ function ServiceSection({
           alignItems: "center",
           overflow: "hidden",
           opacity: inView ? 1 : 0,
-          transition: "opacity 1s ease",
+          transition: "opacity var(--duration-crawl-alt) var(--ease-default)",
         }}
       >
         <div
@@ -473,16 +477,16 @@ function ServiceSection({
             position: "absolute",
             inset: 0,
             background:
-              "linear-gradient(105deg, rgba(4,10,30,0.92) 0%, rgba(4,10,30,0.7) 50%, rgba(4,10,30,0.4) 100%)",
+              "linear-gradient(105deg, rgba(var(--color-surface-16-rgb), 0.92) 0%, rgba(var(--color-surface-16-rgb), 0.7) 50%, rgba(var(--color-surface-16-rgb), 0.4) 100%)",
           }}
         />
         <div
           style={{
             position: "relative",
             zIndex: 2,
-            maxWidth: "80rem",
+            maxWidth: "var(--container-2xl)",
             margin: "0 auto",
-            padding: "8rem 1.5rem",
+            padding: "var(--space-4) var(--space-6)",
             width: "100%",
           }}
         >
@@ -490,24 +494,24 @@ function ServiceSection({
             <span
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
-                letterSpacing: "0.25em",
+                fontSize: "var(--text-xs)",
+                letterSpacing: "var(--tracking-wide)",
                 color: service.accentColor,
                 textTransform: "uppercase",
                 display: "block",
-                marginBottom: "1rem",
+                marginBottom: "var(--space-4)",
               }}
             >
-              {service.number} — {service.tag}
+              {service.number} {service.tag}
             </span>
             <h2
               style={{
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "clamp(3rem, 7vw, 7rem)",
-                color: "white",
+                color: "var(--foreground)",
                 lineHeight: 0.9,
-                letterSpacing: "0.02em",
-                marginBottom: "1.5rem",
+                letterSpacing: "var(--tracking-normal)",
+                marginBottom: "var(--space-6)",
               }}
             >
               {service.title}
@@ -519,7 +523,7 @@ function ServiceSection({
                 fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
                 color: service.accentColor,
                 lineHeight: 1.5,
-                marginBottom: "1.5rem",
+                marginBottom: "var(--space-6)",
               }}
             >
               {service.emotion}
@@ -527,9 +531,9 @@ function ServiceSection({
             <p
               style={{
                 color: "rgba(200,200,200,0.85)",
-                fontSize: "1rem",
+                fontSize: "var(--text-base)",
                 lineHeight: 1.9,
-                marginBottom: "2rem",
+                marginBottom: "var(--space-8)",
                 maxWidth: "520px",
               }}
             >
@@ -538,7 +542,7 @@ function ServiceSection({
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.15em",
                 color: "rgba(150,150,150,0.7)",
                 textTransform: "uppercase",
@@ -562,7 +566,8 @@ function ServiceSection({
           minHeight: "80vh",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 0.9s ease, transform 0.9s ease",
+          transition:
+            "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
         }}
       >
         <div
@@ -575,7 +580,7 @@ function ServiceSection({
         />
         <div
           style={{
-            background: "#040D20",
+            background: "var(--color-surface-7)",
             display: "flex",
             alignItems: "center",
             padding: "clamp(3rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem)",
@@ -585,24 +590,24 @@ function ServiceSection({
             <span
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
-                letterSpacing: "0.25em",
+                fontSize: "var(--text-xs)",
+                letterSpacing: "var(--tracking-wide)",
                 color: service.accentColor,
                 textTransform: "uppercase",
                 display: "block",
-                marginBottom: "1rem",
+                marginBottom: "var(--space-4)",
               }}
             >
-              {service.number} — {service.tag}
+              {service.number} {service.tag}
             </span>
             <h2
               style={{
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "clamp(2.5rem, 5vw, 5rem)",
-                color: "white",
+                color: "var(--foreground)",
                 lineHeight: 0.9,
-                letterSpacing: "0.02em",
-                marginBottom: "1.5rem",
+                letterSpacing: "var(--tracking-normal)",
+                marginBottom: "var(--space-6)",
               }}
             >
               {service.title}
@@ -611,20 +616,20 @@ function ServiceSection({
               style={{
                 fontFamily: '"Playfair Display", serif',
                 fontStyle: "italic",
-                fontSize: "1.15rem",
+                fontSize: "var(--text-md-lg)",
                 color: service.accentColor,
                 lineHeight: 1.5,
-                marginBottom: "1.5rem",
+                marginBottom: "var(--space-6)",
               }}
             >
               {service.emotion}
             </p>
             <p
               style={{
-                color: "rgba(180,180,180,0.85)",
-                fontSize: "0.95rem",
+                color: "rgba(var(--color-gray-180-rgb), 0.85)",
+                fontSize: "var(--text-body-lg)",
                 lineHeight: 1.9,
-                marginBottom: "1.75rem",
+                marginBottom: "var(--space-7)",
               }}
             >
               {service.description}
@@ -632,15 +637,17 @@ function ServiceSection({
             <div
               style={{
                 borderTop: `1px solid rgba(${
-                  service.accentColor === "#00E5FF" ? "0,229,255" : "201,168,76"
+                  service.accentColor === "var(--primary)"
+                    ? "0,229,255"
+                    : "201,168,76"
                 },0.15)`,
-                paddingTop: "1.25rem",
+                paddingTop: "var(--space-5)",
               }}
             >
               <p
                 style={{
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.6rem",
+                  fontSize: "var(--text-xs)",
                   letterSpacing: "0.15em",
                   color: "rgba(130,130,130,0.7)",
                   textTransform: "uppercase",
@@ -649,7 +656,7 @@ function ServiceSection({
               >
                 Ideal for
                 <br />
-                <span style={{ color: "rgba(180,180,180,0.7)" }}>
+                <span style={{ color: "rgba(var(--color-gray-180-rgb), 0.7)" }}>
                   {service.eventType}
                 </span>
               </p>
@@ -670,7 +677,8 @@ function ServiceSection({
         minHeight: "75vh",
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(40px)",
-        transition: "opacity 0.9s ease, transform 0.9s ease",
+        transition:
+          "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
       }}
     >
       {isImageLeft && (
@@ -688,14 +696,14 @@ function ServiceSection({
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to right, transparent 60%, #040D20 100%)",
+                "linear-gradient(to right, transparent 60%, var(--color-surface-7) 100%)",
             }}
           />
         </div>
       )}
       <div
         style={{
-          background: "#040D20",
+          background: "var(--color-surface-7)",
           display: "flex",
           alignItems: "center",
           padding: "clamp(3rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem)",
@@ -706,24 +714,24 @@ function ServiceSection({
           <span
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.6rem",
-              letterSpacing: "0.25em",
+              fontSize: "var(--text-xs)",
+              letterSpacing: "var(--tracking-wide)",
               color: service.accentColor,
               textTransform: "uppercase",
               display: "block",
-              marginBottom: "1rem",
+              marginBottom: "var(--space-4)",
             }}
           >
-            {service.number} — {service.tag}
+            {service.number} {service.tag}
           </span>
           <h2
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(2.5rem, 5vw, 5rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.9,
-              letterSpacing: "0.02em",
-              marginBottom: "1.5rem",
+              letterSpacing: "var(--tracking-normal)",
+              marginBottom: "var(--space-6)",
             }}
           >
             {service.title}
@@ -732,20 +740,20 @@ function ServiceSection({
             style={{
               fontFamily: '"Playfair Display", serif',
               fontStyle: "italic",
-              fontSize: "1.15rem",
+              fontSize: "var(--text-md-lg)",
               color: service.accentColor,
               lineHeight: 1.5,
-              marginBottom: "1.5rem",
+              marginBottom: "var(--space-6)",
             }}
           >
             {service.emotion}
           </p>
           <p
             style={{
-              color: "rgba(180,180,180,0.85)",
-              fontSize: "0.95rem",
+              color: "rgba(var(--color-gray-180-rgb), 0.85)",
+              fontSize: "var(--text-body-lg)",
               lineHeight: 1.9,
-              marginBottom: "1.75rem",
+              marginBottom: "var(--space-7)",
             }}
           >
             {service.description}
@@ -753,15 +761,17 @@ function ServiceSection({
           <div
             style={{
               borderTop: `1px solid rgba(${
-                service.accentColor === "#00E5FF" ? "0,229,255" : "201,168,76"
+                service.accentColor === "var(--primary)"
+                  ? "0,229,255"
+                  : "201,168,76"
               },0.15)`,
-              paddingTop: "1.25rem",
+              paddingTop: "var(--space-5)",
             }}
           >
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.15em",
                 color: "rgba(130,130,130,0.7)",
                 textTransform: "uppercase",
@@ -770,7 +780,7 @@ function ServiceSection({
             >
               Ideal for
               <br />
-              <span style={{ color: "rgba(180,180,180,0.7)" }}>
+              <span style={{ color: "rgba(var(--color-gray-180-rgb), 0.7)" }}>
                 {service.eventType}
               </span>
             </p>
@@ -793,7 +803,7 @@ function ServiceSection({
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to left, transparent 60%, #040D20 100%)",
+                "linear-gradient(to left, transparent 60%, var(--color-surface-7) 100%)",
             }}
           />
         </div>
@@ -816,27 +826,28 @@ export default function CoreServices() {
   }, []);
 
   return (
-    <section style={{ background: "#060A14" }}>
+    <section style={{ background: "var(--color-surface-3)" }}>
       <div
         ref={ref}
         style={{
-          maxWidth: "80rem",
+          maxWidth: "var(--container-2xl)",
           margin: "0 auto",
           padding: isMobile ? "5rem 1.5rem 3rem" : "8rem 1.5rem 4rem",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(30px)",
-          transition: "opacity 0.8s ease, transform 0.8s ease",
+          transition:
+            "opacity var(--duration-slowest) var(--ease-default), transform var(--duration-slowest) var(--ease-default)",
         }}
       >
         <span
           style={{
             fontFamily: '"Space Mono", monospace',
-            fontSize: "0.6rem",
+            fontSize: "var(--text-xs)",
             letterSpacing: "0.3em",
-            color: "#00E5FF",
+            color: "var(--primary)",
             textTransform: "uppercase",
             display: "block",
-            marginBottom: "1.5rem",
+            marginBottom: "var(--space-6)",
           }}
         >
           What We Create
@@ -853,20 +864,22 @@ export default function CoreServices() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(3rem, 7vw, 7rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.9,
-              letterSpacing: "0.02em",
+              letterSpacing: "var(--tracking-normal)",
               margin: 0,
             }}
           >
             Sky Experiences
             <br />
-            <span style={{ color: "rgba(0,229,255,0.5)" }}>Without Limits</span>
+            <span style={{ color: "rgba(var(--primary-rgb), 0.5)" }}>
+              Without Limits
+            </span>
           </h2>
           <p
             style={{
-              color: "rgba(160,160,160,0.85)",
-              fontSize: "1.05rem",
+              color: "rgba(var(--color-gray-160-rgb), 0.85)",
+              fontSize: "var(--text-md-alt)",
               lineHeight: 1.85,
               margin: 0,
             }}
@@ -882,14 +895,14 @@ export default function CoreServices() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "0.5rem",
-              marginTop: "1.75rem",
+              gap: "var(--space-2)",
+              marginTop: "var(--space-7)",
             }}
           >
             <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
               <path
                 d="M1 6H19M14 1L19 6L14 11"
-                stroke="rgba(0,229,255,0.5)"
+                stroke="rgba(var(--primary-rgb), 0.5)"
                 strokeWidth="1.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -898,9 +911,9 @@ export default function CoreServices() {
             <span
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.55rem",
+                fontSize: "var(--text-2xs)",
                 letterSpacing: "0.2em",
-                color: "rgba(0,229,255,0.45)",
+                color: "rgba(var(--primary-rgb), 0.45)",
                 textTransform: "uppercase",
               }}
             >

@@ -14,7 +14,7 @@ export default function ServicesCTA() {
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        background: "#020810",
+        background: "var(--color-surface-8)",
       }}
     >
       {/* Background image with overlay */}
@@ -33,7 +33,7 @@ export default function ServicesCTA() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(2,8,16,0.85) 0%, rgba(2,8,16,0.7) 50%, rgba(2,8,16,0.95) 100%)",
+            "linear-gradient(to bottom, rgba(var(--color-surface-8-rgb), 0.85) 0%, rgba(var(--color-surface-8-rgb), 0.7) 50%, rgba(var(--color-surface-8-rgb), 0.95) 100%)",
         }}
       />
 
@@ -43,7 +43,7 @@ export default function ServicesCTA() {
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,229,255,0.07) 0%, transparent 65%)",
+            "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(var(--primary-rgb), 0.07) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
@@ -55,23 +55,23 @@ export default function ServicesCTA() {
           position: "relative",
           zIndex: 2,
           textAlign: "center",
-          padding: "4rem 1.5rem",
+          padding: "var(--space-3) var(--space-6)",
           maxWidth: "900px",
           margin: "0 auto",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 1s ease, transform 1s ease",
+          transition: "opacity var(--duration-crawl-alt) var(--ease-default), transform var(--duration-crawl-alt) var(--ease-default)",
         }}
       >
         <span
           style={{
             fontFamily: '"Space Mono", monospace',
-            fontSize: "0.6rem",
+            fontSize: "var(--text-xs)",
             letterSpacing: "0.3em",
-            color: "#C9A84C",
+            color: "var(--secondary)",
             textTransform: "uppercase",
             display: "block",
-            marginBottom: "2.5rem",
+            marginBottom: "var(--space-10)",
           }}
         >
           Commission Your Experience
@@ -81,17 +81,17 @@ export default function ServicesCTA() {
           style={{
             fontFamily: '"Bebas Neue", cursive',
             fontSize: "clamp(4rem, 10vw, 10rem)",
-            color: "white",
+            color: "var(--foreground)",
             lineHeight: 0.85,
-            letterSpacing: "0.02em",
-            marginBottom: "2.5rem",
+            letterSpacing: "var(--tracking-normal)",
+            marginBottom: "var(--space-10)",
           }}
         >
           Let the Sky
           <br />
           <span
             style={{
-              WebkitTextStroke: "1px rgba(0,229,255,0.5)",
+              WebkitTextStroke: "1px rgba(var(--primary-rgb), 0.5)",
               color: "transparent",
             }}
           >
@@ -106,7 +106,7 @@ export default function ServicesCTA() {
             fontSize: "clamp(1rem, 2vw, 1.3rem)",
             color: "rgba(190,190,190,0.8)",
             lineHeight: 1.7,
-            marginBottom: "4rem",
+            marginBottom: "var(--space-16)",
             maxWidth: "540px",
             marginLeft: "auto",
             marginRight: "auto",
@@ -119,7 +119,7 @@ export default function ServicesCTA() {
         <div
           style={{
             display: "flex",
-            gap: "1rem",
+            gap: "var(--space-4)",
             justifyContent: "center",
             flexWrap: "wrap",
           }}
@@ -130,25 +130,12 @@ export default function ServicesCTA() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.5rem",
-              fontSize: "0.85rem",
-              padding: "1rem 2.5rem",
+              gap: "var(--space-2)",
+              fontSize: "var(--text-sm-alt)",
+              padding: "var(--space-4) var(--space-10)",
             }}
           >
-            Request a Custom Proposal <ArrowRight size={15} />
-          </Link>
-          <Link
-            to="/contact"
-            className="btn-secondary"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              fontSize: "0.85rem",
-              padding: "1rem 2.5rem",
-            }}
-          >
-            Discuss Your Project
+            Book a Show <ArrowRight size={15} />
           </Link>
         </div>
       </div>

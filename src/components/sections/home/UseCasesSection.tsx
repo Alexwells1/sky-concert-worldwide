@@ -12,7 +12,8 @@ export default function UseCasesSection() {
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
-    const update = (e: MediaQueryListEvent | MediaQueryList) => setIsLarge(e.matches);
+    const update = (e: MediaQueryListEvent | MediaQueryList) =>
+      setIsLarge(e.matches);
     update(mq);
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
@@ -50,10 +51,10 @@ export default function UseCasesSection() {
         }
         .usecases-label {
           font-family: 'Space Mono', monospace;
-          font-size: 0.58rem;
-          letter-spacing: 0.3em;
+          font-size: 0.72rem;
+          letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.25);
+          color: var(--primary);
           display: block;
           margin-bottom: 1.25rem;
         }
@@ -63,7 +64,7 @@ export default function UseCasesSection() {
           font-size: clamp(1.75rem, 4vw, 3rem);
           line-height: 1.05;
           letter-spacing: -0.03em;
-          color: rgba(255,255,255,0.92);
+          color: rgba(var(--foreground-rgb), 0.92);
           margin: 0;
         }
         .usecases-arrows {
@@ -75,9 +76,9 @@ export default function UseCasesSection() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.12);
+          border: 1px solid rgba(var(--foreground-rgb), 0.12);
           background: transparent;
-          color: rgba(255,255,255,0.5);
+          color: rgba(var(--foreground-rgb), 0.7);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -86,9 +87,9 @@ export default function UseCasesSection() {
           flex-shrink: 0;
         }
         .usecase-arrow-btn:hover:not(:disabled) {
-          border-color: rgba(255,255,255,0.4);
-          color: rgba(255,255,255,0.9);
-          background: rgba(255,255,255,0.05);
+          border-color: rgba(var(--foreground-rgb), 0.4);
+          color: rgba(var(--foreground-rgb), 0.9);
+          background: rgba(var(--foreground-rgb), 0.4);
         }
         .usecase-arrow-btn:disabled {
           opacity: 0.25;
@@ -105,7 +106,7 @@ export default function UseCasesSection() {
         .usecases-track {
           display: grid;
           gap: 1px;
-          background: rgba(255,255,255,0.06);
+          background: rgba(var(--foreground-rgb), 0.4);
         }
         /* Mobile/tablet: horizontal scroll */
         @media (max-width: 1023px) {
@@ -134,17 +135,17 @@ export default function UseCasesSection() {
           .usecases-arrows { display: none !important; }
         }
         .usecase-tile {
-          background: #040609;
+          background: var(--color-surface-11);
           padding: 2.25rem 1.75rem;
           position: relative;
           transition: background 0.4s ease;
           cursor: default;
         }
-        .usecase-tile:hover { background: rgba(255,255,255,0.02); }
+        .usecase-tile:hover { background: rgba(var(--foreground-rgb), 0.4); }
         .usecase-idx {
           font-family: 'Space Mono', monospace;
-          font-size: 0.52rem;
-          color: rgba(201,168,76,0.45);
+          font-size: 0.65rem;
+          color: rgba(var(--secondary-rgb), 0.75);
           letter-spacing: 0.18em;
           display: block;
           margin-bottom: 1rem;
@@ -153,37 +154,53 @@ export default function UseCasesSection() {
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
           font-size: 1rem;
-          color: rgba(255,255,255,0.82);
+          color: rgba(var(--foreground-rgb), 0.82);
           line-height: 1.4;
           margin: 0 0 0.75rem;
         }
         .usecase-desc {
           font-family: 'DM Sans', sans-serif;
           font-size: 0.78rem;
-          color: rgba(255,255,255,0.3);
+          color: rgba(var(--foreground-rgb), 0.7);
           line-height: 1.7;
           margin: 0;
         }
       `}</style>
 
       <section className="usecases-section">
-        <div ref={ref} className="usecases-header"
+        <div
+          ref={ref}
+          className="usecases-header"
           style={{
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-            transition: "opacity 0.8s ease, transform 0.8s ease",
+            transition: "opacity var(--duration-slowest) var(--ease-default), transform var(--duration-slowest) var(--ease-default)",
           }}
         >
           <div>
-            <span className="usecases-label">{HOME_USE_CASES_META.sectionLabel}</span>
-            <h2 className="usecases-headline">{HOME_USE_CASES_META.headline}</h2>
+            <span className="usecases-label">
+              {HOME_USE_CASES_META.sectionLabel}
+            </span>
+            <h2 className="usecases-headline">
+              {HOME_USE_CASES_META.headline}
+            </h2>
           </div>
           {!isLarge && (
             <div className="usecases-arrows">
-              <button className="usecase-arrow-btn" onClick={() => scroll("left")} disabled={!canLeft} aria-label="Scroll left">
+              <button
+                className="usecase-arrow-btn"
+                onClick={() => scroll("left")}
+                disabled={!canLeft}
+                aria-label="Scroll left"
+              >
                 <ChevronLeft size={16} />
               </button>
-              <button className="usecase-arrow-btn" onClick={() => scroll("right")} disabled={!canRight} aria-label="Scroll right">
+              <button
+                className="usecase-arrow-btn"
+                onClick={() => scroll("right")}
+                disabled={!canRight}
+                aria-label="Scroll right"
+              >
                 <ChevronRight size={16} />
               </button>
             </div>
@@ -196,7 +213,7 @@ export default function UseCasesSection() {
           onScroll={updateArrows}
           style={{
             opacity: inView ? 1 : 0,
-            transition: "opacity 0.8s ease 0.15s",
+            transition: "opacity var(--duration-slowest) var(--ease-default) 0.15s",
           }}
         >
           <div className="usecases-track">
@@ -207,10 +224,14 @@ export default function UseCasesSection() {
                 style={{
                   opacity: inView ? 1 : 0,
                   transform: inView ? "translateY(0)" : "translateY(1.25rem)",
-                  transition: `opacity 0.7s ease ${0.12 + i * 0.07}s, transform 0.7s ease ${0.12 + i * 0.07}s`,
+                  transition: `opacity 0.7s ease ${
+                    0.12 + i * 0.07
+                  }s, transform 0.7s ease ${0.12 + i * 0.07}s`,
                 }}
               >
-                <span className="usecase-idx">{String(i + 1).padStart(2, "0")}</span>
+                <span className="usecase-idx">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <p className="usecase-title">{item.title}</p>
                 <p className="usecase-desc">{item.description}</p>
               </div>

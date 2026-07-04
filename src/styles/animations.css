@@ -1,0 +1,41 @@
+/* ============================================================
+   ANIMATION TOKENS
+   Duration scale covers every distinct transition-duration found
+   in the codebase. Components mostly compose these with a
+   property name inline (e.g. `opacity var(--duration-slow) var(--ease-default)`),
+   so the scale is deliberately fine-grained to avoid changing
+   any existing timing.
+   ============================================================ */
+
+:root {
+  --duration-instant: 0.05s;
+  --duration-faster: 0.1s;
+  --duration-fast: 0.15s;
+  --duration-fast-alt: 0.2s;
+  --duration-normal: 0.25s;
+  --duration-normal-alt: 0.3s;
+  --duration-moderate: 0.35s;
+  --duration-moderate-alt: 0.4s;
+  --duration-medium: 0.45s;
+  --duration-medium-alt: 0.5s;
+  --duration-slow: 0.6s;
+  --duration-slower: 0.7s;
+  --duration-slower-alt: 0.75s;
+  --duration-slowest: 0.8s;
+  --duration-slowest-alt: 0.85s;
+  --duration-crawl: 0.9s;
+  --duration-crawl-alt: 1s;
+  --duration-glacial: 1.2s;
+
+  --ease-default: ease;
+  --ease-in: ease-in;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+  --ease-linear: linear;
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --animate-fade-up: fadeUp var(--duration-slower) var(--ease-default) forwards;
+  --animate-fade-in: fadeIn var(--duration-slowest) var(--ease-default) forwards;
+  --animate-glow-pulse: glowPulse 3s var(--ease-in-out) infinite;
+}

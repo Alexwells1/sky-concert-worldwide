@@ -59,7 +59,7 @@ export default function ProjectsPreview() {
   return (
     <>
       <style>{`
-        .showcase-section { padding: 8rem 1.5rem; }
+        .showcase-section { padding: 5rem 1.5rem;}
         .showcase-header {
           max-width: 80rem;
           margin: 0 auto 3rem;
@@ -71,10 +71,10 @@ export default function ProjectsPreview() {
         }
         .showcase-label {
           font-family: 'Space Mono', monospace;
-          font-size: 0.58rem;
-          letter-spacing: 0.3em;
+          font-size: 0.72rem;
+          letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.25);
+          color: var(--primary);
           display: block;
           margin-bottom: 1.25rem;
         }
@@ -84,7 +84,7 @@ export default function ProjectsPreview() {
           font-size: clamp(2rem, 4.5vw, 3.5rem);
           line-height: 1.05;
           letter-spacing: -0.03em;
-          color: rgba(255,255,255,0.92);
+          color: rgba(var(--foreground-rgb), 0.92);
           margin: 0;
         }
         .showcase-mosaic {
@@ -125,7 +125,7 @@ export default function ProjectsPreview() {
         .showcase-tile-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(4,6,14,0.9) 0%, rgba(4,6,14,0.2) 40%, transparent 100%);
+          background: linear-gradient(to top, rgba(var(--color-surface-11-rgb), 0.9) 0%, rgba(var(--color-surface-11-rgb), 0.2) 40%, transparent 100%);
           z-index: 2;
         }
         .showcase-tile-play {
@@ -137,13 +137,13 @@ export default function ProjectsPreview() {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.3);
+          border: 1px solid rgba(var(--foreground-rgb), 0.7);
           display: flex;
           align-items: center;
           justify-content: center;
           opacity: 0;
           transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);
-          background: rgba(255,255,255,0.06);
+          background: rgba(var(--foreground-rgb), 0.06);
           backdrop-filter: blur(8px);
         }
         .showcase-tile:hover .showcase-tile-play {
@@ -163,15 +163,15 @@ export default function ProjectsPreview() {
         }
         .showcase-tile-tag {
           font-family: 'Space Mono', monospace;
-          font-size: 0.52rem;
-          color: rgba(255,255,255,0.38);
-          letter-spacing: 0.22em;
+          font-size: 0.65rem;
+          color: rgba(var(--foreground-rgb), 0.65);
+          letter-spacing: 0.18em;
           text-transform: uppercase;
         }
         .showcase-tile-title {
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
-          color: rgba(255,255,255,0.9);
+          color: rgba(var(--foreground-rgb), 0.9);
           line-height: 1.25;
           font-size: clamp(0.9rem, 1.8vw, 1.35rem);
         }
@@ -201,7 +201,7 @@ export default function ProjectsPreview() {
         .showcase-banner-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to right, rgba(4,6,14,0.85) 0%, rgba(4,6,14,0.2) 60%, transparent 100%);
+          background: linear-gradient(to right, rgba(var(--color-surface-11-rgb), 0.85) 0%, rgba(var(--color-surface-11-rgb), 0.2) 60%, transparent 100%);
           z-index: 2;
         }
         .showcase-banner-content {
@@ -217,22 +217,22 @@ export default function ProjectsPreview() {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.25);
+          border: 1px solid rgba(var(--foreground-rgb), 0.7);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
-          background: rgba(255,255,255,0.04);
+          background: rgba(var(--foreground-rgb), 0.4);
           transition: border-color 0.3s, background 0.3s;
         }
         .showcase-banner:hover .showcase-banner-play {
-          border-color: rgba(255,255,255,0.5);
-          background: rgba(255,255,255,0.08);
+          border-color: rgba(var(--foreground-rgb), 0.7);
+          background: rgba(var(--foreground-rgb), 0.5);
         }
         .showcase-banner-tag {
           font-family: 'Space Mono', monospace;
           font-size: 0.5rem;
-          color: rgba(255,255,255,0.35);
+          color: rgba(var(--foreground-rgb), 0.35);
           letter-spacing: 0.22em;
           text-transform: uppercase;
           display: block;
@@ -242,7 +242,7 @@ export default function ProjectsPreview() {
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
           font-size: clamp(0.95rem, 1.8vw, 1.25rem);
-          color: rgba(255,255,255,0.88);
+          color: rgba(var(--foreground-rgb), 0.88);
           margin: 0;
           line-height: 1.25;
         }
@@ -259,7 +259,8 @@ export default function ProjectsPreview() {
           style={{
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-            transition: "opacity 0.8s ease, transform 0.8s ease",
+            transition:
+              "opacity var(--duration-slowest) var(--ease-default), transform var(--duration-slowest) var(--ease-default)",
           }}
         >
           <div>
@@ -341,7 +342,7 @@ export default function ProjectsPreview() {
                 <span className="showcase-tile-tag">{project!.tag}</span>
                 <span
                   className="showcase-tile-title"
-                  style={{ fontSize: "0.9rem" }}
+                  style={{ fontSize: "var(--text-md)" }}
                 >
                   {project!.subtitle ?? project!.title}
                 </span>
@@ -401,12 +402,12 @@ export default function ProjectsPreview() {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 9999,
-            background: "rgba(0,0,0,0.92)",
+            zIndex: "var(--z-modal)",
+            background: "rgba(var(--overlay-rgb), 0.92)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "1.5rem",
+            padding: "var(--space-6)",
             backdropFilter: "blur(12px)",
           }}
         >
@@ -416,16 +417,16 @@ export default function ProjectsPreview() {
               position: "absolute",
               top: "1.5rem",
               right: "1.5rem",
-              background: "rgba(255,255,255,0.07)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: "50%",
+              background: "rgba(var(--foreground-rgb), 0.07)",
+              border: "1px solid rgba(var(--foreground-rgb), 0.12)",
+              borderRadius: "var(--radius-full)",
               width: "42px",
               height: "42px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              color: "white",
+              color: "var(--foreground)",
             }}
             aria-label="Close video"
           >
@@ -439,7 +440,11 @@ export default function ProjectsPreview() {
               src={activeVideo}
               autoPlay
               controls
-              style={{ width: "100%", display: "block", background: "#000" }}
+              style={{
+                width: "100%",
+                display: "block",
+                background: "var(--overlay)",
+              }}
             />
           </div>
         </div>

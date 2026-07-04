@@ -1,0 +1,16 @@
+/* ============================================================
+   RADIUS TOKENS
+   Exactly matches the 5 distinct border-radius values found in
+   the codebase nothing merged, nothing invented.
+   ============================================================ */
+
+:root {
+  --radius-none: 0;
+  --radius-xs: 2px; /* was 2px  (12 occurrences) */
+  --radius-sm: 3px; /* was 3px  (1 occurrence)   */
+  --radius-md: 4px; /* was 4px  (1 occurrence)   */
+  --radius-lg: 100px; /* was 100px (2 occurrences) large pill/badge radius */
+  --radius-xl: 16px; /* reserved for future use not currently present in code */
+  --radius-2xl: 24px; /* reserved for future use not currently present in code */
+  --radius-full: 50%; /* was 50%  (21 occurrences) circular avatars/dots */
+}

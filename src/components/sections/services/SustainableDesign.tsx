@@ -21,8 +21,8 @@ export default function SustainableDesign() {
   return (
     <section
       style={{
-        background: "#040D20",
-        padding: "10rem 1.5rem",
+        background: "var(--color-surface-7)",
+        padding: "var(--space-8) var(--space-6)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -41,7 +41,7 @@ export default function SustainableDesign() {
       <div
         ref={ref}
         style={{
-          maxWidth: "80rem",
+          maxWidth: "var(--container-2xl)",
           margin: "0 auto",
           position: "relative",
           opacity: inView ? 1 : 0,
@@ -49,16 +49,16 @@ export default function SustainableDesign() {
         }}
       >
         {/* Header */}
-        <div style={{ marginBottom: "6rem" }}>
+        <div style={{ marginBottom: "var(--space-24)" }}>
           <span
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.6rem",
+              fontSize: "var(--text-xs)",
               letterSpacing: "0.3em",
-              color: "#4ade80",
+              color: "var(--success)",
               textTransform: "uppercase",
               display: "block",
-              marginBottom: "1.5rem",
+              marginBottom: "var(--space-6)",
             }}
           >
             Sustainable by Design
@@ -67,16 +67,16 @@ export default function SustainableDesign() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(2.5rem, 6vw, 6rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.9,
-              letterSpacing: "0.02em",
+              letterSpacing: "var(--tracking-normal)",
               margin: 0,
               maxWidth: "900px",
             }}
           >
             The Future of Spectacle
             <br />
-            <span style={{ color: "rgba(74,222,128,0.5)" }}>
+            <span style={{ color: "rgba(var(--success-rgb), 0.5)" }}>
               Should Respect the Environment.
             </span>
           </h2>
@@ -89,7 +89,7 @@ export default function SustainableDesign() {
               key={p.title}
               className="sustainable-card"
               style={{
-                padding: "3rem",
+                padding: "var(--space-12)",
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateY(0)" : "translateY(30px)",
                 transition: `opacity 0.7s ${
@@ -101,9 +101,9 @@ export default function SustainableDesign() {
                 style={{
                   fontFamily: '"Bebas Neue", cursive',
                   fontSize: "5rem",
-                  color: "rgba(74,222,128,0.06)",
+                  color: "rgba(var(--success-rgb), 0.06)",
                   lineHeight: 0.8,
-                  marginBottom: "2rem",
+                  marginBottom: "var(--space-8)",
                   userSelect: "none",
                 }}
               >
@@ -112,9 +112,9 @@ export default function SustainableDesign() {
               <h3
                 style={{
                   fontFamily: '"Playfair Display", serif',
-                  fontSize: "1.15rem",
-                  color: "white",
-                  marginBottom: "1rem",
+                  fontSize: "var(--text-md-lg)",
+                  color: "var(--foreground)",
+                  marginBottom: "var(--space-4)",
                   lineHeight: 1.3,
                 }}
               >
@@ -123,7 +123,7 @@ export default function SustainableDesign() {
               <p
                 style={{
                   color: "rgba(140,140,140,0.8)",
-                  fontSize: "0.9rem",
+                  fontSize: "var(--text-md)",
                   lineHeight: 1.85,
                   margin: 0,
                 }}
@@ -137,9 +137,9 @@ export default function SustainableDesign() {
         {/* Closing line */}
         <div
           style={{
-            marginTop: "5rem",
-            paddingTop: "3rem",
-            borderTop: "1px solid rgba(74,222,128,0.08)",
+            marginTop: "var(--space-20)",
+            paddingTop: "var(--space-12)",
+            borderTop: "1px solid rgba(var(--success-rgb), 0.08)",
             textAlign: "center",
           }}
         >
@@ -148,7 +148,7 @@ export default function SustainableDesign() {
               fontFamily: '"Playfair Display", serif',
               fontStyle: "italic",
               fontSize: "1.4rem",
-              color: "rgba(74,222,128,0.7)",
+              color: "rgba(var(--success-rgb), 0.7)",
             }}
           >
             Create spectacular moments responsibly.
@@ -164,11 +164,11 @@ export default function SustainableDesign() {
           gap: 0;
         }
         .sustainable-card:first-child {
-          border-left: 1px solid rgba(74,222,128,0.1);
-          border-right: 1px solid rgba(74,222,128,0.1);
+          border-left: 1px solid rgba(var(--success-rgb), 0.1);
+          border-right: 1px solid rgba(var(--success-rgb), 0.1);
         }
         .sustainable-card:not(:first-child) {
-          border-right: 1px solid rgba(74,222,128,0.1);
+          border-right: 1px solid rgba(var(--success-rgb), 0.1);
         }
 
         /* ── Mobile: single column, horizontal dividers ── */
@@ -180,7 +180,7 @@ export default function SustainableDesign() {
             padding: 2.5rem 0 !important;
             border-left: none !important;
             border-right: none !important;
-            border-bottom: 1px solid rgba(74,222,128,0.1);
+            border-bottom: 1px solid rgba(var(--success-rgb), 0.1);
           }
           .sustainable-card:last-child {
             border-bottom: none;

@@ -1,0 +1,66 @@
+/* ============================================================
+   TYPOGRAPHY TOKENS
+   Font sizes cover the simple, fixed-value scale used throughout
+   the app. Many headings use bespoke fluid clamp() sizes for
+   responsive scaling (e.g. clamp(2rem, 4vw, 4rem)) those are
+   intentionally left as component-level literals since collapsing
+   them onto a fixed scale would change responsive behavior
+   (a visual/behavioral change, which this migration must avoid).
+   See MIGRATION_REPORT.md for the full clamp() inventory.
+   ============================================================ */
+
+:root {
+  --font-family-sans: "DM Sans", sans-serif; /* body text */
+  --font-family-heading: "Playfair Display", serif;
+  --font-family-display: "Bebas Neue", cursive; /* large display headings */
+  --font-family-mono: "Space Mono", monospace; /* labels, buttons, badges */
+
+  /* Fixed type scale (non-fluid sizes) */
+  --text-xs: 0.6rem; /* was 0.6rem   (30 occurrences) */
+  --text-sm: 0.75rem; /* was 0.75rem  (6 occurrences)  */
+  --text-base: 1rem; /* was 1rem     (17 occurrences) */
+  --text-md: 1.1rem; /* was 1.1rem   (8 occurrences)  */
+  --text-lg: 1.25rem; /* was 1.25rem  (3 occurrences)  */
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+  --text-4xl: 3rem;
+
+  /* Secondary fixed sizes that recur often but sit between the
+     canonical steps above kept as their own tokens rather than
+     forced onto the nearest step, to guarantee zero visual drift. */
+  --text-2xs: 0.55rem; /* was 0.55rem  (15 occurrences) */
+  --text-3xs: 0.65rem; /* was 0.65rem  (10 occurrences) */
+  --text-label: 0.72rem; /* was 0.72rem  (27 occurrences) the ubiquitous uppercase label size */
+  --text-sm-alt: 0.85rem; /* was 0.85rem  (8 occurrences)  */
+  --text-body-lg: 0.95rem; /* was 0.95rem  (15 occurrences) */
+  --text-md-alt: 1.05rem; /* was 1.05rem  (8 occurrences)  */
+  --text-md-lg: 1.15rem; /* was 1.15rem  (5 occurrences)  */
+  --text-button: 0.7rem; /* was 0.7rem   (7 occurrences) btn-primary/secondary/ghost */
+
+  /* Font weights matches the exact 7-value scale found in the codebase */
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-black: 900;
+  --font-thin: 100; /* reserved not currently used, included for scale completeness */
+
+  /* Line heights canonical 4-point scale required by the design system.
+     The codebase also uses many bespoke intermediate values (1.65, 1.7,
+     1.8, 1.85, 1.9 ...) for fine-tuned editorial rhythm; those remain as
+     literals. Full inventory in MIGRATION_REPORT.md. */
+  --leading-none: 1;
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* Letter spacing canonical 3-point scale. The codebase also uses many
+     bespoke intermediate tracking values per-heading (0.08em, 0.12em,
+     0.18em, 0.22em, 0.28em ...) which remain as literals; see report. */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0.02em;
+  --tracking-wide: 0.25em;
+}

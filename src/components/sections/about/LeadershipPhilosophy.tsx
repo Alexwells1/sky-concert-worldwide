@@ -12,14 +12,12 @@ const TEAM_MEMBERS: {
     name: "Oyelude Olujimi Julius",
     role: "CEO",
     imageUrl: jayjay,
-    note: "Visionary behind Africa's leading aerial entertainment company.",
   },
   {
     name: "Ifeoluwa Emmanuel Omowunmi",
     role: "Executive Administrative Lead",
     imageUrl: ife,
-    note: "Translating brand stories into unforgettable sky narratives.",
-  }
+  },
 ];
 
 function MemberCard({
@@ -57,8 +55,9 @@ function MemberCard({
           position: "relative",
           aspectRatio: "3 / 4",
           overflow: "hidden",
-          background: "linear-gradient(160deg, #0d1828 0%, #060c18 100%)",
-          marginBottom: "1.5rem",
+          background:
+            "linear-gradient(160deg, #0d1828 0%, var(--color-surface-14) 100%)",
+          marginBottom: "var(--space-6)",
         }}
       >
         {member.imageUrl ? (
@@ -85,14 +84,14 @@ function MemberCard({
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              gap: "0.5rem",
+              gap: "var(--space-2)",
             }}
           >
             <span
               style={{
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "clamp(3rem, 6vw, 5rem)",
-                color: "rgba(255,255,255,0.06)",
+                color: "rgba(var(--foreground-rgb), 0.06)",
                 letterSpacing: "0.1em",
               }}
             >
@@ -102,7 +101,7 @@ function MemberCard({
               style={{
                 fontFamily: '"Space Mono", monospace',
                 fontSize: "0.48rem",
-                color: "rgba(255,255,255,0.12)",
+                color: "rgba(var(--foreground-rgb), 0.12)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
               }}
@@ -121,7 +120,7 @@ function MemberCard({
             right: 0,
             height: "40%",
             background:
-              "linear-gradient(to top, rgba(6,10,20,0.7) 0%, transparent 100%)",
+              "linear-gradient(to top, rgba(var(--color-surface-3-rgb), 0.7) 0%, transparent 100%)",
             pointerEvents: "none",
           }}
         />
@@ -134,10 +133,11 @@ function MemberCard({
             left: "1rem",
             width: "24px",
             height: "24px",
-            borderTop: "1px solid rgba(0,229,255,0.3)",
-            borderLeft: "1px solid rgba(0,229,255,0.3)",
+            borderTop: "1px solid rgba(var(--primary-rgb), 0.3)",
+            borderLeft: "1px solid rgba(var(--primary-rgb), 0.3)",
             pointerEvents: "none",
-            transition: "border-color 0.3s ease",
+            transition:
+              "border-color var(--duration-normal-alt) var(--ease-default)",
           }}
           className="member-corner"
         />
@@ -147,11 +147,11 @@ function MemberCard({
       <p
         style={{
           fontFamily: '"Space Mono", monospace',
-          fontSize: "0.52rem",
-          color: "#C9A84C",
+          fontSize: "0.62rem",
+          color: "var(--secondary)",
           letterSpacing: "0.22em",
           textTransform: "uppercase",
-          marginBottom: "0.5rem",
+          marginBottom: "var(--space-2)",
         }}
       >
         {member.role}
@@ -160,28 +160,14 @@ function MemberCard({
         style={{
           fontFamily: '"Bebas Neue", cursive',
           fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)",
-          color: "white",
+          color: "var(--foreground)",
           letterSpacing: "0.04em",
           lineHeight: 1,
-          marginBottom: "0.75rem",
+          marginBottom: "var(--space-3)",
         }}
       >
         {member.name}
       </h3>
-      {member.note && (
-        <p
-          className="member-note"
-          style={{
-            color: "#555",
-            fontSize: "0.8rem",
-            lineHeight: 1.75,
-            margin: 0,
-            transition: "color 0.3s ease",
-          }}
-        >
-          {member.note}
-        </p>
-      )}
     </div>
   );
 }
@@ -190,28 +176,34 @@ export default function LeadershipPhilosophy() {
   const { ref, inView } = useInView();
 
   return (
-    <section style={{ background: "transparent", padding: "0 1.5rem 8rem" }}>
-      <div style={{ maxWidth: "80rem", margin: "0 auto" }}>
+    <section
+      style={{
+        background: "transparent",
+        padding: "0 var(--space-6) var(--space-32)",
+      }}
+    >
+      <div style={{ maxWidth: "var(--container-2xl)", margin: "0 auto" }}>
         {/* Header */}
         <div
           ref={ref}
           style={{
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-            paddingTop: "5rem",
-            marginBottom: "4rem",
+            borderTop: "1px solid rgba(var(--foreground-rgb), 0.06)",
+            paddingTop: "var(--space-20)",
+            marginBottom: "var(--space-16)",
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(2rem)",
-            transition: "opacity 0.9s ease, transform 0.9s ease",
+            transition:
+              "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
           }}
         >
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
               fontSize: "0.58rem",
-              color: "#00E5FF",
+              color: "var(--primary)",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              marginBottom: "2rem",
+              marginBottom: "var(--space-8)",
             }}
           >
             The People Behind It
@@ -220,9 +212,9 @@ export default function LeadershipPhilosophy() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(3rem, 7vw, 6.5rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.9,
-              letterSpacing: "0.02em",
+              letterSpacing: "var(--tracking-normal)",
               maxWidth: "820px",
               marginBottom: 0,
             }}
@@ -231,13 +223,13 @@ export default function LeadershipPhilosophy() {
           </h2>
         </div>
 
-        {/* Team grid — 4 cols desktop → 2 cols tablet/mobile */}
+        {/* Team grid 4 cols desktop → 2 cols tablet/mobile */}
         <div
           className="team-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "1.5rem",
+            gap: "var(--space-6)",
           }}
         >
           {TEAM_MEMBERS.map((member, i) => (
@@ -252,10 +244,10 @@ export default function LeadershipPhilosophy() {
           filter: grayscale(0%);
         }
         .member-card:hover .member-corner {
-          border-color: rgba(0, 229, 255, 0.7);
+          border-color: rgba(var(--primary-rgb), 0.7);
         }
         .member-card:hover .member-note {
-          color: #888;
+          color: var(--muted-foreground-4);
         }
         @media (max-width: 900px) {
           .team-grid {

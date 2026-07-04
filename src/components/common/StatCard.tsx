@@ -10,9 +10,9 @@ export default function StatCard({ value, label, className = '' }: StatCardProps
       <div style={{
         fontFamily: '"Bebas Neue", cursive',
         fontSize: '3.5rem',
-        color: '#C9A84C',
+        color: 'var(--secondary)',
         lineHeight: 1,
-        marginBottom: '0.5rem',
+        marginBottom: 'var(--space-2)',
       }}>
         {value}
       </div>
@@ -21,7 +21,7 @@ export default function StatCard({ value, label, className = '' }: StatCardProps
         fontSize: '0.6875rem',
         letterSpacing: '0.15em',
         textTransform: 'uppercase',
-        color: '#AAAAAA',
+        color: 'var(--muted-foreground)',
       }}>
         {label}
       </div>

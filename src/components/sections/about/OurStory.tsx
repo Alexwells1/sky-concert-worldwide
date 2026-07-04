@@ -6,24 +6,32 @@ import { useInView } from "../../../hooks/useInView";
  * Recommended: slow aerial / drone footage, dark exposure, no sound needed.
  */
 const STORY_VIDEO_URL =
-  "https://v1.pinimg.com/videos/mc/720p/dc/e7/16/dce7168d129f4a881b310984e736d114.mp4";
+  "https://res.cloudinary.com/dqp54assh/video/upload/v1778690969/Africa_Wedding_Storyboard_3_inscn0.mp4";
 
 export default function OurStory() {
   const { ref, inView } = useInView();
 
   return (
-    <section style={{ background: "transparent", padding: "7rem 1.5rem" }}>
-      <div style={{ maxWidth: "80rem", margin: "0 auto" }} ref={ref}>
+    <section
+      style={{
+        background: "transparent",
+        padding: "var(--space-8) var(--space-6)",
+      }}
+    >
+      <div
+        style={{ maxWidth: "var(--container-2xl)", margin: "0 auto" }}
+        ref={ref}
+      >
         <div
           className="story-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "5rem",
+            gap: "var(--space-20)",
             alignItems: "center",
           }}
         >
-          {/* LEFT — Video */}
+          {/* LEFT Video */}
           <div
             style={{
               opacity: inView ? 1 : 0,
@@ -37,9 +45,9 @@ export default function OurStory() {
               style={{
                 position: "absolute",
                 inset: 0,
-                borderRadius: "2px",
+                borderRadius: "var(--radius-xs)",
                 overflow: "hidden",
-                background: "#060c18", // fallback while video loads
+                background: "var(--color-surface-14)", // fallback while video loads
               }}
             >
               {STORY_VIDEO_URL ? (
@@ -67,7 +75,7 @@ export default function OurStory() {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "0.75rem",
+                    gap: "var(--space-3)",
                     background:
                       "linear-gradient(160deg, #0a1628 0%, #061020 40%, #030810 100%)",
                   }}
@@ -77,19 +85,19 @@ export default function OurStory() {
                       cx="20"
                       cy="20"
                       r="19"
-                      stroke="rgba(0,229,255,0.2)"
+                      stroke="rgba(var(--primary-rgb), 0.2)"
                       strokeWidth="1"
                     />
                     <polygon
                       points="16,13 30,20 16,27"
-                      fill="rgba(0,229,255,0.3)"
+                      fill="rgba(var(--primary-rgb), 0.3)"
                     />
                   </svg>
                   <span
                     style={{
                       fontFamily: '"Space Mono", monospace',
-                      fontSize: "0.48rem",
-                      color: "rgba(255,255,255,0.2)",
+                      fontSize: "var(--text-label)",
+                      color: "rgba(var(--foreground-rgb), 0.2)",
                       letterSpacing: "0.2em",
                       textTransform: "uppercase",
                     }}
@@ -99,13 +107,13 @@ export default function OurStory() {
                 </div>
               )}
 
-              {/* Dark overlay — keeps text readable and exposure cinematic */}
+              {/* Dark overlay keeps text readable and exposure cinematic */}
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   background:
-                    "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 100%)",
+                    "linear-gradient(to bottom, rgba(var(--overlay-rgb), 0.15) 0%, rgba(var(--overlay-rgb), 0.4) 100%)",
                   pointerEvents: "none",
                 }}
               />
@@ -118,8 +126,8 @@ export default function OurStory() {
                   left: "1.5rem",
                   width: "36px",
                   height: "36px",
-                  borderTop: "1px solid rgba(0,229,255,0.4)",
-                  borderLeft: "1px solid rgba(0,229,255,0.4)",
+                  borderTop: "1px solid rgba(var(--primary-rgb), 0.4)",
+                  borderLeft: "1px solid rgba(var(--primary-rgb), 0.4)",
                   pointerEvents: "none",
                 }}
               />
@@ -130,8 +138,8 @@ export default function OurStory() {
                   right: "1.5rem",
                   width: "36px",
                   height: "36px",
-                  borderBottom: "1px solid rgba(0,229,255,0.4)",
-                  borderRight: "1px solid rgba(0,229,255,0.4)",
+                  borderBottom: "1px solid rgba(var(--primary-rgb), 0.4)",
+                  borderRight: "1px solid rgba(var(--primary-rgb), 0.4)",
                   pointerEvents: "none",
                 }}
               />
@@ -143,17 +151,17 @@ export default function OurStory() {
                 position: "absolute",
                 bottom: "-1.5rem",
                 right: "-1.5rem",
-                background: "#060A14",
-                border: "1px solid rgba(255,255,255,0.07)",
-                padding: "0.75rem 1.25rem",
+                background: "var(--color-surface-3)",
+                border: "1px solid rgba(var(--foreground-rgb), 0.07)",
+                padding: "var(--space-3) var(--space-5)",
                 zIndex: 2,
               }}
             >
               <p
                 style={{
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.55rem",
-                  color: "#00E5FF",
+                  fontSize: "var(--text-label)",
+                  color: "var(--primary)",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
                   margin: 0,
@@ -164,8 +172,8 @@ export default function OurStory() {
               <p
                 style={{
                   fontFamily: '"Space Mono", monospace',
-                  fontSize: "0.5rem",
-                  color: "rgba(255,255,255,0.3)",
+                  fontSize: "var(--text-label)",
+                  color: "rgba(var(--foreground-rgb), 0.7)",
                   letterSpacing: "0.15em",
                   margin: "0.2rem 0 0",
                 }}
@@ -175,7 +183,7 @@ export default function OurStory() {
             </div>
           </div>
 
-          {/* RIGHT — Narrative text */}
+          {/* RIGHT Narrative text */}
           <div
             style={{
               opacity: inView ? 1 : 0,
@@ -186,11 +194,11 @@ export default function OurStory() {
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.58rem",
-                color: "#00E5FF",
+                fontSize: "var(--text-label)",
+                color: "var(--primary)",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase",
-                marginBottom: "1.5rem",
+                marginBottom: "var(--space-6)",
               }}
             >
               {ABOUT_STORY.sectionLabel}
@@ -200,10 +208,10 @@ export default function OurStory() {
               style={{
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "clamp(3rem, 5vw, 5rem)",
-                color: "white",
+                color: "var(--foreground)",
                 lineHeight: 0.92,
-                letterSpacing: "0.02em",
-                marginBottom: "2.5rem",
+                letterSpacing: "var(--tracking-normal)",
+                marginBottom: "var(--space-10)",
               }}
             >
               {ABOUT_STORY.headline}
@@ -213,10 +221,13 @@ export default function OurStory() {
               <p
                 key={i}
                 style={{
-                  color: i === 0 ? "rgba(255,255,255,0.75)" : "#888",
+                  color:
+                    i === 0
+                      ? "rgba(var(--foreground-rgb), 0.75)"
+                      : "var(--muted-foreground-4)",
                   fontSize: "clamp(0.95rem, 1.4vw, 1.05rem)",
                   lineHeight: 1.9,
-                  marginBottom: "1.5rem",
+                  marginBottom: "var(--space-6)",
                   fontFamily: i === 0 ? '"Playfair Display", serif' : "inherit",
                   fontStyle: i === 0 ? "italic" : "normal",
                 }}
@@ -229,8 +240,8 @@ export default function OurStory() {
               style={{
                 width: "40px",
                 height: "1px",
-                background: "rgba(0,229,255,0.4)",
-                marginTop: "2rem",
+                background: "rgba(var(--primary-rgb), 0.4)",
+                marginTop: "var(--space-8)",
               }}
             />
           </div>

@@ -25,48 +25,48 @@ export default function FloatingContact() {
   const emailUrl = `mailto:${CONTACT_INFO.email}`;
 
   const btnBase: React.CSSProperties = {
-    width:          "48px",
-    height:         "48px",
-    borderRadius:   "50%",
-    display:        "flex",
-    alignItems:     "center",
+    width: "48px",
+    height: "48px",
+    borderRadius: "var(--radius-full)",
+    display: "flex",
+    alignItems: "center",
     justifyContent: "center",
-    cursor:         "pointer",
-    border:         "none",
-    transition:     "transform 0.2s ease, box-shadow 0.2s ease",
-    position:       "relative",
-    flexShrink:     0,
+    cursor: "pointer",
+    border: "none",
+    transition: "transform 0.2s ease, box-shadow 0.2s ease",
+    position: "relative",
+    flexShrink: 0,
   };
 
   const labelBase: React.CSSProperties = {
-    position:      "absolute",
-    right:         "calc(100% + 12px)",
-    top:           "50%",
-    transform:     "translateY(-50%)",
-    background:    "rgba(10,10,10,0.9)",
-    border:        "1px solid rgba(255,255,255,0.1)",
-    color:         "white",
-    fontFamily:    '"Space Mono", monospace',
-    fontSize:      "0.55rem",
+    position: "absolute",
+    right: "calc(100% + 12px)",
+    top: "50%",
+    transform: "translateY(-50%)",
+    background: "rgba(10,10,10,0.9)",
+    border: "1px solid rgba(var(--foreground-rgb), 0.7)",
+    color: "var(--foreground)",
+    fontFamily: '"Space Mono", monospace',
+    fontSize: "var(--text-2xs)",
     letterSpacing: "0.18em",
     textTransform: "uppercase",
-    padding:       "0.4rem 0.75rem",
-    whiteSpace:    "nowrap",
+    padding: "var(--space-0-5) var(--space-3)",
+    whiteSpace: "nowrap",
     pointerEvents: "none",
-    backdropFilter:"blur(8px)",
+    backdropFilter: "blur(8px)",
   };
 
   return (
     <>
       <div
         style={{
-          position:      "fixed",
-          right:         "1.5rem",
-          bottom:        "2rem",
-          display:       "flex",
+          position: "fixed",
+          right: "1.5rem",
+          bottom: "2rem",
+          display: "flex",
           flexDirection: "column",
-          gap:           "0.75rem",
-          zIndex:        1000,
+          gap: "var(--space-3)",
+          zIndex: 1000,
         }}
       >
         {/* WhatsApp */}
@@ -82,11 +82,11 @@ export default function FloatingContact() {
           <div
             style={{
               ...btnBase,
-              background: "#25D366",
+              background: "var(--whatsapp)",
               boxShadow:
                 hovered === "whatsapp"
-                  ? "0 0 0 4px rgba(37,211,102,0.2), 0 8px 24px rgba(37,211,102,0.35)"
-                  : "0 4px 16px rgba(0,0,0,0.4)",
+                  ? "0 0 0 4px rgba(var(--whatsapp-rgb), 0.2), 0 8px 24px rgba(var(--whatsapp-rgb), 0.35)"
+                  : "0 4px 16px rgba(var(--overlay-rgb), 0.4)",
               transform: hovered === "whatsapp" ? "scale(1.1)" : "scale(1)",
             }}
           >
@@ -96,8 +96,8 @@ export default function FloatingContact() {
           <span
             style={{
               ...labelBase,
-              opacity:    hovered === "whatsapp" ? 1 : 0,
-              transition: "opacity 0.15s ease",
+              opacity: hovered === "whatsapp" ? 1 : 0,
+              transition: "opacity var(--duration-fast) var(--ease-default)",
             }}
           >
             WhatsApp
@@ -116,12 +116,12 @@ export default function FloatingContact() {
             style={{
               ...btnBase,
               background: "rgba(20,28,55,0.95)",
-              border:     "1px solid rgba(0,229,255,0.35)",
-              color:      "#00E5FF",
+              border: "1px solid rgba(var(--primary-rgb), 0.35)",
+              color: "var(--primary)",
               boxShadow:
                 hovered === "email"
-                  ? "0 0 0 4px rgba(0,229,255,0.1), 0 8px 24px rgba(0,229,255,0.2)"
-                  : "0 4px 16px rgba(0,0,0,0.4)",
+                  ? "0 0 0 4px rgba(var(--primary-rgb), 0.1), 0 8px 24px rgba(var(--primary-rgb), 0.2)"
+                  : "0 4px 16px rgba(var(--overlay-rgb), 0.4)",
               transform: hovered === "email" ? "scale(1.1)" : "scale(1)",
             }}
           >
@@ -131,8 +131,8 @@ export default function FloatingContact() {
           <span
             style={{
               ...labelBase,
-              opacity:    hovered === "email" ? 1 : 0,
-              transition: "opacity 0.15s ease",
+              opacity: hovered === "email" ? 1 : 0,
+              transition: "opacity var(--duration-fast) var(--ease-default)",
             }}
           >
             Email Us
@@ -143,9 +143,9 @@ export default function FloatingContact() {
       {/* Pulse ring on WhatsApp to draw subtle attention */}
       <style>{`
         @keyframes float-pulse {
-          0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.35); }
-          70%  { box-shadow: 0 0 0 10px rgba(37,211,102,0); }
-          100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+          0%   { box-shadow: 0 0 0 0 rgba(var(--whatsapp-rgb), 0.35); }
+          70%  { box-shadow: 0 0 0 10px rgba(var(--whatsapp-rgb), 0); }
+          100% { box-shadow: 0 0 0 0 rgba(var(--whatsapp-rgb), 0); }
         }
       `}</style>
     </>

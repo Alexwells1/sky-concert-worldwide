@@ -8,7 +8,7 @@ export default function Partnership() {
     <section
       style={{
         background: "transparent",
-        padding: "5rem 0",
+        padding: "var(--space-20) 0",
         overflow: "hidden",
       }}
     >
@@ -16,18 +16,18 @@ export default function Partnership() {
       <div
         style={{
           textAlign: "center",
-          marginBottom: "3rem",
-          padding: "0 1.5rem",
+          marginBottom: "var(--space-12)",
+          padding: "0 var(--space-6)",
         }}
       >
         <p
           style={{
             fontFamily: '"Space Mono", monospace',
-            fontSize: "0.6rem",
-            color: "#00E5FF",
-            letterSpacing: "0.25em",
+            fontSize: "var(--text-label)",
+            color: "var(--primary)",
+            letterSpacing: "var(--tracking-wide)",
             textTransform: "uppercase",
-            marginBottom: "0.75rem",
+            marginBottom: "var(--space-3)",
           }}
         >
           {ABOUT_PARTNERS_META.sectionLabel}
@@ -36,7 +36,7 @@ export default function Partnership() {
           style={{
             fontFamily: '"Bebas Neue", cursive',
             fontSize: "clamp(2rem, 4vw, 3rem)",
-            color: "white",
+            color: "var(--foreground)",
             letterSpacing: "0.05em",
             margin: 0,
           }}
@@ -61,7 +61,7 @@ export default function Partnership() {
             top: 0,
             bottom: 0,
             width: "120px",
-            background: "linear-gradient(to right, #060A14, transparent)",
+            background: "linear-gradient(to right, var(--color-surface-3), transparent)",
             zIndex: 2,
             pointerEvents: "none",
           }}
@@ -73,7 +73,7 @@ export default function Partnership() {
             top: 0,
             bottom: 0,
             width: "120px",
-            background: "linear-gradient(to left, #060A14, transparent)",
+            background: "linear-gradient(to left, var(--color-surface-3), transparent)",
             zIndex: 2,
             pointerEvents: "none",
           }}
@@ -96,10 +96,10 @@ export default function Partnership() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "1.25rem 3rem",
-                borderRight: "1px solid rgba(255,255,255,0.06)",
+                padding: "var(--space-5) var(--space-12)",
+                borderRight: "1px solid rgba(var(--foreground-rgb), 0.06)",
                 flexShrink: 0,
-                transition: "opacity 0.3s ease",
+                transition: "opacity var(--duration-normal-alt) var(--ease-default)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.opacity = "1";
@@ -118,7 +118,7 @@ export default function Partnership() {
                     objectFit: "contain",
                     filter: "brightness(0) invert(1)",
                     opacity: 0.6,
-                    transition: "opacity 0.3s ease",
+                    transition: "opacity var(--duration-normal-alt) var(--ease-default)",
                     display: "block",
                   }}
                 />
@@ -126,8 +126,8 @@ export default function Partnership() {
                 <span
                   style={{
                     fontFamily: '"Space Mono", monospace',
-                    fontSize: "0.75rem",
-                    color: "rgba(255,255,255,0.4)",
+                    fontSize: "var(--text-sm)",
+                    color: "rgba(var(--foreground-rgb), 0.4)",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
                     whiteSpace: "nowrap",

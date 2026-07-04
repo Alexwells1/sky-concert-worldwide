@@ -7,10 +7,14 @@ interface ProjectCardProps {
 }
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
-  government: "linear-gradient(135deg, #0A1535 0%, #1a2a4a 50%, #0A0F1E 100%)",
-  corporate: "linear-gradient(135deg, #1a1020 0%, #2a1535 50%, #0A0F1E 100%)",
-  sports: "linear-gradient(135deg, #0a1520 0%, #102535 50%, #0A0F1E 100%)",
-  tourism: "linear-gradient(135deg, #0a1520 0%, #0a2520 50%, #0A0F1E 100%)",
+  government:
+    "linear-gradient(135deg, var(--color-surface-12) 0%, #1a2a4a 50%, var(--color-surface-2) 100%)",
+  corporate:
+    "linear-gradient(135deg, #1a1020 0%, #2a1535 50%, var(--color-surface-2) 100%)",
+  sports:
+    "linear-gradient(135deg, var(--color-surface-15) 0%, #102535 50%, var(--color-surface-2) 100%)",
+  tourism:
+    "linear-gradient(135deg, var(--color-surface-15) 0%, var(--color-surface-13) 50%, var(--color-surface-2) 100%)",
 };
 
 export default function ProjectCard({ item }: ProjectCardProps) {
@@ -36,7 +40,7 @@ export default function ProjectCard({ item }: ProjectCardProps) {
     };
   }, [modalOpen]);
 
-  // Play/pause preview on hover — no currentTime reset so frame stays visible on leave
+  // Play/pause preview on hover no currentTime reset so frame stays visible on leave
   useEffect(() => {
     const vid = previewRef.current;
     if (!vid) return;
@@ -44,7 +48,7 @@ export default function ProjectCard({ item }: ProjectCardProps) {
       vid.play().catch(() => {});
     } else {
       vid.pause();
-      // intentionally NOT resetting currentTime — keeps last frame visible instead of going black
+      // intentionally NOT resetting currentTime keeps last frame visible instead of going black
     }
   }, [isHovered]);
 
@@ -53,7 +57,7 @@ export default function ProjectCard({ item }: ProjectCardProps) {
       <div
         className="card-base"
         style={{
-          borderRadius: "2px",
+          borderRadius: "var(--radius-xs)",
           overflow: "hidden",
           position: "relative",
         }}
@@ -75,7 +79,7 @@ export default function ProjectCard({ item }: ProjectCardProps) {
             cursor: hasVideo ? "pointer" : "default",
           }}
         >
-          {/* Video — always mounted; first frame shows via preload="metadata", plays on hover */}
+          {/* Video always mounted; first frame shows via preload="metadata", plays on hover */}
           {hasVideo && (
             <video
               ref={previewRef}
@@ -92,20 +96,22 @@ export default function ProjectCard({ item }: ProjectCardProps) {
                 height: "100%",
                 objectFit: "cover",
                 opacity: previewReady ? 1 : 0,
-                transition: "opacity 0.4s ease",
+                transition:
+                  "opacity var(--duration-moderate-alt) var(--ease-default)",
               }}
             />
           )}
 
-          {/* Gradient overlay — fades out once video thumbnail is ready */}
+          {/* Gradient overlay fades out once video thumbnail is ready */}
           <div
             style={{
               position: "absolute",
               inset: 0,
               background:
-                "radial-gradient(ellipse at 50% 60%, rgba(0,229,255,0.08) 0%, transparent 70%)",
+                "radial-gradient(ellipse at 50% 60%, rgba(var(--primary-rgb), 0.08) 0%, transparent 70%)",
               opacity: previewReady ? 0 : 1,
-              transition: "opacity 0.4s ease",
+              transition:
+                "opacity var(--duration-moderate-alt) var(--ease-default)",
               pointerEvents: "none",
             }}
           />
@@ -115,9 +121,10 @@ export default function ProjectCard({ item }: ProjectCardProps) {
             style={{
               position: "absolute",
               inset: 0,
-              background: "rgba(0,0,0,0.35)",
+              background: "rgba(var(--overlay-rgb), 0.35)",
               opacity: isHovered && previewReady ? 1 : 0,
-              transition: "opacity 0.3s ease",
+              transition:
+                "opacity var(--duration-normal-alt) var(--ease-default)",
               pointerEvents: "none",
             }}
           />
@@ -131,36 +138,36 @@ export default function ProjectCard({ item }: ProjectCardProps) {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: "0.75rem",
+                gap: "var(--space-3)",
               }}
             >
               <div
                 style={{
                   width: "64px",
                   height: "64px",
-                  borderRadius: "50%",
-                  background: "rgba(0,229,255,0.15)",
-                  border: "2px solid rgba(0,229,255,0.6)",
+                  borderRadius: "var(--radius-full)",
+                  background: "rgba(var(--primary-rgb), 0.15)",
+                  border: "2px solid rgba(var(--primary-rgb), 0.6)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "0 0 32px rgba(0,229,255,0.3)",
+                  boxShadow: "var(--shadow-sm)",
                   transition: "background 0.2s, box-shadow 0.2s",
                 }}
               >
                 <Play
                   size={22}
-                  fill="#00E5FF"
-                  color="#00E5FF"
+                  fill="var(--primary)"
+                  color="var(--primary)"
                   style={{ marginLeft: "3px" }}
                 />
               </div>
               <span
                 style={{
                   fontFamily: '"Bebas Neue", cursive',
-                  fontSize: "0.75rem",
+                  fontSize: "var(--text-sm)",
                   letterSpacing: "0.2em",
-                  color: "#00E5FF",
+                  color: "var(--primary)",
                 }}
               >
                 WATCH VIDEO
@@ -170,11 +177,11 @@ export default function ProjectCard({ item }: ProjectCardProps) {
             <div
               style={{
                 fontFamily: '"Bebas Neue", cursive',
-                fontSize: "1rem",
-                color: "rgba(0,229,255,0.3)",
+                fontSize: "var(--text-base)",
+                color: "rgba(var(--primary-rgb), 0.3)",
                 letterSpacing: "0.3em",
                 textAlign: "center",
-                padding: "0 1rem",
+                padding: "0 var(--space-4)",
               }}
             >
               SKY CONCERT WORLDWIDE
@@ -187,13 +194,13 @@ export default function ProjectCard({ item }: ProjectCardProps) {
                 position: "absolute",
                 top: "1rem",
                 left: "1rem",
-                background: "rgba(201, 168, 76, 0.15)",
-                border: "1px solid rgba(201, 168, 76, 0.4)",
-                color: "#C9A84C",
+                background: "rgba(var(--secondary-rgb), 0.15)",
+                border: "1px solid rgba(var(--secondary-rgb), 0.4)",
+                color: "var(--secondary)",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.55rem",
+                fontSize: "var(--text-2xs)",
                 letterSpacing: "0.2em",
-                padding: "0.3rem 0.6rem",
+                padding: "0.3rem var(--space-1-5)",
                 textTransform: "uppercase",
                 zIndex: 3,
               }}
@@ -207,13 +214,13 @@ export default function ProjectCard({ item }: ProjectCardProps) {
               position: "absolute",
               top: "1rem",
               right: "1rem",
-              background: "rgba(0,229,255,0.1)",
-              border: "1px solid rgba(0,229,255,0.25)",
-              color: "#00E5FF",
+              background: "rgba(var(--primary-rgb), 0.1)",
+              border: "1px solid rgba(var(--primary-rgb), 0.25)",
+              color: "var(--primary)",
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.55rem",
+              fontSize: "var(--text-2xs)",
               letterSpacing: "0.15em",
-              padding: "0.3rem 0.6rem",
+              padding: "0.3rem var(--space-1-5)",
               textTransform: "uppercase",
               zIndex: 3,
             }}
@@ -222,13 +229,13 @@ export default function ProjectCard({ item }: ProjectCardProps) {
           </div>
         </div>
 
-        <div style={{ padding: "1.5rem" }}>
+        <div style={{ padding: "var(--space-6)" }}>
           <h3
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: "1.125rem",
-              color: "white",
-              marginBottom: "0.4rem",
+              color: "var(--foreground)",
+              marginBottom: "var(--space-0-5)",
               lineHeight: 1.3,
             }}
           >
@@ -238,10 +245,10 @@ export default function ProjectCard({ item }: ProjectCardProps) {
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
-                color: "#C9A84C",
+                fontSize: "var(--text-xs)",
+                color: "var(--secondary)",
                 letterSpacing: "0.15em",
-                marginBottom: "0.75rem",
+                marginBottom: "var(--space-3)",
                 textTransform: "uppercase",
               }}
             >
@@ -252,17 +259,21 @@ export default function ProjectCard({ item }: ProjectCardProps) {
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
-                color: "#00E5FF",
+                fontSize: "var(--text-xs)",
+                color: "var(--primary)",
                 letterSpacing: "0.1em",
-                marginBottom: "0.75rem",
+                marginBottom: "var(--space-3)",
               }}
             >
               {item.stats}
             </p>
           )}
           <p
-            style={{ color: "#AAAAAA", fontSize: "0.85rem", lineHeight: 1.65 }}
+            style={{
+              color: "var(--muted-foreground)",
+              fontSize: "var(--text-sm-alt)",
+              lineHeight: 1.65,
+            }}
           >
             {item.description}
           </p>
@@ -277,12 +288,12 @@ export default function ProjectCard({ item }: ProjectCardProps) {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 9999,
+            zIndex: "var(--z-modal)",
             background: "rgba(2,5,8,0.92)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "1.5rem",
+            padding: "var(--space-6)",
             backdropFilter: "blur(6px)",
           }}
         >
@@ -291,10 +302,10 @@ export default function ProjectCard({ item }: ProjectCardProps) {
               position: "relative",
               width: "100%",
               maxWidth: "900px",
-              background: "#0A0F1E",
-              border: "1px solid rgba(0,229,255,0.2)",
-              boxShadow: "0 0 80px rgba(0,229,255,0.12)",
-              borderRadius: "2px",
+              background: "var(--color-surface-2)",
+              border: "1px solid rgba(var(--primary-rgb), 0.2)",
+              boxShadow: "var(--shadow-lg)",
+              borderRadius: "var(--radius-xs)",
             }}
           >
             <button
@@ -304,15 +315,15 @@ export default function ProjectCard({ item }: ProjectCardProps) {
                 top: "-3rem",
                 right: 0,
                 background: "transparent",
-                border: "1px solid rgba(255,255,255,0.2)",
-                color: "white",
+                border: "1px solid rgba(var(--foreground-rgb), 0.2)",
+                color: "var(--foreground)",
                 cursor: "pointer",
-                padding: "0.4rem",
+                padding: "var(--space-0-5)",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.4rem",
+                gap: "var(--space-0-5)",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.15em",
               }}
             >
@@ -321,16 +332,16 @@ export default function ProjectCard({ item }: ProjectCardProps) {
 
             <div
               style={{
-                padding: "1rem 1.25rem 0.75rem",
-                borderBottom: "1px solid rgba(255,255,255,0.06)",
+                padding: "var(--space-4) var(--space-5) var(--space-3)",
+                borderBottom: "1px solid rgba(var(--foreground-rgb), 0.06)",
               }}
             >
               <p
                 style={{
                   fontFamily: '"Bebas Neue", cursive',
-                  fontSize: "1.1rem",
+                  fontSize: "var(--text-md)",
                   letterSpacing: "0.08em",
-                  color: "white",
+                  color: "var(--foreground)",
                   margin: 0,
                 }}
               >
@@ -340,11 +351,11 @@ export default function ProjectCard({ item }: ProjectCardProps) {
                 <p
                   style={{
                     fontFamily: '"Space Mono", monospace',
-                    fontSize: "0.55rem",
-                    color: "#C9A84C",
+                    fontSize: "var(--text-2xs)",
+                    color: "var(--secondary)",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    margin: "0.25rem 0 0",
+                    margin: "var(--space-1) 0 0",
                   }}
                 >
                   {item.subtitle}
@@ -363,7 +374,7 @@ export default function ProjectCard({ item }: ProjectCardProps) {
                   width: "100%",
                   height: "100%",
                   display: "block",
-                  background: "#000",
+                  background: "var(--overlay)",
                 }}
               />
             </div>
@@ -373,8 +384,8 @@ export default function ProjectCard({ item }: ProjectCardProps) {
 
       <style>{`
         .play-btn-group:hover > div:first-child {
-          background: rgba(0,229,255,0.25) !important;
-          box-shadow: 0 0 48px rgba(0,229,255,0.5) !important;
+          background: rgba(var(--primary-rgb), 0.25) !important;
+          box-shadow: 0 0 48px rgba(var(--primary-rgb), 0.5) !important;
         }
       `}</style>
     </>

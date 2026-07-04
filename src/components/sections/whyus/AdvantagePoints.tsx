@@ -9,7 +9,13 @@ const IMAGES = [
   "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80",
 ];
 
-const ACCENTS = ["#00E5FF", "#4ade80", "#00E5FF", "#C9A84C", "#00E5FF"];
+const ACCENTS = [
+  "var(--primary)",
+  "var(--success)",
+  "var(--primary)",
+  "var(--secondary)",
+  "var(--primary)",
+];
 
 function AdvantageBlock({
   item,
@@ -20,7 +26,7 @@ function AdvantageBlock({
 }) {
   const { ref, inView } = useInView();
   const isEven = index % 2 === 0;
-  const accent = ACCENTS[index] ?? "#00E5FF";
+  const accent = ACCENTS[index] ?? "var(--primary)";
   const imgUrl = IMAGES[index];
 
   return (
@@ -42,7 +48,7 @@ function AdvantageBlock({
         }
       `}</style>
 
-      {/* Desktop layout — unchanged */}
+      {/* Desktop layout unchanged */}
       <div
         ref={ref}
         className="advantage-desktop"
@@ -51,7 +57,8 @@ function AdvantageBlock({
           minHeight: "70vh",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(40px)",
-          transition: "opacity 0.9s ease, transform 0.9s ease",
+          transition:
+            "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
         }}
       >
         {isEven && (
@@ -69,7 +76,7 @@ function AdvantageBlock({
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to right, transparent 55%, #040D20 100%)",
+                  "linear-gradient(to right, transparent 55%, var(--color-surface-7) 100%)",
               }}
             />
             <div
@@ -79,7 +86,7 @@ function AdvantageBlock({
                 left: "2rem",
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "8rem",
-                color: "rgba(255,255,255,0.04)",
+                color: "rgba(var(--foreground-rgb), 0.4)",
                 lineHeight: 1,
                 userSelect: "none",
               }}
@@ -91,7 +98,7 @@ function AdvantageBlock({
 
         <div
           style={{
-            background: "#040D20",
+            background: "var(--color-surface-7)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -105,38 +112,38 @@ function AdvantageBlock({
               width: "50px",
               height: "2px",
               background: `linear-gradient(to right, ${accent}, transparent)`,
-              marginBottom: "2rem",
+              marginBottom: "var(--space-8)",
             }}
           />
           <span
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.55rem",
-              letterSpacing: "0.25em",
+              fontSize: "var(--text-3xs)",
+              letterSpacing: "var(--tracking-wide)",
               color: accent,
               textTransform: "uppercase",
               display: "block",
-              marginBottom: "1.25rem",
+              marginBottom: "var(--space-5)",
             }}
           >
-            {item.number} — Advantage
+            {item.number} Advantage
           </span>
           <h3
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(2rem, 4vw, 4rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.9,
-              letterSpacing: "0.02em",
-              marginBottom: "1.75rem",
+              letterSpacing: "var(--tracking-normal)",
+              marginBottom: "var(--space-7)",
             }}
           >
             {item.title}
           </h3>
           <p
             style={{
-              color: "rgba(180,180,180,0.85)",
-              fontSize: "0.95rem",
+              color: "rgba(var(--color-gray-180-rgb), 0.85)",
+              fontSize: "var(--text-body-lg)",
               lineHeight: 1.9,
               marginBottom: item.bullets.length > 0 ? "2rem" : "1.75rem",
               maxWidth: "480px",
@@ -149,8 +156,8 @@ function AdvantageBlock({
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.6rem",
-                marginBottom: "2rem",
+                gap: "var(--space-1-5)",
+                marginBottom: "var(--space-8)",
               }}
             >
               {item.bullets.map((b) => (
@@ -166,7 +173,7 @@ function AdvantageBlock({
                     style={{
                       width: "5px",
                       height: "5px",
-                      borderRadius: "50%",
+                      borderRadius: "var(--radius-full)",
                       background: accent,
                       flexShrink: 0,
                       marginTop: "7px",
@@ -191,7 +198,7 @@ function AdvantageBlock({
               style={{
                 fontFamily: '"Playfair Display", serif',
                 fontStyle: "italic",
-                fontSize: "1.05rem",
+                fontSize: "var(--text-md-alt)",
                 color: accent,
                 margin: 0,
                 lineHeight: 1.5,
@@ -218,7 +225,7 @@ function AdvantageBlock({
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to left, transparent 55%, #040D20 100%)",
+                  "linear-gradient(to left, transparent 55%, var(--color-surface-7) 100%)",
               }}
             />
             <div
@@ -228,7 +235,7 @@ function AdvantageBlock({
                 right: "2rem",
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "8rem",
-                color: "rgba(255,255,255,0.04)",
+                color: "rgba(var(--foreground-rgb), 0.4)",
                 lineHeight: 1,
                 userSelect: "none",
               }}
@@ -239,18 +246,19 @@ function AdvantageBlock({
         )}
       </div>
 
-      {/* Mobile card — compact, no image */}
+      {/* Mobile card compact, no image */}
       <div
         ref={ref}
         className="advantage-mobile-card"
         style={{
           flexDirection: "column",
-          background: "#040D20",
-          borderTop: `1px solid rgba(255,255,255,0.05)`,
-          padding: "2.5rem 1.5rem",
+          background: "var(--color-surface-7)",
+          borderTop: `1px solid rgba(var(--foreground-rgb), 0.4)`,
+          padding: "var(--space-10) var(--space-6)",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(30px)",
-          transition: "opacity 0.7s ease, transform 0.7s ease",
+          transition:
+            "opacity var(--duration-slower) var(--ease-default), transform var(--duration-slower) var(--ease-default)",
         }}
       >
         {/* Number + accent bar */}
@@ -258,14 +266,14 @@ function AdvantageBlock({
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "1rem",
-            marginBottom: "1.25rem",
+            gap: "var(--space-4)",
+            marginBottom: "var(--space-5)",
           }}
         >
           <span
             style={{
               fontFamily: '"Bebas Neue", cursive',
-              fontSize: "2.5rem",
+              fontSize: "var(--text-3xl)",
               color: accent,
               lineHeight: 1,
               opacity: 0.4,
@@ -285,11 +293,11 @@ function AdvantageBlock({
         <h3
           style={{
             fontFamily: '"Bebas Neue", cursive',
-            fontSize: "2rem",
-            color: "white",
+            fontSize: "var(--text-2xl)",
+            color: "var(--foreground)",
             lineHeight: 0.95,
-            letterSpacing: "0.02em",
-            marginBottom: "1rem",
+            letterSpacing: "var(--tracking-normal)",
+            marginBottom: "var(--space-4)",
           }}
         >
           {item.title}
@@ -298,7 +306,7 @@ function AdvantageBlock({
         <p
           style={{
             color: "rgba(175,175,175,0.85)",
-            fontSize: "0.9rem",
+            fontSize: "var(--text-md)",
             lineHeight: 1.75,
             marginBottom: item.bullets.length > 0 ? "1.25rem" : 0,
           }}
@@ -311,8 +319,8 @@ function AdvantageBlock({
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "0.5rem",
-              marginBottom: "1.25rem",
+              gap: "var(--space-2)",
+              marginBottom: "var(--space-5)",
             }}
           >
             {item.bullets.map((b) => (
@@ -328,7 +336,7 @@ function AdvantageBlock({
                   style={{
                     width: "4px",
                     height: "4px",
-                    borderRadius: "50%",
+                    borderRadius: "var(--radius-full)",
                     background: accent,
                     flexShrink: 0,
                     marginTop: "7px",
@@ -354,7 +362,7 @@ function AdvantageBlock({
             style={{
               fontFamily: '"Playfair Display", serif',
               fontStyle: "italic",
-              fontSize: "0.95rem",
+              fontSize: "var(--text-body-lg)",
               color: accent,
               margin: 0,
               lineHeight: 1.5,
@@ -370,11 +378,11 @@ function AdvantageBlock({
 
 export default function AdvantagePoints() {
   return (
-    <section style={{ background: "#060A14" }}>
+    <section style={{ background: "var(--color-surface-3)" }}>
       <div
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-          borderBottom: "1px solid rgba(255,255,255,0.05)",
+          borderTop: "1px solid rgba(var(--foreground-rgb), 0.07)",
+          borderBottom: "1px solid rgba(var(--foreground-rgb), 0.07)",
         }}
       />
       {ADVANTAGE_POINTS.map((item, i) => (

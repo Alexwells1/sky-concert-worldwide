@@ -1,23 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap");
 @import "tailwindcss";
 
+/* ============================================================
+   DESIGN TOKEN ARCHITECTURE
+   All visual primitives (color, type, spacing, radius, shadow,
+   motion, layout) are centralized in src/styles/*. This file
+   wires them into Tailwind's @theme (so `bg-brand-cyan` etc.
+   keep working, now sourced from the same tokens) and hosts the
+   small set of global utility classes that pre-date the token
+   system. See src/styles/MIGRATION_REPORT.md for the full audit.
+   ============================================================ */
+@import "./styles/tokens.css";
+@import "./styles/typography.css";
+@import "./styles/spacing.css";
+@import "./styles/radius.css";
+@import "./styles/shadows.css";
+@import "./styles/animations.css";
+@import "./styles/layout.css";
+
 @theme {
-  --color-brand-cyan: #00e5ff;
-  --color-brand-gold: #c9a84c;
-  --color-brand-dark: #0a0f1e;
-  --color-brand-darker: #060a14;
-  --color-brand-card: #0d1426;
-  --color-brand-card2: #111827;
-  --color-brand-navy: #040810;
+  /* Tailwind utility colors now source from the semantic tokens
+     above, so `bg-brand-cyan`, `text-brand-gold`, etc. and any
+     component reading `var(--primary)` / `var(--secondary)` always
+     agree. */
+  --color-brand-cyan: var(--primary);
+  --color-brand-gold: var(--secondary);
+  --color-brand-dark: var(--color-surface-2);
+  --color-brand-darker: var(--color-surface-3);
+  --color-brand-card: var(--color-surface-4);
+  --color-brand-card2: var(--color-surface-5);
+  --color-brand-navy: var(--color-surface-6);
 
-  --font-family-display: "Bebas Neue", cursive;
-  --font-family-heading: "Playfair Display", serif;
-  --font-family-body: "DM Sans", sans-serif;
-  --font-family-mono: "Space Mono", monospace;
+  --font-family-display: var(--font-family-display);
+  --font-family-heading: var(--font-family-heading);
+  --font-family-body: var(--font-family-sans);
+  --font-family-mono: var(--font-family-mono);
 
-  --animate-fade-up: fadeUp 0.7s ease forwards;
-  --animate-fade-in: fadeIn 0.6s ease forwards;
-  --animate-glow-pulse: glowPulse 3s ease-in-out infinite;
+  --animate-fade-up: var(--animate-fade-up);
+  --animate-fade-in: var(--animate-fade-in);
+  --animate-glow-pulse: var(--animate-glow-pulse);
 }
 
 @keyframes fadeUp {
@@ -41,10 +62,10 @@
 @keyframes glowPulse {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.15);
   }
   50% {
-    box-shadow: 0 0 40px rgba(0, 229, 255, 0.35);
+    box-shadow: 0 0 40px rgba(var(--primary-rgb), 0.35);
   }
 }
 
@@ -52,8 +73,8 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  background: #01020a;
-  color: white;
+  background: var(--background);
+  color: var(--foreground);
   -webkit-font-smoothing: antialiased;
 }
 * {
@@ -61,77 +82,82 @@ body {
 }
 
 .text-cyan-glow {
-  text-shadow: 0 0 60px rgba(0, 229, 255, 0.3);
+  text-shadow: var(--shadow-text-glow);
 }
 
 .card-base {
-  background: rgba(8, 15, 35, 0.55);
-  border: 1px solid rgba(0, 229, 255, 0.08);
+  background: rgba(var(--color-surface-17-rgb), 0.55);
+  border: var(--border-width-thin) solid rgba(var(--primary-rgb), 0.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  transition: transform var(--duration-normal-alt) var(--ease-default),
+    box-shadow var(--duration-normal-alt) var(--ease-default),
+    border-color var(--duration-normal-alt) var(--ease-default),
+    background var(--duration-normal-alt) var(--ease-default);
 }
 .card-base:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 229, 255, 0.08);
-  border-color: rgba(0, 229, 255, 0.28);
-  background: rgba(8, 15, 35, 0.68);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(var(--primary-rgb), 0.28);
+  background: rgba(var(--color-surface-17-rgb), 0.68);
 }
 
 .btn-primary {
-  background: #00e5ff;
-  color: #060a14;
-  font-weight: 700;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: var(--font-bold);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.7rem;
-  padding: 1rem 2rem;
+  letter-spacing: var(--tracking-wide);
+  font-size: var(--text-button);
+  padding: var(--space-4) var(--space-8);
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: background 0.2s, box-shadow 0.2s;
+  gap: var(--space-2);
+  transition: background var(--duration-fast-alt) var(--ease-default),
+    box-shadow var(--duration-fast-alt) var(--ease-default);
   cursor: pointer;
   border: none;
   text-decoration: none;
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-family-mono);
 }
 .btn-primary:hover {
-  background: #33eaff;
-  box-shadow: 0 8px 30px rgba(0, 229, 255, 0.3);
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  font-weight: 400;
+  border: var(--border-width-thin) solid rgba(var(--foreground-rgb), 0.3);
+  color: var(--foreground);
+  font-weight: var(--font-normal);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.7rem;
-  padding: 1rem 2rem;
+  letter-spacing: var(--tracking-wide);
+  font-size: var(--text-button);
+  padding: var(--space-4) var(--space-8);
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  transition: border-color 0.2s, background 0.2s;
+  gap: var(--space-2);
+  transition: border-color var(--duration-fast-alt) var(--ease-default),
+    background var(--duration-fast-alt) var(--ease-default);
   cursor: pointer;
   background: transparent;
   text-decoration: none;
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-family-mono);
 }
 .btn-secondary:hover {
-  border-color: white;
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--foreground);
+  background: rgba(var(--foreground-rgb), 0.05);
 }
 
 .btn-ghost {
-  color: #00e5ff;
+  color: var(--primary);
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  font-size: 0.7rem;
+  letter-spacing: var(--tracking-wide);
+  font-size: var(--text-button);
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+  gap: var(--space-2);
+  border-bottom: var(--border-width-thin) solid transparent;
+  transition: border-color var(--duration-fast-alt) var(--ease-default);
   cursor: pointer;
   background: transparent;
   border-top: none;
@@ -139,21 +165,21 @@ body {
   border-right: none;
   text-decoration: none;
   padding-bottom: 2px;
-  font-family: "Space Mono", monospace;
+  font-family: var(--font-family-mono);
 }
 .btn-ghost:hover {
-  border-bottom-color: #00e5ff;
+  border-bottom-color: var(--primary);
 }
 
-/* star field canvas is mounted in Layout — no static global-bg needed */
+/* star field canvas is mounted in Layout no static global-bg needed */
 
-/* Glass surface utility — use instead of opaque section backgrounds */
+/* Glass surface utility use instead of opaque section backgrounds */
 .glass-section {
-  background: rgba(4, 8, 20, 0.3);
-  backdrop-filter: blur(0px); /* intentionally 0 — let stars show */
+  background: rgba(var(--color-surface-11-rgb), 0.3);
+  backdrop-filter: blur(0px); /* intentionally 0 let stars show */
 }
 
 /* Subtle section rhythm divider using gradient rather than solid color */
 .section-divider {
-  border-top: 1px solid rgba(0, 229, 255, 0.05);
+  border-top: var(--border-width-thin) solid rgba(var(--primary-rgb), 0.05);
 }

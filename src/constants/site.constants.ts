@@ -22,7 +22,7 @@ export const NAV_LINKS: NavLink[] = [
 ];
 
 export const NAV_CTA: NavLink = {
-  label: "Start Your Campaign",
+  label: "BOOK A SHOW",
   href: "/contact",
 };
 
@@ -61,9 +61,9 @@ export const TRUST_LINE =
 
 export const DESIGN_TOKENS = {
   colors: {
-    cyan: "#00E5FF",
-    gold: "#C9A84C",
-    dark: "#0A0F1E",
-    darker: "#060A14",
+    cyan: "var(--primary)",
+    gold: "var(--secondary)",
+    dark: "var(--color-surface-2)",
+    darker: "var(--color-surface-3)",
   },
 } as const;

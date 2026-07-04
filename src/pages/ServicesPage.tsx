@@ -3,7 +3,6 @@ import { SITE_NAME } from "../constants";
 import CoreServices from "../components/sections/services/CoreServices";
 import ServiceProcess from "../components/sections/services/ServiceProcess";
 import TechAdvantage from "../components/sections/services/TechAdvantage";
-import SustainableDesign from "../components/sections/services/SustainableDesign";
 import FAQSection from "../components/sections/faq/FAQSection";
 import ExperiencePhilosophy from "../components/sections/services/ExperiencePhilosophy";
 import ServicesCTA from "../components/sections/services/ServicesCTA";
@@ -21,7 +20,6 @@ export default function ServicesPage() {
       <ServiceProcess />
       <TechAdvantage />
       <ExperiencePhilosophy />
-      <SustainableDesign />
       <FAQSection />
       <ServicesCTA />
     </>

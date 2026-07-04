@@ -59,7 +59,11 @@ export default function StatsStrip() {
     posRef.current = next;
     track.style.transform = `translateX(-${posRef.current}px)`;
   };
-  const onTouchEnd = () => { setTimeout(() => { pausedRef.current = false; }, 1200); };
+  const onTouchEnd = () => {
+    setTimeout(() => {
+      pausedRef.current = false;
+    }, 1200);
+  };
 
   const doubled = [...HOME_STATS, ...HOME_STATS];
 
@@ -68,9 +72,9 @@ export default function StatsStrip() {
       <style>{`
         .stats-section {
           position: relative;
-          border-top: 1px solid rgba(255,255,255,0.05);
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-          background: rgba(255,255,255,0.012);
+          border-top: 1px solid rgba(var(--foreground-rgb), 0.4);
+          border-bottom: 1px solid rgba(var(--foreground-rgb), 0.07);
+          background: rgba(var(--foreground-rgb), 0.012);
           overflow: hidden;
         }
         /* Large: static grid */
@@ -85,7 +89,7 @@ export default function StatsStrip() {
           }
           .stats-track-doubled .stat-item:nth-child(n+5) { display: none; }
           .stat-item {
-            border-right: 1px solid rgba(255,255,255,0.06);
+            border-right: 1px solid rgba(var(--foreground-rgb), 0.06);
             padding: 3.5rem 2.5rem !important;
           }
           .stat-item:last-child { border-right: none; }
@@ -116,7 +120,7 @@ export default function StatsStrip() {
           font-weight: 200;
           font-size: clamp(2rem, 4vw, 3.25rem);
           letter-spacing: -0.04em;
-          color: rgba(255,255,255,0.9);
+          color: rgba(var(--foreground-rgb), 0.9);
           line-height: 1;
         }
         .stat-label {
@@ -124,7 +128,7 @@ export default function StatsStrip() {
           font-size: 0.52rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.3);
+          color: rgba(var(--foreground-rgb), 0.7);
           line-height: 1.5;
         }
       `}</style>
@@ -133,14 +137,18 @@ export default function StatsStrip() {
         <div
           ref={ref}
           className="stats-scroll-outer"
-          onMouseEnter={() => { pausedRef.current = true; }}
-          onMouseLeave={() => { pausedRef.current = false; }}
+          onMouseEnter={() => {
+            pausedRef.current = true;
+          }}
+          onMouseLeave={() => {
+            pausedRef.current = false;
+          }}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
           style={{
             opacity: inView ? 1 : 0,
-            transition: "opacity 0.8s ease",
+            transition: "opacity var(--duration-slowest) var(--ease-default)",
           }}
         >
           <div className="stats-track stats-track-doubled" ref={trackRef}>

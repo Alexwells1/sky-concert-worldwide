@@ -10,7 +10,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         return (
@@ -18,10 +18,10 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
             key={i}
             className="card-base"
             style={{
-              borderRadius: '2px',
-              borderColor: isOpen ? 'rgba(0,229,255,0.28)' : 'rgba(0,229,255,0.08)',
+              borderRadius: 'var(--radius-xs)',
+              borderColor: isOpen ? 'rgba(var(--primary-rgb), 0.28)' : 'rgba(var(--primary-rgb), 0.08)',
               overflow: 'hidden',
-              transition: 'border-color 0.3s ease',
+              transition: 'border-color var(--duration-normal-alt) var(--ease-default)',
             }}
           >
             <button
@@ -31,24 +31,24 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                 background: 'transparent',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '1.5rem 2rem',
+                padding: 'var(--space-6) var(--space-8)',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                gap: '1rem',
+                gap: 'var(--space-4)',
                 textAlign: 'left',
               }}
             >
               <span style={{
                 fontFamily: '"Playfair Display", serif',
-                fontSize: '1rem',
-                color: isOpen ? '#00E5FF' : 'white',
+                fontSize: 'var(--text-base)',
+                color: isOpen ? 'var(--primary)' : 'white',
                 lineHeight: 1.4,
-                transition: 'color 0.3s ease',
+                transition: 'color var(--duration-normal-alt) var(--ease-default)',
               }}>
                 {item.question}
               </span>
-              <span style={{ color: '#00E5FF', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+              <span style={{ color: 'var(--primary)', flexShrink: 0, display: 'flex', alignItems: 'center' }}>
                 {isOpen ? <Minus size={16} /> : <Plus size={16} />}
               </span>
             </button>
@@ -59,10 +59,10 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
               transition: 'max-height 0.4s ease',
             }}>
               <p style={{
-                color: '#AAAAAA',
-                fontSize: '0.9rem',
+                color: 'var(--muted-foreground)',
+                fontSize: 'var(--text-md)',
                 lineHeight: 1.85,
-                padding: '0 2rem 1.75rem',
+                padding: '0 var(--space-8) var(--space-7)',
               }}>
                 {item.answer}
               </p>

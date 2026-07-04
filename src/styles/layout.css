@@ -1,0 +1,41 @@
+/* ============================================================
+   Z-INDEX TOKENS
+   The codebase's zIndex: 0-3/10 values are LOCAL stacking order
+   between sibling elements inside a single component (e.g. a
+   background layer under a foreground layer) they are not part
+   of a global overlay system, so they are intentionally left as
+   local literals rather than mapped onto this global scale
+   (doing so would misrepresent their purpose). The one global,
+   cross-component case the fullscreen lightbox in
+   FeaturedProjects.tsx / ProjectsShowcase.tsx is centralized
+   below as --z-modal.
+   ============================================================ */
+
+:root {
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-modal: 9999; /* was 9999 in FeaturedProjects.tsx / ProjectsShowcase.tsx lightbox */
+  --z-popover: 40;
+  --z-tooltip: 50;
+
+  /* ---- Border widths ---- */
+  --border-width-thin: 1px;
+  --border-width-normal: 2px;
+  --border-width-thick: 3px;
+
+  /* ---- Container / layout widths ----
+     --container-2xl matches the shared 80rem (1280px) max-width used
+     as the primary page content wrapper across every section (24
+     occurrences). The remaining component max-widths (620px, 700px,
+     820px, 860px, 900px, 960px ...) are bespoke per-section reading
+     measures, not a shared breakpoint system left as local literals.
+     See MIGRATION_REPORT.md. */
+  --container-xs: 480px;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 80rem; /* was 80rem (24 occurrences) main content wrapper */
+}

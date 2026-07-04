@@ -1,8 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useInView } from "../../../hooks/useInView";
 
-const VIDEO_URL =
-  "https://v1.pinimg.com/videos/iht/expMp4/e4/9f/9b/e49f9bf2f37f31e02368b7d45191839b_360w.mp4";
+const VIDEO_URL = "PLACEHOLDER_VIDEOBREAK_URL";
 
 interface VideoBreakProps {
   src?: string;
@@ -16,25 +15,17 @@ export default function VideoBreak({
   src = VIDEO_URL,
   isPortrait = false,
   videoPosition = "center",
-  eyebrow = "500 Drones · One Sky",
-  headline = (
-    <>
-      The Sky Is
-      <br />
-      Our Canvas.
-    </>
-  ),
 }: VideoBreakProps) {
   const { ref, inView } = useInView();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hasStarted, setHasStarted] = useState(false);
+  const hasStartedRef = useRef(false);
 
   useEffect(() => {
-    if (inView && !hasStarted) {
-      setHasStarted(true);
+    if (inView && !hasStartedRef.current) {
+      hasStartedRef.current = true;
       videoRef.current?.play().catch(() => {});
     }
-  }, [inView, hasStarted]);
+  }, [inView]);
 
   return (
     <>
@@ -74,10 +65,10 @@ export default function VideoBreak({
           inset: 0;
           background: linear-gradient(
             to bottom,
-            rgba(4,6,14,0.6) 0%,
-            rgba(4,6,14,0.1) 30%,
-            rgba(4,6,14,0.1) 70%,
-            rgba(4,6,14,0.6) 100%
+            rgba(var(--color-surface-11-rgb), 0.6) 0%,
+            rgba(var(--color-surface-11-rgb), 0.1) 30%,
+            rgba(var(--color-surface-11-rgb), 0.1) 70%,
+            rgba(var(--color-surface-11-rgb), 0.6) 100%
           );
           z-index: 2;
         }
@@ -93,10 +84,10 @@ export default function VideoBreak({
         }
         .video-break-eyebrow {
           font-family: 'Space Mono', monospace;
-          font-size: 0.6rem;
-          letter-spacing: 0.3em;
+          font-size: 0.72rem;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.35);
+          color: var(--primary);
         }
         .video-break-headline {
           font-family: 'DM Sans', sans-serif;
@@ -104,7 +95,7 @@ export default function VideoBreak({
           font-size: clamp(2.5rem, 6vw, 5rem);
           line-height: 1.05;
           letter-spacing: -0.03em;
-          color: rgba(255,255,255,0.92);
+          color: rgba(var(--foreground-rgb), 0.92);
           text-align: center;
           margin: 0;
         }
@@ -123,18 +114,6 @@ export default function VideoBreak({
           preload="none"
           style={{ objectPosition: videoPosition }}
         />
-        <div className="video-break-overlay" />
-        <div
-          className="video-break-text"
-          style={{
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-            transition: "opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s",
-          }}
-        >
-          <span className="video-break-eyebrow">{eyebrow}</span>
-          <h2 className="video-break-headline">{headline}</h2>
-        </div>
       </div>
     </>
   );

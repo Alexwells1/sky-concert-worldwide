@@ -5,16 +5,16 @@ import { useInView } from '../../../hooks/useInView';
 export default function StatsBar() {
   const { ref, inView } = useInView();
   return (
-    <section style={{ background: 'transparent', padding: '4rem 1.5rem', borderTop: '1px solid rgba(0,229,255,0.06)', borderBottom: '1px solid rgba(0,229,255,0.06)' }}>
+    <section style={{ background: 'transparent', padding: 'var(--space-16) var(--space-6)', borderTop: '1px solid rgba(var(--primary-rgb), 0.06)', borderBottom: '1px solid rgba(var(--primary-rgb), 0.06)' }}>
       <div
         ref={ref}
         style={{
-          maxWidth: '80rem',
+          maxWidth: 'var(--container-2xl)',
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '2.5rem',
-          transition: 'opacity 0.7s ease, transform 0.7s ease',
+          gap: 'var(--space-10)',
+          transition: 'opacity var(--duration-slower) var(--ease-default), transform var(--duration-slower) var(--ease-default)',
           opacity: inView ? 1 : 0,
           transform: inView ? 'translateY(0)' : 'translateY(1.75rem)',
         }}

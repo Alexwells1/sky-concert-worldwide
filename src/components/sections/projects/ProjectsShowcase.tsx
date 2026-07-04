@@ -71,20 +71,20 @@ function ProjectStorySection({
             flexDirection: "column",
             justifyContent: "center",
             padding: isEven ? "4rem 3.5rem 4rem 5rem" : "4rem 5rem 4rem 3.5rem",
-            background: "rgba(6,10,20,0.6)",
-            borderTop: "1px solid rgba(255,255,255,0.04)",
-            borderBottom: "1px solid rgba(255,255,255,0.04)",
+            background: "rgba(var(--color-surface-3-rgb), 0.6)",
+            borderTop: "1px solid rgba(var(--foreground-rgb), 0.07)",
+            borderBottom: "1px solid rgba(var(--foreground-rgb), 0.07)",
           }}
         >
           {/* Index marker */}
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.55rem",
+              fontSize: "var(--text-2xs)",
               letterSpacing: "0.3em",
-              color: "rgba(0,229,255,0.4)",
+              color: "rgba(var(--primary-rgb), 0.4)",
               textTransform: "uppercase",
-              marginBottom: "1.5rem",
+              marginBottom: "var(--space-6)",
             }}
           >
             Project {String(index + 1).padStart(2, "0")}
@@ -94,11 +94,11 @@ function ProjectStorySection({
           <p
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.6rem",
+              fontSize: "var(--text-xs)",
               letterSpacing: "0.22em",
-              color: "#C9A84C",
+              color: "var(--secondary)",
               textTransform: "uppercase",
-              marginBottom: "1rem",
+              marginBottom: "var(--space-4)",
             }}
           >
             {project.subtitle}
@@ -109,9 +109,9 @@ function ProjectStorySection({
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: "clamp(1.75rem, 2.5vw, 2.5rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 1.15,
-              marginBottom: "1.5rem",
+              marginBottom: "var(--space-6)",
             }}
           >
             {project.title}
@@ -122,18 +122,18 @@ function ProjectStorySection({
             style={{
               width: "40px",
               height: "1px",
-              background: "rgba(0,229,255,0.35)",
-              marginBottom: "1.5rem",
+              background: "rgba(var(--primary-rgb), 0.35)",
+              marginBottom: "var(--space-6)",
             }}
           />
 
           {/* Description */}
           <p
             style={{
-              color: "rgba(255,255,255,0.55)",
-              fontSize: "0.95rem",
+              color: "rgba(var(--foreground-rgb), 0.55)",
+              fontSize: "var(--text-body-lg)",
               lineHeight: 1.9,
-              marginBottom: "2.5rem",
+              marginBottom: "var(--space-10)",
               maxWidth: "400px",
             }}
           >
@@ -145,15 +145,15 @@ function ProjectStorySection({
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.6rem",
-              marginBottom: "2.5rem",
+              gap: "var(--space-1-5)",
+              marginBottom: "var(--space-10)",
             }}
           >
             <span
               style={{
                 fontFamily: '"Bebas Neue", cursive',
                 fontSize: "1.4rem",
-                color: "white",
+                color: "var(--foreground)",
                 letterSpacing: "0.05em",
               }}
             >
@@ -163,15 +163,15 @@ function ProjectStorySection({
               style={{
                 width: "1px",
                 height: "18px",
-                background: "rgba(255,255,255,0.2)",
+                background: "rgba(var(--foreground-rgb), 0.2)",
               }}
             />
             <span
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.55rem",
+                fontSize: "var(--text-2xs)",
                 letterSpacing: "0.18em",
-                color: "rgba(255,255,255,0.35)",
+                color: "rgba(var(--foreground-rgb), 0.35)",
                 textTransform: "uppercase",
               }}
             >
@@ -187,28 +187,29 @@ function ProjectStorySection({
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "0.6rem",
+                gap: "var(--space-1-5)",
                 background: "transparent",
                 border: "none",
-                borderBottom: "1px solid rgba(0,229,255,0.4)",
-                color: "#00E5FF",
+                borderBottom: "1px solid rgba(var(--primary-rgb), 0.4)",
+                color: "var(--primary)",
                 cursor: "pointer",
-                padding: "0 0 0.5rem",
+                padding: "0 0 var(--space-2)",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
+                fontSize: "var(--text-xs)",
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 alignSelf: "flex-start",
-                transition: "color 0.2s, border-color 0.2s",
+                transition:
+                  "color var(--duration-fast-alt), border-color var(--duration-fast-alt)",
               }}
             >
-              <Play size={12} fill="#00E5FF" color="#00E5FF" />
+              <Play size={12} fill="var(--primary)" color="var(--primary)" />
               Watch Showreel
             </button>
           )}
         </div>
 
-        {/* Visual panel (odd rows — image on right) */}
+        {/* Visual panel (odd rows image on right) */}
         {!isEven && (
           <div
             style={{
@@ -274,7 +275,7 @@ function VideoPanel({
             height: "100%",
             objectFit: "cover",
             opacity: videoReady ? 1 : 0,
-            transition: "opacity 0.8s ease",
+            transition: "opacity var(--duration-slowest) var(--ease-default)",
           }}
         />
       )}
@@ -287,7 +288,7 @@ function VideoPanel({
           background:
             "linear-gradient(135deg, rgba(5,12,30,0.9), rgba(0,20,40,0.85))",
           opacity: videoReady ? 0 : 1,
-          transition: "opacity 0.8s ease",
+          transition: "opacity var(--duration-slowest) var(--ease-default)",
           pointerEvents: "none",
         }}
       />
@@ -299,8 +300,8 @@ function VideoPanel({
           inset: 0,
           background:
             fadeDirection === "right"
-              ? "linear-gradient(to right, transparent 55%, rgba(6,10,20,0.8) 100%)"
-              : "linear-gradient(to left, transparent 55%, rgba(6,10,20,0.8) 100%)",
+              ? "linear-gradient(to right, transparent 55%, rgba(var(--color-surface-3-rgb), 0.8) 100%)"
+              : "linear-gradient(to left, transparent 55%, rgba(var(--color-surface-3-rgb), 0.8) 100%)",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -312,7 +313,7 @@ function VideoPanel({
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, transparent 60%, rgba(6,10,20,0.55) 100%)",
+            "linear-gradient(to bottom, transparent 60%, rgba(var(--color-surface-3-rgb), 0.55) 100%)",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -329,9 +330,9 @@ function TagBadge({ tag }: { tag: string }) {
         position: "absolute",
         bottom: "1.5rem",
         right: "1.5rem",
-        background: "rgba(0,0,0,0.55)",
-        border: "1px solid rgba(0,229,255,0.2)",
-        color: "#00E5FF",
+        background: "rgba(var(--overlay-rgb), 0.55)",
+        border: "1px solid rgba(var(--primary-rgb), 0.2)",
+        color: "var(--primary)",
         fontFamily: '"Space Mono", monospace',
         fontSize: "0.5rem",
         letterSpacing: "0.18em",
@@ -377,12 +378,12 @@ function VideoModal({
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 9999,
+        zIndex: "var(--z-modal)",
         background: "rgba(2,5,8,0.94)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "1.5rem",
+        padding: "var(--space-6)",
         backdropFilter: "blur(8px)",
       }}
     >
@@ -391,9 +392,9 @@ function VideoModal({
           position: "relative",
           width: "100%",
           maxWidth: "960px",
-          background: "rgba(8,15,35,0.95)",
-          border: "1px solid rgba(0,229,255,0.12)",
-          boxShadow: "0 0 100px rgba(0,229,255,0.06)",
+          background: "rgba(var(--color-surface-17-rgb), 0.95)",
+          border: "1px solid rgba(var(--primary-rgb), 0.12)",
+          boxShadow: "var(--shadow-xl)",
         }}
       >
         <button
@@ -403,15 +404,15 @@ function VideoModal({
             top: "-3.25rem",
             right: 0,
             background: "transparent",
-            border: "1px solid rgba(255,255,255,0.15)",
-            color: "white",
+            border: "1px solid rgba(var(--foreground-rgb), 0.15)",
+            color: "var(--foreground)",
             cursor: "pointer",
-            padding: "0.4rem 0.75rem",
+            padding: "var(--space-0-5) var(--space-3)",
             display: "flex",
             alignItems: "center",
-            gap: "0.4rem",
+            gap: "var(--space-0-5)",
             fontFamily: '"Space Mono", monospace',
-            fontSize: "0.55rem",
+            fontSize: "var(--text-2xs)",
             letterSpacing: "0.18em",
           }}
         >
@@ -419,16 +420,16 @@ function VideoModal({
         </button>
         <div
           style={{
-            padding: "1.25rem 1.5rem 0.75rem",
-            borderBottom: "1px solid rgba(255,255,255,0.05)",
+            padding: "var(--space-5) var(--space-6) var(--space-3)",
+            borderBottom: "1px solid rgba(var(--foreground-rgb), 0.07)",
           }}
         >
           <p
             style={{
               fontFamily: '"Bebas Neue", cursive',
-              fontSize: "1.1rem",
+              fontSize: "var(--text-md)",
               letterSpacing: "0.08em",
-              color: "white",
+              color: "var(--foreground)",
               margin: 0,
             }}
           >
@@ -438,11 +439,11 @@ function VideoModal({
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.55rem",
-                color: "#C9A84C",
+                fontSize: "var(--text-2xs)",
+                color: "var(--secondary)",
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                margin: "0.25rem 0 0",
+                margin: "var(--space-1) 0 0",
               }}
             >
               {subtitle}
@@ -460,7 +461,7 @@ function VideoModal({
               width: "100%",
               height: "100%",
               display: "block",
-              background: "#000",
+              background: "var(--overlay)",
             }}
           />
         </div>
@@ -476,18 +477,19 @@ function QuoteBreak({ quote }: { quote: string }) {
     <div
       ref={ref}
       style={{
-        padding: "5rem 1.5rem",
+        padding: "var(--space-4) var(--space-6)",
         textAlign: "center",
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(1.5rem)",
-        transition: "opacity 0.9s ease, transform 0.9s ease",
+        transition:
+          "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
       }}
     >
       <p
         style={{
           fontFamily: '"Playfair Display", serif',
           fontSize: "clamp(1.25rem, 2.5vw, 2rem)",
-          color: "rgba(255,255,255,0.25)",
+          color: "rgba(var(--foreground-rgb), 0.7)",
           fontStyle: "italic",
           maxWidth: "700px",
           margin: "0 auto",
@@ -501,8 +503,8 @@ function QuoteBreak({ quote }: { quote: string }) {
         style={{
           width: "32px",
           height: "1px",
-          background: "rgba(0,229,255,0.3)",
-          margin: "2rem auto 0",
+          background: "rgba(var(--primary-rgb), 0.3)",
+          margin: "var(--space-8) auto 0",
         }}
       />
     </div>
@@ -519,18 +521,21 @@ export default function ProjectsShowcase() {
   ];
 
   return (
-    <section style={{ background: "transparent", padding: "6rem 0 0" }}>
+    <section
+      style={{ background: "transparent", padding: "var(--space-24) 0 0" }}
+    >
       {/* Section header */}
       <div
         ref={ref}
         style={{
-          maxWidth: "80rem",
+          maxWidth: "var(--container-2xl)",
           margin: "0 auto",
-          padding: "0 1.5rem",
-          marginBottom: "5rem",
+          padding: "0 var(--space-6)",
+          marginBottom: "var(--space-20)",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(1.75rem)",
-          transition: "opacity 0.7s ease, transform 0.7s ease",
+          transition:
+            "opacity var(--duration-slower) var(--ease-default), transform var(--duration-slower) var(--ease-default)",
         }}
       >
         <SectionLabel text={PROJECTS_SHOWCASE_META.sectionLabel} />
@@ -538,7 +543,7 @@ export default function ProjectsShowcase() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "2rem",
+            gap: "var(--space-8)",
             alignItems: "end",
           }}
           className="showcase-header-grid"
@@ -547,7 +552,7 @@ export default function ProjectsShowcase() {
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: "clamp(2rem, 4vw, 3.5rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 1.1,
               margin: 0,
             }}
@@ -556,9 +561,9 @@ export default function ProjectsShowcase() {
           </h2>
           <p
             style={{
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(var(--foreground-rgb), 0.45)",
               lineHeight: 1.85,
-              fontSize: "0.95rem",
+              fontSize: "var(--text-body-lg)",
               maxWidth: "420px",
               margin: 0,
             }}

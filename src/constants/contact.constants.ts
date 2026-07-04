@@ -7,8 +7,7 @@ export const CONTACT_FORM_META = {
   headline:    'Get In Touch',
   submitLabel: 'Send Message',
   trustItems: [
-    '🔒 Fully Confidential',
-    '⏱ Response Within 24 Hours',
+    'Response Within 24 Hours',
     'We Respect Your Time',
   ],
 } as const;

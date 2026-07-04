@@ -1,16 +1,19 @@
-import type { SectionLabelProps } from '../../types';
+import type { SectionLabelProps } from "../../types";
 
-export default function SectionLabel({ text, className = '' }: SectionLabelProps) {
+export default function SectionLabel({
+  text,
+  className = "",
+}: SectionLabelProps) {
   return (
     <p
       className={className}
       style={{
         fontFamily: '"Space Mono", monospace',
-        fontSize: '0.6875rem',
-        letterSpacing: '0.25em',
-        textTransform: 'uppercase',
-        color: '#00E5FF',
-        marginBottom: '1rem',
+        fontSize: "var(--text-label)",
+        letterSpacing: "var(--tracking-wide)",
+        textTransform: "uppercase",
+        color: "var(--primary)",
+        marginBottom: "var(--space-4)",
       }}
     >
       [ {text} ]

@@ -50,17 +50,17 @@ export default function FeaturedProjects() {
       <section
         style={{
           background: "transparent",
-          padding: "8rem 0",
+          padding: "var(--space-32) 0",
           overflow: "hidden",
         }}
       >
-        {/* Section label + heading — padded */}
+        {/* Section label + heading padded */}
         <div
           style={{
-            maxWidth: "80rem",
+            maxWidth: "var(--container-2xl)",
             margin: "0 auto",
-            padding: "0 1.5rem",
-            marginBottom: "4rem",
+            padding: "0 var(--space-6)",
+            marginBottom: "var(--space-16)",
           }}
         >
           <SectionLabel text="Featured Work" />
@@ -68,11 +68,11 @@ export default function FeaturedProjects() {
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: "clamp(1rem, 1.5vw, 1.25rem)",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(var(--foreground-rgb), 0.45)",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              fontWeight: 400,
-              marginBottom: "1rem",
+              fontWeight: "var(--font-normal)",
+              marginBottom: "var(--space-4)",
             }}
           >
             Centerpiece Production
@@ -81,7 +81,7 @@ export default function FeaturedProjects() {
             style={{
               fontFamily: '"Playfair Display", serif',
               fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 1.1,
               maxWidth: "700px",
               fontStyle: "italic",
@@ -101,10 +101,11 @@ export default function FeaturedProjects() {
             minHeight: "580px",
             opacity: inView ? 1 : 0,
             transform: inView ? "translateX(0)" : "translateX(-3rem)",
-            transition: "opacity 0.9s ease, transform 0.9s ease",
+            transition:
+              "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
           }}
         >
-          {/* Left: video panel — goes edge to edge */}
+          {/* Left: video panel goes edge to edge */}
           <div
             style={{
               position: "relative",
@@ -128,7 +129,8 @@ export default function FeaturedProjects() {
                   height: "100%",
                   objectFit: "cover",
                   opacity: videoReady ? 1 : 0,
-                  transition: "opacity 0.8s ease",
+                  transition:
+                    "opacity var(--duration-slowest) var(--ease-default)",
                   transform: "scale(1.03)",
                 }}
               />
@@ -142,7 +144,8 @@ export default function FeaturedProjects() {
                 background:
                   "linear-gradient(135deg, rgba(5,12,30,0.9) 0%, rgba(0,20,40,0.85) 100%)",
                 opacity: videoReady ? 0 : 1,
-                transition: "opacity 0.8s ease",
+                transition:
+                  "opacity var(--duration-slowest) var(--ease-default)",
                 pointerEvents: "none",
               }}
             />
@@ -153,7 +156,7 @@ export default function FeaturedProjects() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to right, transparent 60%, rgba(6,10,20,0.95) 100%)",
+                  "linear-gradient(to right, transparent 60%, rgba(var(--color-surface-3-rgb), 0.95) 100%)",
                 pointerEvents: "none",
                 zIndex: 1,
               }}
@@ -165,7 +168,7 @@ export default function FeaturedProjects() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to bottom, transparent 50%, rgba(6,10,20,0.6) 100%)",
+                  "linear-gradient(to bottom, transparent 50%, rgba(var(--color-surface-3-rgb), 0.6) 100%)",
                 pointerEvents: "none",
                 zIndex: 1,
               }}
@@ -179,22 +182,22 @@ export default function FeaturedProjects() {
                 left: "1.5rem",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.75rem",
+                gap: "var(--space-3)",
                 zIndex: 3,
               }}
             >
               <button
                 onClick={() => setMuted((m) => !m)}
                 style={{
-                  background: "rgba(0,0,0,0.5)",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  color: "white",
+                  background: "rgba(var(--overlay-rgb), 0.5)",
+                  border: "1px solid rgba(var(--foreground-rgb), 0.2)",
+                  color: "var(--foreground)",
                   cursor: "pointer",
                   padding: "0.45rem",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  borderRadius: "50%",
+                  borderRadius: "var(--radius-full)",
                   transition: "background 0.2s",
                 }}
               >
@@ -202,14 +205,20 @@ export default function FeaturedProjects() {
               </button>
 
               {/* LIVE dot */}
-              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "var(--space-0-5)",
+                }}
+              >
                 <span
                   style={{
                     width: "6px",
                     height: "6px",
-                    borderRadius: "50%",
-                    background: "#ff4444",
-                    boxShadow: "0 0 6px #ff4444",
+                    borderRadius: "var(--radius-full)",
+                    background: "var(--destructive)",
+                    boxShadow: "var(--shadow-destructive)",
                     display: "inline-block",
                     animation: "pulse-dot 1.8s ease-in-out infinite",
                   }}
@@ -219,7 +228,7 @@ export default function FeaturedProjects() {
                     fontFamily: '"Space Mono", monospace',
                     fontSize: "0.5rem",
                     letterSpacing: "0.2em",
-                    color: "rgba(255,255,255,0.6)",
+                    color: "rgba(var(--foreground-rgb), 0.7)",
                     textTransform: "uppercase",
                   }}
                 >
@@ -234,13 +243,13 @@ export default function FeaturedProjects() {
                 position: "absolute",
                 top: "1.5rem",
                 right: "1.5rem",
-                background: "rgba(0,229,255,0.08)",
-                border: "1px solid rgba(0,229,255,0.25)",
-                color: "#00E5FF",
+                background: "rgba(var(--primary-rgb), 0.08)",
+                border: "1px solid rgba(var(--primary-rgb), 0.25)",
+                color: "var(--primary)",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.55rem",
+                fontSize: "var(--text-2xs)",
                 letterSpacing: "0.18em",
-                padding: "0.4rem 0.8rem",
+                padding: "var(--space-0-5) 0.8rem",
                 textTransform: "uppercase",
                 zIndex: 3,
               }}
@@ -252,23 +261,24 @@ export default function FeaturedProjects() {
           {/* Right: narrative panel */}
           <div
             style={{
-              background: "rgba(6,10,20,0.97)",
-              padding: "4rem 3.5rem 4rem 4rem",
+              background: "rgba(var(--color-surface-3-rgb), 0.97)",
+              padding:
+                "var(--space-16) var(--space-14) var(--space-16) var(--space-16)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              borderLeft: "1px solid rgba(0,229,255,0.06)",
+              borderLeft: "1px solid rgba(var(--primary-rgb), 0.06)",
             }}
           >
             {/* Event type label */}
             <p
               style={{
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.6rem",
-                letterSpacing: "0.25em",
-                color: "#C9A84C",
+                fontSize: "var(--text-xs)",
+                letterSpacing: "var(--tracking-wide)",
+                color: "var(--secondary)",
                 textTransform: "uppercase",
-                marginBottom: "1.25rem",
+                marginBottom: "var(--space-5)",
               }}
             >
               {featured.subtitle}
@@ -279,9 +289,9 @@ export default function FeaturedProjects() {
               style={{
                 fontFamily: '"Playfair Display", serif',
                 fontSize: "clamp(2rem, 3vw, 3rem)",
-                color: "white",
+                color: "var(--foreground)",
                 lineHeight: 1.1,
-                marginBottom: "2rem",
+                marginBottom: "var(--space-8)",
               }}
             >
               {featured.title}
@@ -290,59 +300,15 @@ export default function FeaturedProjects() {
             {/* Story */}
             <p
               style={{
-                color: "rgba(255,255,255,0.6)",
-                fontSize: "1rem",
+                color: "rgba(var(--foreground-rgb), 0.7)",
+                fontSize: "var(--text-base)",
                 lineHeight: 1.85,
-                marginBottom: "2.5rem",
+                marginBottom: "var(--space-10)",
                 maxWidth: "420px",
               }}
             >
               {featured.description}
             </p>
-
-            {/* Stats strip */}
-            <div
-              style={{
-                display: "flex",
-                gap: "2rem",
-                marginBottom: "3rem",
-                paddingBottom: "2rem",
-                borderBottom: "1px solid rgba(255,255,255,0.07)",
-              }}
-            >
-              {[
-                { value: "500+", label: "Drones" },
-                { value: "Millions", label: "Impressions" },
-                { value: "Live", label: "Broadcast" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <p
-                    style={{
-                      fontFamily: '"Bebas Neue", cursive',
-                      fontSize: "1.75rem",
-                      color: "#00E5FF",
-                      letterSpacing: "0.04em",
-                      margin: 0,
-                      lineHeight: 1,
-                    }}
-                  >
-                    {stat.value}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: '"Space Mono", monospace',
-                      fontSize: "0.55rem",
-                      letterSpacing: "0.18em",
-                      color: "rgba(255,255,255,0.35)",
-                      textTransform: "uppercase",
-                      margin: "0.35rem 0 0",
-                    }}
-                  >
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
 
             {/* CTA */}
             {featured.videoUrl && (
@@ -352,20 +318,20 @@ export default function FeaturedProjects() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "0.75rem",
+                  gap: "var(--space-3)",
                   background: "transparent",
-                  border: "1px solid rgba(0,229,255,0.5)",
-                  color: "#00E5FF",
+                  border: "1px solid rgba(var(--primary-rgb), 0.5)",
+                  color: "var(--primary)",
                   cursor: "pointer",
-                  padding: "1rem 2rem",
+                  padding: "var(--space-4) var(--space-8)",
                   fontFamily: '"Bebas Neue", cursive',
-                  fontSize: "1rem",
+                  fontSize: "var(--text-base)",
                   letterSpacing: "0.3em",
                   transition: "background 0.25s, box-shadow 0.25s",
                   alignSelf: "flex-start",
                 }}
               >
-                <Play size={14} fill="#00E5FF" color="#00E5FF" />
+                <Play size={14} fill="var(--primary)" color="var(--primary)" />
                 WATCH SHOWREEL
               </button>
             )}
@@ -375,8 +341,8 @@ export default function FeaturedProjects() {
         {/* Mobile fallback styles */}
         <style>{`
           .featured-watch-btn:hover {
-            background: rgba(0,229,255,0.1) !important;
-            box-shadow: 0 0 40px rgba(0,229,255,0.2);
+            background: rgba(var(--primary-rgb), 0.1) !important;
+            box-shadow: 0 0 40px rgba(var(--primary-rgb), 0.2);
           }
           @keyframes pulse-dot {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -399,12 +365,12 @@ export default function FeaturedProjects() {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 9999,
+            zIndex: "var(--z-modal)",
             background: "rgba(2,5,8,0.94)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            padding: "1.5rem",
+            padding: "var(--space-6)",
             backdropFilter: "blur(8px)",
           }}
         >
@@ -413,9 +379,9 @@ export default function FeaturedProjects() {
               position: "relative",
               width: "100%",
               maxWidth: "960px",
-              background: "rgba(8,15,35,0.95)",
-              border: "1px solid rgba(0,229,255,0.15)",
-              boxShadow: "0 0 100px rgba(0,229,255,0.08)",
+              background: "rgba(var(--color-surface-17-rgb), 0.95)",
+              border: "1px solid rgba(var(--primary-rgb), 0.15)",
+              boxShadow: "var(--shadow-2xl)",
             }}
           >
             <button
@@ -425,15 +391,15 @@ export default function FeaturedProjects() {
                 top: "-3.25rem",
                 right: 0,
                 background: "transparent",
-                border: "1px solid rgba(255,255,255,0.15)",
-                color: "white",
+                border: "1px solid rgba(var(--foreground-rgb), 0.15)",
+                color: "var(--foreground)",
                 cursor: "pointer",
-                padding: "0.4rem 0.75rem",
+                padding: "var(--space-0-5) var(--space-3)",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.4rem",
+                gap: "var(--space-0-5)",
                 fontFamily: '"Space Mono", monospace',
-                fontSize: "0.55rem",
+                fontSize: "var(--text-2xs)",
                 letterSpacing: "0.18em",
               }}
             >
@@ -441,16 +407,16 @@ export default function FeaturedProjects() {
             </button>
             <div
               style={{
-                padding: "1.25rem 1.5rem 0.75rem",
-                borderBottom: "1px solid rgba(255,255,255,0.05)",
+                padding: "var(--space-5) var(--space-6) var(--space-3)",
+                borderBottom: "1px solid rgba(var(--foreground-rgb), 0.07)",
               }}
             >
               <p
                 style={{
                   fontFamily: '"Bebas Neue", cursive',
-                  fontSize: "1.1rem",
+                  fontSize: "var(--text-md)",
                   letterSpacing: "0.08em",
-                  color: "white",
+                  color: "var(--foreground)",
                   margin: 0,
                 }}
               >
@@ -460,11 +426,11 @@ export default function FeaturedProjects() {
                 <p
                   style={{
                     fontFamily: '"Space Mono", monospace',
-                    fontSize: "0.55rem",
-                    color: "#C9A84C",
+                    fontSize: "var(--text-2xs)",
+                    color: "var(--secondary)",
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    margin: "0.25rem 0 0",
+                    margin: "var(--space-1) 0 0",
                   }}
                 >
                   {featured.subtitle}
@@ -482,7 +448,7 @@ export default function FeaturedProjects() {
                   width: "100%",
                   height: "100%",
                   display: "block",
-                  background: "#000",
+                  background: "var(--overlay)",
                 }}
               />
             </div>

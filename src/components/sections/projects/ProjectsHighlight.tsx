@@ -25,9 +25,9 @@ function FeatureRow({
         display: "grid",
         gridTemplateColumns: "3rem 1fr 2fr",
         alignItems: "start",
-        gap: "2rem",
-        padding: "2.5rem 0",
-        borderBottom: "1px solid rgba(255,255,255,0.05)",
+        gap: "var(--space-8)",
+        padding: "var(--space-10) 0",
+        borderBottom: "1px solid rgba(var(--foreground-rgb), 0.07)",
         opacity: parentInView ? 1 : 0,
         transform: parentInView ? "translateY(0)" : "translateY(1.25rem)",
         transition: `opacity 0.7s ease ${
@@ -40,9 +40,9 @@ function FeatureRow({
       <span
         style={{
           fontFamily: '"Space Mono", monospace',
-          fontSize: "0.6rem",
+          fontSize: "var(--text-xs)",
           letterSpacing: "0.15em",
-          color: "rgba(0,229,255,0.35)",
+          color: "rgba(var(--primary-rgb), 0.35)",
           paddingTop: "0.15rem",
         }}
       >
@@ -54,10 +54,10 @@ function FeatureRow({
         style={{
           fontFamily: '"Playfair Display", serif',
           fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
-          color: "white",
+          color: "var(--foreground)",
           lineHeight: 1.35,
           margin: 0,
-          paddingRight: "1rem",
+          paddingRight: "var(--space-4)",
         }}
       >
         {titleWords}
@@ -66,8 +66,8 @@ function FeatureRow({
       {/* Feature description */}
       <p
         style={{
-          color: "rgba(255,255,255,0.45)",
-          fontSize: "0.9rem",
+          color: "rgba(var(--foreground-rgb), 0.45)",
+          fontSize: "var(--text-md)",
           lineHeight: 1.85,
           margin: 0,
         }}
@@ -86,7 +86,7 @@ export default function ProjectsHighlight() {
     <section
       style={{
         background: "transparent",
-        padding: "8rem 1.5rem",
+        padding: "var(--space-4) var(--space-6)",
         position: "relative",
       }}
     >
@@ -99,19 +99,22 @@ export default function ProjectsHighlight() {
           right: "1.5rem",
           height: "1px",
           background:
-            "linear-gradient(to right, transparent 0%, rgba(0,229,255,0.2) 30%, rgba(0,229,255,0.2) 70%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, rgba(var(--primary-rgb), 0.2) 30%, rgba(var(--primary-rgb), 0.2) 70%, transparent 100%)",
         }}
       />
 
-      <div ref={ref} style={{ maxWidth: "80rem", margin: "0 auto" }}>
-        {/* Section header — two-column editorial layout */}
+      <div
+        ref={ref}
+        style={{ maxWidth: "var(--container-2xl)", margin: "0 auto" }}
+      >
+        {/* Section header two-column editorial layout */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1.5fr",
-            gap: "3rem",
+            gap: "var(--space-12)",
             alignItems: "end",
-            marginBottom: "4rem",
+            marginBottom: "var(--space-16)",
           }}
           className="highlight-header-grid"
         >
@@ -121,7 +124,7 @@ export default function ProjectsHighlight() {
               style={{
                 fontFamily: '"Playfair Display", serif',
                 fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                color: "white",
+                color: "var(--foreground)",
                 lineHeight: 1.1,
                 margin: 0,
               }}
@@ -131,8 +134,8 @@ export default function ProjectsHighlight() {
           </div>
           <p
             style={{
-              color: "rgba(255,255,255,0.35)",
-              fontSize: "0.95rem",
+              color: "rgba(var(--foreground-rgb), 0.35)",
+              fontSize: "var(--text-body-lg)",
               lineHeight: 1.9,
               margin: 0,
               maxWidth: "480px",
@@ -150,7 +153,7 @@ export default function ProjectsHighlight() {
           <div
             style={{
               height: "1px",
-              background: "rgba(255,255,255,0.06)",
+              background: "rgba(var(--foreground-rgb), 0.06)",
               marginBottom: 0,
             }}
           />

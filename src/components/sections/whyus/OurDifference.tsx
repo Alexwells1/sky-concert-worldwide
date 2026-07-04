@@ -7,8 +7,8 @@ export default function OurDifference() {
   return (
     <section
       style={{
-        background: "#060A14",
-        padding: "10rem 1.5rem",
+        background: "var(--color-surface-3)",
+        padding: "var(--space-8) var(--space-6)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -37,7 +37,7 @@ export default function OurDifference() {
           right: 0,
           height: "1px",
           background:
-            "linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent)",
+            "linear-gradient(to right, transparent, rgba(var(--secondary-rgb), 0.2), transparent)",
         }}
       />
 
@@ -45,15 +45,16 @@ export default function OurDifference() {
         ref={ref}
         className="our-difference-grid"
         style={{
-          maxWidth: "80rem",
+          maxWidth: "var(--container-2xl)",
           margin: "0 auto",
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: "6rem",
+          gap: "var(--space-24)",
           alignItems: "center",
           opacity: inView ? 1 : 0,
           transform: inView ? "translateY(0)" : "translateY(35px)",
-          transition: "opacity 0.9s ease, transform 0.9s ease",
+          transition:
+            "opacity var(--duration-crawl) var(--ease-default), transform var(--duration-crawl) var(--ease-default)",
         }}
       >
         {/* Left: large label + headline */}
@@ -61,12 +62,12 @@ export default function OurDifference() {
           <span
             style={{
               fontFamily: '"Space Mono", monospace',
-              fontSize: "0.6rem",
+              fontSize: "var(--text-xs)",
               letterSpacing: "0.3em",
-              color: "#C9A84C",
+              color: "var(--secondary)",
               textTransform: "uppercase",
               display: "block",
-              marginBottom: "2rem",
+              marginBottom: "var(--space-8)",
             }}
           >
             {WHYUS_INTRO.sectionLabel}
@@ -76,9 +77,9 @@ export default function OurDifference() {
             style={{
               fontFamily: '"Bebas Neue", cursive',
               fontSize: "clamp(3rem, 6vw, 6.5rem)",
-              color: "white",
+              color: "var(--foreground)",
               lineHeight: 0.88,
-              letterSpacing: "0.02em",
+              letterSpacing: "var(--tracking-normal)",
               margin: 0,
             }}
           >
@@ -86,7 +87,9 @@ export default function OurDifference() {
             <br />
             Brands Choose
             <br />
-            <span style={{ color: "rgba(201,168,76,0.55)" }}>Sky Concert</span>
+            <span style={{ color: "rgba(var(--secondary-rgb), 0.55)" }}>
+              Sky Concert
+            </span>
           </h2>
         </div>
 
@@ -96,8 +99,9 @@ export default function OurDifference() {
             style={{
               width: "40px",
               height: "2px",
-              background: "linear-gradient(to right, #C9A84C, transparent)",
-              marginBottom: "2rem",
+              background:
+                "linear-gradient(to right, var(--secondary), transparent)",
+              marginBottom: "var(--space-8)",
             }}
           />
           {WHYUS_INTRO.paragraphs.map((p, i) => (
