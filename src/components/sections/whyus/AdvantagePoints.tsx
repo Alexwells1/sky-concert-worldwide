@@ -248,17 +248,14 @@ function AdvantageBlock({
 
       {/* Mobile card compact, no image */}
       <div
-        ref={ref}
         className="advantage-mobile-card"
         style={{
           flexDirection: "column",
           background: "var(--color-surface-7)",
-          borderTop: `1px solid rgba(var(--foreground-rgb), 0.4)`,
+          borderTop: "1px solid rgba(var(--foreground-rgb), 0.4)",
           padding: "var(--space-10) var(--space-6)",
-          opacity: inView ? 1 : 0,
-          transform: inView ? "translateY(0)" : "translateY(30px)",
-          transition:
-            "opacity var(--duration-slower) var(--ease-default), transform var(--duration-slower) var(--ease-default)",
+          opacity: 1,
+          transform: "translateY(0)",
         }}
       >
         {/* Number + accent bar */}
